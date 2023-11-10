@@ -5,6 +5,9 @@ By default available at
 ```
 http://localhost:5004/swagger/index.html
 ```
+
+![Api Swagger](image.png)
+
 ## Check 1 - DEA Set
 
 - DEA is set, so all should be blocked.
