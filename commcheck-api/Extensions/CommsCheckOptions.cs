@@ -41,7 +41,8 @@ public class CommsCheckOptions(IServiceCollection services)
 
         .WithTracing(builder => builder
             .AddAspNetCoreInstrumentation()
-            .AddConsoleExporter())
+           // .AddConsoleExporter()
+            )
         .WithMetrics(
             builder => builder
             .AddMeter("NHS.CommChecker.HashWrapperObjectPoolPolicy")
@@ -49,7 +50,8 @@ public class CommsCheckOptions(IServiceCollection services)
             .AddMeter("NHS.CommChecker.CommsCheckHostedService")    
             .AddPrometheusExporter()
             .AddAspNetCoreInstrumentation()
-            .AddConsoleExporter());
+            //.AddConsoleExporter()
+            );
 
         return this;
     }
