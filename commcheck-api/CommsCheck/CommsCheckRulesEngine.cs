@@ -47,8 +47,6 @@ public class CommsCheckRulesEngine : ICommCheck
 
     private async Task<IRuleOutcome> RunRuleWithoutLog<T>(CommsCheckItem toCheck) where T : IContactType
     {
-
-
         var explictBlockAllRulesStatus = await RunExplictBlock(toCheck);
         if (explictBlockAllRulesStatus.IsBlocked())
             return explictBlockAllRulesStatus;

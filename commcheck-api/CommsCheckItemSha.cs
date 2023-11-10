@@ -21,7 +21,7 @@ public class CommsCheckItemSha
         var hash = alg.ComputeHash(b);
         var hashStr = BitConverter.ToString(hash).Replace("-", "").ToLower();
 
-        _logger.LogInformation("Hash of {id} for item {item} with bytes {b}", hashStr, str, b);
+        _logger.LogInformation("Hash of {id} for item {item}", hashStr, str);
         return hashStr;
     }
 }
