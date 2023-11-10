@@ -11,7 +11,8 @@ public class CommsCheckHostedService(
 {
 
     private static readonly Meter MyMeter = new("NHS.CommChecker.CommsCheckHostedService", "1.0");
-    private static readonly Counter<long> ProcessCheckCount = MyMeter.CreateCounter<long>("ProcessCheck_Count");
+    private static readonly Counter<long> ProcessCheckCount = 
+        MyMeter.CreateCounter<long>("ProcessCheck_Count");
 
     private static readonly System.Diagnostics.Metrics.Histogram<double> ProcessTime = 
         MyMeter.CreateHistogram<double>("ProcessCheck_Duration_Seconds");
@@ -32,7 +33,6 @@ public class CommsCheckHostedService(
          var sw = Stopwatch.StartNew();
         try
         {
-           
             CurrentlyProcessing.Add(1);
             await ProcessCommCheckItem(item);
         }
@@ -50,7 +50,6 @@ public class CommsCheckHostedService(
 
     private async Task ProcessCommCheckItem(CommsCheckItemWithId item)
     {
-        
         if (await IsNotInCache(item.Id))
         {
             await ProcessCheck(item);
@@ -62,6 +61,7 @@ public class CommsCheckHostedService(
         var cacheEntry = await _cache.GetAsync(id);
         return cacheEntry == null;
     }
+    
     private async Task ProcessCheck(CommsCheckItemWithId item)
     {
         var answer = await _check.Check(item);
