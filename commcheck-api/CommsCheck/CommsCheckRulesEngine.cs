@@ -2,11 +2,6 @@ using Microsoft.Extensions.Options;
 using RulesEngine.Extensions;
 using RulesEngine.Models;
 
-public class CommsCheckRulesEngineOptions
-{
-    public string JsonPath{get;set;}
-}
-
 public class CommsCheckRulesEngine : ICommCheck
 {
     private readonly RulesEngine.RulesEngine _rulesEngine;
