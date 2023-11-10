@@ -1,4 +1,4 @@
 public interface ICommCheck
 {
-     Task<CommsCheckAnswer> Check(CommsCheckItem toCheck);
+     Task<CommsCheckAnswer> Check(CommsCheckItemWithId toCheck);
 }

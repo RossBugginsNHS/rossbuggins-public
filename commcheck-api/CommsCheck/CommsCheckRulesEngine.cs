@@ -22,16 +22,17 @@ public class CommsCheckRulesEngine : ICommCheck
         _rulesEngine = new RulesEngine.RulesEngine(workflow.ToArray());
     }
 
-    public async Task<CommsCheckAnswer> Check(CommsCheckItem toCheck)
+    public async Task<CommsCheckAnswer> Check(CommsCheckItemWithId toCheck)
     {
-        var sms = await RunRule<Sms>(toCheck);
-        var app = await RunRule<App>(toCheck);
-        var email = await RunRule<Email>(toCheck);
-        var postal = await RunRule<Postal>(toCheck);
+       // var id = await _sha.GetSha(toCheck, "Getting id in Rules engine Check.");
+        var sms = await RunRule<Sms>(toCheck.Item);
+        var app = await RunRule<App>(toCheck.Item);
+        var email = await RunRule<Email>(toCheck.Item);
+        var postal = await RunRule<Postal>(toCheck.Item);
 
         return new CommsCheckAnswer(
-            _sha.GetSha(toCheck),
-            toCheck.ToString(),
+            toCheck.Id,
+            toCheck.Item.ToString(),
             app,
             email,
             sms,

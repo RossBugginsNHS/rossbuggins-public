@@ -18,9 +18,9 @@ public static class CommsCheckExtensionMethods
        
       
         services.AddHostedService<CommsCheckHostedService>();
-        services.AddSingleton(Channel.CreateUnbounded<CommsCheckItem>(new UnboundedChannelOptions() { SingleReader = true }));
-        services.AddSingleton(svc => svc.GetRequiredService<Channel<CommsCheckItem>>().Reader);
-        services.AddSingleton(svc => svc.GetRequiredService<Channel<CommsCheckItem>>().Writer);
+        services.AddSingleton(Channel.CreateUnbounded<CommsCheckItemWithId>(new UnboundedChannelOptions() { SingleReader = true }));
+        services.AddSingleton(svc => svc.GetRequiredService<Channel<CommsCheckItemWithId>>().Reader);
+        services.AddSingleton(svc => svc.GetRequiredService<Channel<CommsCheckItemWithId>>().Writer);
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblyContaining<CommsCheckOptions>();

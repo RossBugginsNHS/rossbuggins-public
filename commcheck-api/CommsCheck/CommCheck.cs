@@ -7,15 +7,15 @@ public class CommCheck(
     IServiceProvider _services,
     ILogger<CommCheck> _logger) : ICommCheck
 {
-    public Task<CommsCheckAnswer> Check(CommsCheckItem item)
+    public async Task<CommsCheckAnswer> Check(CommsCheckItemWithId item)
     {
-        var id = sha.GetSha(item);
-        var str = item.ToString();
-        var app = CheckRules<App>(item);
-        var sms = CheckRules<Sms>(item);
-        var email = CheckRules<Email>(item);
-        var postal = CheckRules<Postal>(item);
-        return Task.FromResult(new CommsCheckAnswer(id, str, app, email, sms, postal));
+       
+        var str = item.Item.ToString();
+        var app = CheckRules<App>(item.Item);
+        var sms = CheckRules<Sms>(item.Item);
+        var email = CheckRules<Email>(item.Item);
+        var postal = CheckRules<Postal>(item.Item);
+        return new CommsCheckAnswer(item.Id, str, app, email, sms, postal);
     }
 
     private IRuleOutcome CheckRules<T>(CommsCheckItem item) where T : IContactType
