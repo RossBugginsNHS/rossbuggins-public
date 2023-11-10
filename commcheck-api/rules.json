@@ -1,0 +1,113 @@
+[
+  {
+    "WorkflowName": "ExplicitBlock-All",
+    "Rules": [
+      {
+        "RuleName": "Block all DEA.",
+        "SuccessEvent": "Explicit Block 10: DEA Block",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "input1.ReasonForRemoval.Code == \"DEA\""
+      }
+    ]
+  },
+  {
+    "WorkflowName": "ExplicitBlock-App",
+    "Rules": [
+      {
+        "RuleName": "Block all App ",
+        "SuccessEvent": "Explicit App Block 10: Block All App",
+        "ErrorMessage": "",
+        "Enabled": false,
+        "Expression": "true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "ExplicitBlock-Email",
+    "Rules": [
+      {
+        "RuleName": "Block all Email ",
+        "SuccessEvent": "Explicit Email Block 10: Block All Email",
+        "ErrorMessage": "",
+        "Enabled": false,
+        "Expression": "true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "ExplicitBlock-Sms",
+    "Rules": [
+      {
+        "RuleName": "Block all SMS ",
+        "SuccessEvent": "Explicit SMS Block 10: Block All Sms",
+        "ErrorMessage": "",
+        "Enabled": false,
+        "Expression": "true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "ExplicitBlock-Postal",
+    "Rules": [
+      {
+        "RuleName": "Block all Postal ",
+        "SuccessEvent": "Explicit Postal Block 10: Block All Postal",
+        "ErrorMessage": "",
+        "Enabled": false,
+        "Expression": "true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "Allow-App",
+    "Rules": [
+      {
+        "RuleName": "HasNoExitCode",
+        "SuccessEvent": "10",
+        "ErrorMessage": "",
+        "Expression": "input1.ReasonForRemoval.NotSet == true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "Allow-Email",
+    "Rules": [
+      {
+        "RuleName": "HasNoExitCode",
+        "SuccessEvent": "10",
+        "ErrorMessage": "",
+        "Expression": "input1.ReasonForRemoval.NotSet == true"
+      }
+    ]
+  },
+  {
+    "WorkflowName": "Allow-Sms",
+    "Rules": [
+      {
+        "RuleName": "HasNoExitCode",
+        "SuccessEvent": "10 Sms allowed when for RfR is set.",
+        "ErrorMessage": "",
+        "Expression": "input1.ReasonForRemoval.NotSet == true"
+      },
+      {
+        "RuleName": "HasNoExitCode",
+        "SuccessEvent": "20 Sms allowed to be sent when CGA",
+        "ErrorMessage": "",
+        "Expression": "input1.ReasonForRemoval.Code == \"CGA\""
+      }
+    ]
+  }
+  ,
+  {
+    "WorkflowName": "Allow-Postal",
+    "Rules": [
+      {
+        "RuleName": "HasNoExitCode",
+        "SuccessEvent": "10",
+        "ErrorMessage": "",
+        "Expression": "input1.ReasonForRemoval.NotSet == true"
+      }
+    ]
+  }
+]
