@@ -1,2 +1,2 @@
-public readonly record struct App:IContactType;
+public class App:IContactType;
 

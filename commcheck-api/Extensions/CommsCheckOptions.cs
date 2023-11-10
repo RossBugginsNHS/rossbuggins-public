@@ -1,6 +1,10 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.ObjectPool;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
 
 public class CommsCheckOptions(IServiceCollection services)
 {
@@ -31,6 +35,25 @@ public class CommsCheckOptions(IServiceCollection services)
         return this;
     }
 
+    public CommsCheckOptions AddMetrics()
+    {
+        services.AddOpenTelemetry()
+
+        .WithTracing(builder => builder
+            .AddAspNetCoreInstrumentation()
+            .AddConsoleExporter())
+        .WithMetrics(
+            builder => builder
+            .AddMeter("NHS.CommChecker.HashWrapperObjectPoolPolicy")
+            .AddMeter("NHS.CommChecker.CheckCommsCommandHandler")
+            .AddMeter("NHS.CommChecker.CommsCheckHostedService")    
+            .AddPrometheusExporter()
+            .AddAspNetCoreInstrumentation()
+            .AddConsoleExporter());
+
+        return this;
+    }
+
     public CommsCheckOptions AddNativeRules(Action<CommsCheckNativeRulesOptions> options)
     {
         services.AddTransient<ICommCheck, CommCheckNativeChecks>();
@@ -44,14 +67,14 @@ public class CommsCheckOptions(IServiceCollection services)
         Action<CommsCheckRulesEngineConfigurationOptions> options)
     {
         services.AddTransient<ICommCheck, CommsCheckRulesEngine>();
-        var optionsInstance = new CommsCheckRulesEngineConfigurationOptions();
-        
+        var optionsInstance = new CommsCheckRulesEngineConfigurationOptions(services);
+
 
         config.GetSection(CommsCheckRulesEngineConfigurationOptions.OptionsName).Bind(optionsInstance);
 
         options(optionsInstance);
 
-        services.Configure<CommsCheckRulesEngineOptions>(x=>
+        services.Configure<CommsCheckRulesEngineOptions>(x =>
         {
             x.JsonPath = optionsInstance.RulesPath;
         });
@@ -62,6 +85,22 @@ public class CommsCheckOptions(IServiceCollection services)
     public CommsCheckOptions AddShaKey(string key)
     {
         ShaKey = Encoding.UTF8.GetBytes(key);
+
+        services.Configure<HashWrapperOptions>(x =>
+        {
+            x.HashKey = ShaKey;
+        });
+
+        //services.AddSingleton<CommsCheckItemSha>();
+        services.TryAddSingleton<HashWrapperObjectPoolPolicy>();
+        services.TryAddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>();
+        services.TryAddSingleton<ObjectPool<HashWrapper>>(serviceProvider =>
+        {
+            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+            var policy = serviceProvider.GetRequiredService<HashWrapperObjectPoolPolicy>();
+            return provider.Create(policy);
+        });
+
         return this;
     }
 }

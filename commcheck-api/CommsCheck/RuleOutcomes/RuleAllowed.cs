@@ -1,4 +1,4 @@
-public readonly record struct RuleAllowed(string Reason) : IRuleOutcome
+public readonly record struct RuleAllowed(string Method, string Reason) : IRuleOutcome
 {
     public bool Equals(IRuleOutcome? other)
     {

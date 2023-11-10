@@ -9,7 +9,6 @@ public readonly record struct CommsCheckItem(
     public int DaySinceSmsUpdate => 
         DateOnly.FromDateTime(DateTime.Now).DayNumber - DateOfSmsUpdated.DayNumber;
 
-
     public int YearsOld => (int)Math.Floor(DaysOld / (float)365);
 
     public static CommsCheckItem FromDto(CommsCheckQuestionRequestDto dto)
@@ -19,6 +18,4 @@ public readonly record struct CommsCheckItem(
             dto.DateOfSmsUpdate,
             IReasonForRemoval.FromEnum(dto.RfR));
     }
-
-
 }

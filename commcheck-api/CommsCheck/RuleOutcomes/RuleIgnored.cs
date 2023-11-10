@@ -1,4 +1,4 @@
-public readonly record struct RuleIgnored(string Reason) :IRuleOutcome
+public readonly record struct RuleIgnored(string Method, string Reason) :IRuleOutcome
 {
     public bool Equals(IRuleOutcome? other)
     {

@@ -250,3 +250,50 @@ Example rules are
   }
 ]
 ```
+
+## Metrics
+
+Metrics are at 
+
+```
+http://localhost:5004/metrics
+```
+
+Example useful metrics are
+
+```
+# TYPE HashWrapper_Created_Count_total counter
+HashWrapper_Created_Count_total 1 1699631581284
+
+# TYPE HashWrapper_Returned_Count_total counter
+HashWrapper_Returned_Count_total 1 1699631581284
+
+# TYPE CheckCommsCommandHandler_Handled_Count_total counter
+CheckCommsCommandHandler_Handled_Count_total 1 1699631581284
+
+# TYPE ProcessCheck_Count_total counter
+ProcessCheck_Count_total 1 1699631581284
+
+# TYPE ProcessCheck_Duration_Seconds histogram
+ProcessCheck_Duration_Seconds_bucket{le="0"} 0 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="5"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="10"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="25"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="50"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="75"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="100"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="250"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="500"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="750"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="1000"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="2500"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="5000"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="7500"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="10000"} 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="+Inf"} 1 1699631581284
+ProcessCheck_Duration_Seconds_sum 0.2669507 1699631581284
+ProcessCheck_Duration_Seconds_count 1 1699631581284
+
+# TYPE ProcessCheck_Active_Count gauge
+ProcessCheck_Active_Count 0 1699631581284
+```

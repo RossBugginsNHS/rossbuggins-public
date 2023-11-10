@@ -1,2 +1,2 @@
-public readonly record struct Sms:IContactType;
+public class Sms:IContactType;
 

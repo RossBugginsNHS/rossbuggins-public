@@ -15,14 +15,14 @@ public readonly record struct CommsCheckAnswerResponseDto(
         return new CommsCheckAnswerResponseDto(
             answer.ResultId, 
             answer.RequestString, 
-            answer.App.IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
-            answer.Email.IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
-            answer.SMS.IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
-            answer.Postal.IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
-            answer.App.Reason,
-            answer.Email.Reason,
-            answer.SMS.Reason,
-            answer.Postal.Reason
+            answer.Outcomes.Where(x=>x.Method=="App").First().IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
+            answer.Outcomes.Where(x=>x.Method=="Email").First().IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
+            answer.Outcomes.Where(x=>x.Method=="Sms").First().IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
+            answer.Outcomes.Where(x=>x.Method=="Postal").First().IsAllowed() ? CommAllowedEnum.Allowed: CommAllowedEnum.Blocked,
+            answer.Outcomes.Where(x=>x.Method=="App").First().Reason,
+            answer.Outcomes.Where(x=>x.Method=="Email").First().Reason,
+            answer.Outcomes.Where(x=>x.Method=="Sms").First().Reason,
+            answer.Outcomes.Where(x=>x.Method=="Postal").First().Reason
             );
         
     }

@@ -1,2 +1,2 @@
-public readonly record struct Postal:IContactType;
+public class Postal:IContactType;
 

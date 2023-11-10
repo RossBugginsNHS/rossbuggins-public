@@ -36,7 +36,7 @@ public class CommCheckNativeChecks(
         if (allow.IsAllowed())
             return allow;
 
-        return IRuleOutcome.Blocked("Default block due to no rules found.");
+        return IRuleOutcome.Blocked(typeof(T).Name, "Default block due to no rules found.");
     }
 
     private IRuleOutcome ExplicitBlock<T>(CommsCheckItem item) where T : IContactType
@@ -51,12 +51,12 @@ public class CommCheckNativeChecks(
 
     private IRuleOutcome ChannelAllow<T>(CommsCheckItem item) where T : IContactType
     {
-        return RunSpecificRules<T>(item, (rule, itm) => rule.Allowed(item));
+        return RunSpecificRules<T>(item, (rule, itm) => rule.Allowed(typeof(T).Name, item));
     }
 
     private IRuleOutcome ChannelSpecificExplicitBlock<T>(CommsCheckItem item) where T : IContactType
     {
-        return RunSpecificRules<T>(item, (rule, itm) => rule.Block(item));
+        return RunSpecificRules<T>(item, (rule, itm) => rule.Block(typeof(T).Name, item));
     }
 
     private IEnumerable<ICommCheckRule> AllChannelRules()
@@ -72,7 +72,7 @@ public class CommCheckNativeChecks(
     private IRuleOutcome AnyChannelExplicitBlock(CommsCheckItem item)
     {
         var rules = AllChannelRules();
-        return RunRules(rules.Select(r => r.Block(item)));
+        return RunRules(rules.Select(r => r.Block("UnknownMethod", item)));
     }
 
     private IRuleOutcome RunSpecificRules<T>(CommsCheckItem item, Func<ICommCheckRule<T>, CommsCheckItem, IRuleOutcome> rule) where T : IContactType
@@ -98,13 +98,13 @@ public class CommCheckNativeChecks(
         if (outcomes.Any(x => x.IsBlocked()))
         {
             var blockedReasons = outcomes.Where(x => x.IsBlocked()).Select(x => x.Reason).ToList();
-            return IRuleOutcome.Blocked(String.Join(", ", blockedReasons));
+            return IRuleOutcome.Blocked("UnknownMethod", String.Join(", ", blockedReasons));
         }
 
         if (outcomes.Any(x => x.IsAllowed()))
         {
             var allowedReasons = outcomes.Where(x => x.IsAllowed()).Select(x => x.Reason).ToList();
-            return IRuleOutcome.Allowed(String.Join(", ", allowedReasons));
+            return IRuleOutcome.Allowed("UnknownMethod", String.Join(", ", allowedReasons));
         }
 
         return IRuleOutcome.Ignored();

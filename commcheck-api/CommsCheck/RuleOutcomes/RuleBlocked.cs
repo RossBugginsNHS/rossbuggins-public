@@ -1,4 +1,4 @@
-public readonly record struct RuleBlocked(string Reason): IRuleOutcome
+public readonly record struct RuleBlocked(string Method, string Reason): IRuleOutcome
 {
     public bool Equals(IRuleOutcome? other)
     {

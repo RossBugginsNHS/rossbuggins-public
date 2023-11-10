@@ -1,13 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.Text.Json;
-using System.Text;
-using System.Web;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,31 +13,20 @@ builder.Services.AddCommsCheck(options =>
         options
             .AddJsonConfig()
             .AddDistriubtedCache()
-            .AddShaKey("dfgklretlk345dfgml12");
-
-        //This is a version that used c# classes for rules, instead of the json rules
-        //options.AddNativeRules(nativeRules =>
-            //{
-            //    nativeRules 
-            //        .AddRule<DeaExplicitBlockRule>()
-            //        .AddRule<Over115ExplicitRule>()
-            //        .AddRule<Sms, SmsCgaRule>()
-            //        .AddRule<Sms, SmsNoReasonfRemovalRule>();
-            //})
-
-        options.AddRulesEngineRules(
-            builder.Configuration.GetSection("CommsCheck"),
-            ruleEngineOptions =>
-            {
-                //The path to the rules file. Set by default in app settings.json
-               // ruleEngineOptions.RulesPath = "./rules.json";
+            .AddShaKey("dfgklretlk345dfgml12")
+            .AddMetrics()
+            .AddRulesEngineRules(
+                builder.Configuration.GetSection("CommsCheck"),
+                ruleEngineOptions =>
+                {
+                    ruleEngineOptions
+                        .AddContactType<Sms>()
+                        .AddContactType<Email>()
+                        .AddContactType<Postal>()
+                        .AddContactType<App>();
             });
-
-           
     }
 );
-
-builder.Services.AddTransient<ICommCheck,CommsCheckRulesEngine>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
@@ -57,13 +42,12 @@ builder.Services.AddSwaggerGen(
     );
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.MapPrometheusScrapingEndpoint();
 
 app.MapPost("/check", 
     async Task<Results<
@@ -116,5 +100,6 @@ app.MapGet("/rules",
         var rules = System.Text.Json.JsonSerializer.Deserialize<object>(str);
         return TypedResults.Json(rules);
     });
+
 
 app.Run();
