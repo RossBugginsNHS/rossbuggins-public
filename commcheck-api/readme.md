@@ -263,39 +263,41 @@ Example useful metrics are
 
 ```
 # TYPE HashWrapper_Created_Count_total counter
-HashWrapper_Created_Count_total 1 1699631581284
+HashWrapper_Created_Count_total 20 1699635284408
 
 # TYPE HashWrapper_Returned_Count_total counter
-HashWrapper_Returned_Count_total 1 1699631581284
+HashWrapper_Returned_Count_total 325641 1699635284408
 
 # TYPE CheckCommsCommandHandler_Handled_Count_total counter
-CheckCommsCommandHandler_Handled_Count_total 1 1699631581284
+CheckCommsCommandHandler_Handled_Count_total 325641 1699635284408
 
 # TYPE ProcessCheck_Count_total counter
-ProcessCheck_Count_total 1 1699631581284
+ProcessCheck_Count_total 1 1699635284408
 
 # TYPE ProcessCheck_Duration_Seconds histogram
-ProcessCheck_Duration_Seconds_bucket{le="0"} 0 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="5"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="10"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="25"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="50"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="75"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="100"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="250"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="500"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="750"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="1000"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="2500"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="5000"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="7500"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="10000"} 1 1699631581284
-ProcessCheck_Duration_Seconds_bucket{le="+Inf"} 1 1699631581284
-ProcessCheck_Duration_Seconds_sum 0.2669507 1699631581284
-ProcessCheck_Duration_Seconds_count 1 1699631581284
+ProcessCheck_Duration_Seconds_bucket{le="0"} 0 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="5"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="10"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="25"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="50"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="75"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="100"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="250"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="500"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="750"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="1000"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="2500"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="5000"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="7500"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="10000"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_bucket{le="+Inf"} 325640 1699635284408
+ProcessCheck_Duration_Seconds_sum 0.5925409000016538 1699635284408
+ProcessCheck_Duration_Seconds_count 325640 1699635284408
 
 # TYPE ProcessCheck_Active_Count gauge
-ProcessCheck_Active_Count 0 1699631581284
+ProcessCheck_Active_Count 0 1699635284408
+
+# EOF
 ```
 
 ## Load testing
