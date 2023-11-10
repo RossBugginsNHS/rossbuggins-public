@@ -38,8 +38,8 @@ public class CommsCheckRulesEngine : ICommCheck
             _sha.GetSha(toCheck),
             toCheck.ToString(),
             app,
-            sms,
             email,
+            sms,
             postal);
     }
 

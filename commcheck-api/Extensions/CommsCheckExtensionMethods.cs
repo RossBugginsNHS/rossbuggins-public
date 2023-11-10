@@ -7,7 +7,9 @@ public static class CommsCheckExtensionMethods
         services.AddCommsCheck();
         var optionsInstance = new CommsCheckOptions(services);
         options(optionsInstance);
-        services.AddSingleton(_sp => new CommsCheckItemSha(optionsInstance.ShaKey));
+        services.AddSingleton(_sp => new CommsCheckItemSha( 
+            _sp.GetService<ILogger<CommsCheckItemSha>>(), 
+            optionsInstance.ShaKey));
         return services;
     }
 

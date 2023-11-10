@@ -63,8 +63,8 @@
     "WorkflowName": "Allow-App",
     "Rules": [
       {
-        "RuleName": "HasNoExitCode",
-        "SuccessEvent": "10",
+        "RuleName": "AllowApp-HasNoExitCode",
+        "SuccessEvent": "10 App allowed when no RfR is set.",
         "ErrorMessage": "",
         "Expression": "input1.ReasonForRemoval.NotSet == true"
       }
@@ -74,8 +74,8 @@
     "WorkflowName": "Allow-Email",
     "Rules": [
       {
-        "RuleName": "HasNoExitCode",
-        "SuccessEvent": "10",
+        "RuleName": "AllowEmail-HasNoExitCode",
+        "SuccessEvent": "10 Email allowed when no RfR is set.",
         "ErrorMessage": "",
         "Expression": "input1.ReasonForRemoval.NotSet == true"
       }
@@ -85,14 +85,14 @@
     "WorkflowName": "Allow-Sms",
     "Rules": [
       {
-        "RuleName": "HasNoExitCode",
-        "SuccessEvent": "10 Sms allowed when for RfR is set.",
+        "RuleName": "AllowSms-HasNoExitCode",
+        "SuccessEvent": "10 Sms allowed when no RfR is set.",
         "ErrorMessage": "",
         "Expression": "input1.ReasonForRemoval.NotSet == true"
       },
       {
-        "RuleName": "HasNoExitCode",
-        "SuccessEvent": "20 Sms allowed to be sent when CGA",
+        "RuleName": "AllowSms-WithCGA",
+        "SuccessEvent": "20 Sms allowed to be sent even when CGA RfR is set",
         "ErrorMessage": "",
         "Expression": "input1.ReasonForRemoval.Code == \"CGA\""
       }
@@ -103,8 +103,8 @@
     "WorkflowName": "Allow-Postal",
     "Rules": [
       {
-        "RuleName": "HasNoExitCode",
-        "SuccessEvent": "10",
+        "RuleName": "Allow-PostalHasNoExitCode",
+        "SuccessEvent": "10 Postal allowed when no RfR is set.",
         "ErrorMessage": "",
         "Expression": "input1.ReasonForRemoval.NotSet == true"
       }

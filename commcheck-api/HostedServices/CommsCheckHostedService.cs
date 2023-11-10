@@ -18,6 +18,8 @@ public class CommsCheckHostedService(
 
     private async Task TryProcessCommCheckItem(CommsCheckItem item)
     {
+        
+
         try
         {
             await ProcessCommCheckItem(item);
