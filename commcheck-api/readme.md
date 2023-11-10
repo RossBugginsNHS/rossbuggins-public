@@ -297,3 +297,97 @@ ProcessCheck_Duration_Seconds_count 1 1699631581284
 # TYPE ProcessCheck_Active_Count gauge
 ProcessCheck_Active_Count 0 1699631581284
 ```
+
+## Load testing
+
+wrk build
+
+```
+git clone https://github.com/wg/wrk.git wrk
+cd wrk
+sudo make
+# move the executable to somewhere in your PATH, ex:
+sudo cp wrk /usr/local/bin
+```
+
+create file
+
+```
+nano post.lua
+```
+
+add to file and save
+
+```
+wrk.method = "POST"
+wrk.body   = '{"dateOfBirth": "2023-11-10","dateOfSmsUpdate": "2023-11-10","rfR": "DEA"}'
+wrk.headers["Content-Type"] = "application/json"
+
+```
+
+Run commcheck project
+
+```
+dotnet run
+```
+
+
+### Results
+
+#### Local laptop - direct return
+
+```
+wrk -t12 -c400 -d30s http://localhost:5004/check/direct -s ../post.lua
+```
+
+This will allways run the test on the data and return the response in the same request.
+
+```
+Running 30s test @ http://localhost:5004/check/direct
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   163.93ms   55.94ms 678.62ms   76.83%
+    Req/Sec   218.34    109.42   484.00     52.84%
+  73178 requests in 30.09s, 49.55MB read
+Requests/sec:   2431.92
+Transfer/sec:      1.65MB
+```
+
+#### Local laptop - separate processing
+
+
+```
+wrk -t12 -c400 -d30s http://localhost:5004/check -s ../post.lua
+```
+
+This will not reprocess if it is already been processed.
+
+```
+Running 30s test @ http://localhost:5004/check
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    19.30ms    8.76ms 159.89ms   90.83%
+    Req/Sec     1.76k   357.38    13.42k    95.40%
+  632274 requests in 30.09s, 217.07MB read
+Requests/sec:  21015.92
+Transfer/sec:      7.22MB
+```
+
+### Local laptop - get results from  separate processing run
+
+```
+wrk -t12 -c400 -d30s http://localhost:5004/check/result/b8bb8f3188fc20cd8972c0ff2a8b855bdf08e4f6d5fc09af537102951f45cd76
+```
+
+This will get results from the non direct test, ie the return value of POST calls to http://localhost:5004/check
+
+```
+Running 30s test @ http://localhost:5004/check/result/b8bb8f3188fc20cd8972c0ff2a8b855bdf08e4f6d5fc09af537102951f45cd76
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     4.73ms    1.79ms  38.26ms   83.06%
+    Req/Sec     7.11k     1.07k   38.17k    83.42%
+  2553808 requests in 30.10s, 1.69GB read
+Requests/sec:  84855.54
+Transfer/sec:     57.46MB
+```

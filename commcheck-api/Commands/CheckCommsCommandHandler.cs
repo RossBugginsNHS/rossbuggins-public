@@ -31,5 +31,3 @@ public class CheckCommsCommandHandler(
         return new CommsCheckQuestionResponseDto(pooledSha);
     }
 }
-
-public readonly record struct CommsCheckItemWithId (string Id, CommsCheckItem Item);

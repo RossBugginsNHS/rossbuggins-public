@@ -14,7 +14,6 @@ public class CommsCheckRulesEngine : ICommCheck
          IOptions<CommsCheckRulesEngineOptions> options,
          IEnumerable<ICommsCheckRulesEngineRuleRun<IContactType>> rules)
     {
-
         _logger = logger;
         _options = options;
         _rules = rules;

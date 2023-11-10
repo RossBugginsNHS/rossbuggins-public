@@ -102,4 +102,16 @@ app.MapGet("/rules",
     });
 
 
+app.MapPost("/check/direct", 
+    async Task<Results<Ok<CommsCheckAnswerResponseDto>, NotFound>>(
+        [FromBody] CommsCheckQuestionRequestDto request,
+        [FromServices] ISender sender) =>
+        {
+            var result = await sender.Send(new CheckCommsDirectCommand(request));
+            return TypedResults.Ok(result);
+        }
+ )
+.WithName("CommCheckDirect")
+.WithOpenApi();
+
 app.Run();
