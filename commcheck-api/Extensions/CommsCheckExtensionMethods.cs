@@ -8,15 +8,13 @@ public static class CommsCheckExtensionMethods
         var optionsInstance = new CommsCheckOptions(services);
         options(optionsInstance);
         services.AddSingleton(_sp => new CommsCheckItemSha( 
-            _sp.GetService<ILogger<CommsCheckItemSha>>(), 
+            _sp.GetRequiredService<ILogger<CommsCheckItemSha>>(), 
             optionsInstance.ShaKey));
         return services;
     }
 
     public static IServiceCollection AddCommsCheck(this IServiceCollection services)
     {
-       
-      
         services.AddHostedService<CommsCheckHostedService>();
         services.AddSingleton(Channel.CreateUnbounded<CommsCheckItemWithId>(new UnboundedChannelOptions() { SingleReader = true }));
         services.AddSingleton(svc => svc.GetRequiredService<Channel<CommsCheckItemWithId>>().Reader);

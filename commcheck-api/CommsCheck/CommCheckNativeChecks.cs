@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RulesEngine;
-public class CommCheck(
-    CommsCheckItemSha sha,
+
+[Obsolete("Use CommsCheckRulesEngine instead.", false)]
+public class CommCheckNativeChecks(
     IServiceProvider _services,
-    ILogger<CommCheck> _logger) : ICommCheck
+    ILogger<CommCheckNativeChecks> _logger) : ICommCheck
 {
     public async Task<CommsCheckAnswer> Check(CommsCheckItemWithId item)
     {
-       
+        await Task.Yield(); //lazy
         var str = item.Item.ToString();
         var app = CheckRules<App>(item.Item);
         var sms = CheckRules<Sms>(item.Item);

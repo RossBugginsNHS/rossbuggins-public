@@ -2,7 +2,6 @@ using System.Threading.Channels;
 using Microsoft.Extensions.Caching.Distributed;
 
 public class CommsCheckHostedService(
-    CommsCheckItemSha sha,
     ILogger<CommsCheckHostedService> _logger,
     ChannelReader<CommsCheckItemWithId> _reader,
     IDistributedCache _cache,

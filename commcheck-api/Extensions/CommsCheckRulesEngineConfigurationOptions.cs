@@ -1,5 +1,5 @@
-public class CommsCheckRulesEngineConfigurationOptions(IServiceCollection services)
+public class CommsCheckRulesEngineConfigurationOptions()
 {
     public  const string OptionsName = "RuleEngine";
-    public string RulesPath{get;set;}
+    public string RulesPath{get;set;} = string.Empty;
 }

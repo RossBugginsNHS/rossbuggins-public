@@ -33,7 +33,7 @@ public class CommsCheckOptions(IServiceCollection services)
 
     public CommsCheckOptions AddNativeRules(Action<CommsCheckNativeRulesOptions> options)
     {
-        services.AddTransient<ICommCheck, CommCheck>();
+        services.AddTransient<ICommCheck, CommCheckNativeChecks>();
         var optionsInstance = new CommsCheckNativeRulesOptions(services);
         options(optionsInstance);
         return this;
@@ -44,7 +44,7 @@ public class CommsCheckOptions(IServiceCollection services)
         Action<CommsCheckRulesEngineConfigurationOptions> options)
     {
         services.AddTransient<ICommCheck, CommsCheckRulesEngine>();
-        var optionsInstance = new CommsCheckRulesEngineConfigurationOptions(services);
+        var optionsInstance = new CommsCheckRulesEngineConfigurationOptions();
         
 
         config.GetSection(CommsCheckRulesEngineConfigurationOptions.OptionsName).Bind(optionsInstance);

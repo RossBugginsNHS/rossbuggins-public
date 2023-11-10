@@ -19,6 +19,8 @@ public class CommsCheckRulesEngine : ICommCheck
         _options = options;
         var fileData = File.ReadAllText(_options.Value.JsonPath);
         var workflow = System.Text.Json.JsonSerializer.Deserialize<List<Workflow>>(fileData);
+        if(workflow==null)
+            throw new Exception($"Workflow failed to deserialize from {_options.Value.JsonPath}");
         _rulesEngine = new RulesEngine.RulesEngine(workflow.ToArray());
     }
 
