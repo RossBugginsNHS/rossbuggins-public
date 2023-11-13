@@ -11,7 +11,6 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
     {
         var currentMethod = GetMethod();
         var ruleRunId = Guid.NewGuid();
-
         await _publisher.Publish(
             new RulesLoadedEvent(ruleRunId, rulesEngine, currentMethod, toCheck));
     }

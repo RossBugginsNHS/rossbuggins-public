@@ -35,7 +35,7 @@ public class RuleRunMethodResultCacheService(IDistributedCache _cache)
 
         var rVal = maybe.Fork(
             empty => newItem(empty),
-             full => updateItem(full));
+            full => updateItem(full));
 
         return rVal;
     }
