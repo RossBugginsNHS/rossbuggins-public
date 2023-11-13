@@ -69,7 +69,14 @@ public class CommsCheckOptions(IServiceCollection services)
         IConfiguration config,
         Action<CommsCheckRulesEngineConfigurationOptions> options)
     {
-        services.AddTransient<ICommCheck, CommsCheckRulesEngine>();
+        return this.AddRulesEngineRules<CommsCheckRulesEngine>(config, options);
+    }
+
+    public CommsCheckOptions AddRulesEngineRules<T>(
+        IConfiguration config,
+        Action<CommsCheckRulesEngineConfigurationOptions> options) where T : class, ICommCheck
+    {
+        services.AddTransient<ICommCheck, T>();
         var optionsInstance = new CommsCheckRulesEngineConfigurationOptions(services);
 
 

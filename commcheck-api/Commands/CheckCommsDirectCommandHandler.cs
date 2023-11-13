@@ -19,6 +19,7 @@ public class CheckCommsDirectCommandHandler(
 
     public async Task<CommsCheckAnswerResponseDto> Handle(CheckCommsDirectCommand request, CancellationToken cancellationToken)
     {
+        throw new NotImplementedException();
         var sw = Stopwatch.StartNew();
         CurrentlyProcessing.Add(1);
         var item = CommsCheckItem.FromDto(request.Dto);
@@ -26,12 +27,13 @@ public class CheckCommsDirectCommandHandler(
         var pooledSha = await wrapper.GetSha(item, "Getting id in the Comms Handler.");
         shaPool.Return(wrapper);
         var itemWithId = new CommsCheckItemWithId(pooledSha, item);
-        var answer = await check.Check(itemWithId);
-        var itemDto = CommsCheckAnswerResponseDto.FromCommsCheckAnswer(answer);
+        //var answer = 
+        await check.Check(itemWithId);
+       // var itemDto = CommsCheckAnswerResponseDto.FromCommsCheckAnswer(answer);
         sw.Stop();
         HandledCounter.Add(1);
         ProcessTime.Record(sw.Elapsed.TotalSeconds);
         CurrentlyProcessing.Add(-1);
-        return itemDto;
+        //return itemDto;
     }
 }

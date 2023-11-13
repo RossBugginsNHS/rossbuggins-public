@@ -8,6 +8,9 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<RulesCombinerService>();
+builder.Services.AddSingleton<RuleRunMethodResultCacheService>();
+
 builder.Services.AddCommsCheck(options =>
     {
         options
@@ -23,7 +26,8 @@ builder.Services.AddCommsCheck(options =>
                         .AddContactType<Sms>()
                         .AddContactType<Email>()
                         .AddContactType<Postal>()
-                        .AddContactType<App>();
+                        .AddContactType<App>()
+                        ;
             });
     }
 );

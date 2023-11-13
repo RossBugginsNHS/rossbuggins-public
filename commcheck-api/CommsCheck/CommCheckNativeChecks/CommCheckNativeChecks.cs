@@ -8,7 +8,7 @@ public class CommCheckNativeChecks(
     IServiceProvider _services,
     ILogger<CommCheckNativeChecks> _logger) : ICommCheck
 {
-    public async Task<CommsCheckAnswer> Check(CommsCheckItemWithId item)
+    public async Task Check(CommsCheckItemWithId item)
     {
         await Task.Yield(); //lazy
         var str = item.Item.ToString();
@@ -16,7 +16,7 @@ public class CommCheckNativeChecks(
         var sms = CheckRules<Sms>(item.Item);
         var email = CheckRules<Email>(item.Item);
         var postal = CheckRules<Postal>(item.Item);
-        return new CommsCheckAnswer(item.Id, str, app, email, sms, postal);
+       // return new CommsCheckAnswer(item.Id, str, app, email, sms, postal);
     }
 
     private IRuleOutcome CheckRules<T>(CommsCheckItem item) where T : IContactType

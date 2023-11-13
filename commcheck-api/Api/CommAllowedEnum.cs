@@ -1,5 +1,6 @@
 public enum CommAllowedEnum
 {
     Allowed,
-    Blocked
+    Blocked,
+    Unknown
 }
