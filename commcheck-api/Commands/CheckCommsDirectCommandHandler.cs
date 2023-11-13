@@ -11,11 +11,8 @@ public class CheckCommsDirectCommandHandler(
 
     private static readonly Meter MyMeter = new("NHS.CommChecker.CheckCommsDirectCommandHandler", "1.0");
     private static readonly Counter<long> HandledCounter = MyMeter.CreateCounter<long>("CheckCommsDirectCommandHandler_Handled_Count");
-    private static readonly System.Diagnostics.Metrics.Histogram<double> ProcessTime =
-        MyMeter.CreateHistogram<double>("CheckCommsDirectCommandHandler_Duration_Seconds");
-
-    private static readonly System.Diagnostics.Metrics.UpDownCounter<long> CurrentlyProcessing =
-        MyMeter.CreateUpDownCounter<long>("CheckCommsDirectCommandHandler_Active_Count");
+    private static readonly Histogram<double> ProcessTime = MyMeter.CreateHistogram<double>("CheckCommsDirectCommandHandler_Duration_Seconds");
+    private static readonly UpDownCounter<long> CurrentlyProcessing =MyMeter.CreateUpDownCounter<long>("CheckCommsDirectCommandHandler_Active_Count");
 
     public async Task<CommsCheckAnswerResponseDto> Handle(CheckCommsDirectCommand request, CancellationToken cancellationToken)
     {

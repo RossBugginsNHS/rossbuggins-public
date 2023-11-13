@@ -4,7 +4,7 @@ public class RulesLoadedEvent(
     Guid ruleRunId,
     RulesEngine.RulesEngine rulesEngine,
     string method,
-    CommsCheckItemWithId toCheck) : INotification
+    CommsCheckItemWithId toCheck) : ICommsCheckEvent
 {
     public Guid RuleRunId => ruleRunId;
     public RulesEngine.RulesEngine RulesEngine => rulesEngine;

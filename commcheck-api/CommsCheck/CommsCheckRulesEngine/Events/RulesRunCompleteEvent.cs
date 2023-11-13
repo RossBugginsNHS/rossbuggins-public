@@ -5,7 +5,7 @@ public class RulesRunCompleteEvent(
     IRuleOutcome outcome,
     string method,
     CommsCheckItemWithId toCheck
-) : INotification
+) : ICommsCheckEvent
 {
     public Guid RuleRunId => ruleRunId;
     public IRuleOutcome Outcome => outcome;

@@ -3,18 +3,18 @@ using System.Diagnostics.Metrics;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
-public class HostedServiceMaybeToCheckItemEventHandler(
+public class MaybeItemToCheckEventHandler(
     IPublisher _publisher,
-    ILogger<HostedServiceMaybeToCheckItemEventHandler> _logger,
+    ILogger<MaybeItemToCheckEventHandler> _logger,
     IDistributedCache _cache
-) : INotificationHandler<HostedServiceMaybeToCheckItemEvent>
+) : INotificationHandler<MaybeItemToCheckEvent>
 {
     private static readonly Meter MyMeter = new("NHS.CommChecker.CommsCheckHostedService", "1.0");
     private static readonly Counter<long> ProcessCheckCount = MyMeter.CreateCounter<long>("ProcessCheck_Count");
     private static readonly Histogram<double> ProcessTime = MyMeter.CreateHistogram<double>("ProcessCheck_Duration_Seconds");
     private static readonly UpDownCounter<long> CurrentlyProcessing = MyMeter.CreateUpDownCounter<long>("ProcessCheck_Active_Count");
 
-    public async Task Handle(HostedServiceMaybeToCheckItemEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(MaybeItemToCheckEvent notification, CancellationToken cancellationToken)
     {
         await TryProcessCommCheckItem(notification.Item);
     }
@@ -71,7 +71,7 @@ public class HostedServiceMaybeToCheckItemEventHandler(
 
     private async Task ProcessCheck(CommsCheckItemWithId item)
     {
-        await _publisher.Publish(new HostedServiceCheckItemEvent(item));
+        await _publisher.Publish(new ItemToCheckEvent(item));
         ProcessCheckCount.Add(1);
     }
 }

@@ -4,7 +4,7 @@ public class RunRuleEvent(
     ICommsCheckRulesEngineRuleRun<IContactType> rule,
     RulesEngine.RulesEngine rules,
     CommsCheckItemWithId toCheck)
-    : INotification
+    : ICommsCheckEvent
 {
     public ICommsCheckRulesEngineRuleRun<IContactType> Rule => rule;
     public RulesEngine.RulesEngine Rules => rules;

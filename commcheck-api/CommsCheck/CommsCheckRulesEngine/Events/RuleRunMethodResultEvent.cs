@@ -4,7 +4,7 @@ public class RuleRunMethodResultEvent(
     Guid ruleRunId,
     string method,
     CommsCheckItemWithId toCheck,
-    IRuleOutcome outcome) : INotification
+    IRuleOutcome outcome) : ICommsCheckEvent
 {
     public Guid RuleRubId => ruleRunId;
     public IRuleOutcome Outcome => outcome;

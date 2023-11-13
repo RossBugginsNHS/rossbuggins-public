@@ -13,7 +13,7 @@ public class CommsCheckHostedService(
     {
         await foreach (var item in _reader.ReadAllAsync(stoppingToken))
         {
-           await _publisher.Publish(new HostedServiceMaybeToCheckItemEvent(item));
+           await _publisher.Publish(new MaybeItemToCheckEvent(item));
         }
     }
 }

@@ -4,7 +4,7 @@ public class RuleResultsCombinedEvent(
     Guid ruleRunId,
     string method,
     CommsCheckItemWithId toCheck,
-    IEnumerable<IRuleOutcome> outcomes) : INotification
+    IEnumerable<IRuleOutcome> outcomes) : ICommsCheckEvent
 {
     public Guid RuleRubId => ruleRunId;
     public IEnumerable<IRuleOutcome> Outcomes => outcomes;
