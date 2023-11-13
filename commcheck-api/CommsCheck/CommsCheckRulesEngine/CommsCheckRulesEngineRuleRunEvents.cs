@@ -7,7 +7,6 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
     IPublisher _publisher) :
     ICommsCheckRulesEngineRuleRun<T> where T : IContactType
 {
-
     public async Task Run(RulesEngine.RulesEngine rulesEngine, CommsCheckItemWithId toCheck)
     {
         var currentMethod = GetMethod();

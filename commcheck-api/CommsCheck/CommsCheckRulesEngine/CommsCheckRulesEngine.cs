@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using RulesEngine;
 using RulesEngine.Models;
 
-[Obsolete]
 public class CommsCheckRulesEngine : ICommCheck
 {
     private readonly RulesEngine.RulesEngine _rulesEngine;

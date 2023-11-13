@@ -5,6 +5,6 @@ public class RuleRunMethodResultEventHandler(RuleRunMethodResultCacheService _ca
 {
     public async Task Handle(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
     {
-        await _cache.HandleLock(notification, cancellationToken);
+        await _cache.NewOrUpdateCacheThreadSafe(notification, cancellationToken);
     }
 }

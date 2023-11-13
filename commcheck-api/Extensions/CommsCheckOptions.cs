@@ -41,7 +41,6 @@ public class CommsCheckOptions(IServiceCollection services)
 
         .WithTracing(builder => builder
             .AddAspNetCoreInstrumentation()
-           // .AddConsoleExporter()
             )
         .WithMetrics(
             builder => builder
@@ -51,17 +50,8 @@ public class CommsCheckOptions(IServiceCollection services)
             .AddMeter("NHS.CommChecker.CheckCommsDirectCommandHandler")     
             .AddPrometheusExporter()
             .AddAspNetCoreInstrumentation()
-            //.AddConsoleExporter()
             );
 
-        return this;
-    }
-
-    public CommsCheckOptions AddNativeRules(Action<CommsCheckNativeRulesOptions> options)
-    {
-        services.AddTransient<ICommCheck, CommCheckNativeChecks>();
-        var optionsInstance = new CommsCheckNativeRulesOptions(services);
-        options(optionsInstance);
         return this;
     }
 
@@ -101,7 +91,6 @@ public class CommsCheckOptions(IServiceCollection services)
             x.HashKey = ShaKey;
         });
 
-        //services.AddSingleton<CommsCheckItemSha>();
         services.TryAddSingleton<HashWrapperObjectPoolPolicy>();
         services.TryAddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>();
         services.TryAddSingleton<ObjectPool<HashWrapper>>(serviceProvider =>
