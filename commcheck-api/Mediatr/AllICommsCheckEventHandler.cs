@@ -1,10 +1,10 @@
 using MediatR;
 
-public class NotificationLogger<T> : INotificationHandler<T>
+public class AllICommsCheckEventHandler<T> : INotificationHandler<T>
     where T : ICommsCheckEvent
 {
-    private readonly ILogger<NotificationLogger<T>> _logger;
-    public NotificationLogger(ILogger<NotificationLogger<T>> logger)
+    private readonly ILogger<AllICommsCheckEventHandler<T>> _logger;
+    public AllICommsCheckEventHandler(ILogger<AllICommsCheckEventHandler<T>> logger)
     {
         _logger = logger;
     }
