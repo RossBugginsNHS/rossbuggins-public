@@ -31,6 +31,14 @@ dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
 
 Docker files are there for the api.
 
+## Quick run
+
+Builds and ups
+
+```
+./run.sh
+```
+
 ### Build 
 
 ```
