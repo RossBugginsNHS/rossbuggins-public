@@ -5,6 +5,7 @@
 
 # dotenv files
 .env
+coverage.xml
 
 # User-specific files
 *.rsuser
