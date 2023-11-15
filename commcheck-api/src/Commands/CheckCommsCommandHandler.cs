@@ -24,21 +24,14 @@ public class CheckCommsCommandHandler(
         var item = GetItem(request);
         var sha = await GetSha(item);
         var itemWithId = GetItemWithId(sha, item);
-
         await WriteToChannel(itemWithId, cancellationToken);
-
         return CreateResponse(sha);
     }
 
-    private CommsCheckQuestionResponseDto CreateResponse(string sha)
-    {
-        return new CommsCheckQuestionResponseDto(sha);
-    }
+    private CommsCheckQuestionResponseDto CreateResponse(string sha) => 
+        new CommsCheckQuestionResponseDto(sha);
 
-    private void WriteCompletedMetrics()
-    {
-        HandledCounter.Add(1);
-    }
+    private void WriteCompletedMetrics() => HandledCounter.Add(1);
 
     private async Task WriteToChannel(
         CommsCheckItemWithId itemWithId, 
@@ -48,14 +41,11 @@ public class CheckCommsCommandHandler(
         WriteCompletedMetrics();
     }
 
-    private CommsCheckItemWithId GetItemWithId(string sha, CommsCheckItem item )
-    {
-        return new CommsCheckItemWithId(sha, item);
-    }
-    private CommsCheckItem GetItem(CheckCommsCommand request)
-    {
-        return  CommsCheckItem.FromDto(request.Dto);;
-    }
+    private CommsCheckItemWithId GetItemWithId(string sha, CommsCheckItem item ) =>
+        new CommsCheckItemWithId(sha, item);
+
+    private CommsCheckItem GetItem(CheckCommsCommand request) =>
+        CommsCheckItem.FromDto(request.Dto);
 
     private async Task<string> GetSha(CommsCheckItem item)
     {
