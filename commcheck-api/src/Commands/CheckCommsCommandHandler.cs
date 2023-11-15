@@ -28,10 +28,10 @@ public class CheckCommsCommandHandler(
         return CreateResponse(sha);
     }
 
-    private CommsCheckQuestionResponseDto CreateResponse(string sha) => 
+    private static CommsCheckQuestionResponseDto CreateResponse(string sha) => 
         new CommsCheckQuestionResponseDto(sha);
 
-    private void WriteCompletedMetrics() => HandledCounter.Add(1);
+    private static void WriteCompletedMetrics() => HandledCounter.Add(1);
 
     private async Task WriteToChannel(
         CommsCheckItemWithId itemWithId, 
@@ -41,10 +41,10 @@ public class CheckCommsCommandHandler(
         WriteCompletedMetrics();
     }
 
-    private CommsCheckItemWithId GetItemWithId(string sha, CommsCheckItem item ) =>
+    private static CommsCheckItemWithId GetItemWithId(string sha, CommsCheckItem item ) =>
         new CommsCheckItemWithId(sha, item);
 
-    private CommsCheckItem GetItem(CheckCommsCommand request) =>
+    private static CommsCheckItem GetItem(CheckCommsCommand request) =>
         CommsCheckItem.FromDto(request.Dto);
 
     private async Task<string> GetSha(CommsCheckItem item)
