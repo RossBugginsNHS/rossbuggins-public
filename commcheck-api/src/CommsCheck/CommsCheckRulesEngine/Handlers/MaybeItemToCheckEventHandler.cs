@@ -18,15 +18,15 @@ public class MaybeItemToCheckEventHandler(
 
     public async Task Handle(MaybeItemToCheckEvent notification, CancellationToken cancellationToken)
     {
-        await TryProcessCommCheckItem(notification.Item);
+        await TryProcessCommCheckItem(notification.CommCheckCorrelationId, notification.Item);
     }
 
-    private async Task TryProcessCommCheckItem(CommsCheckItemWithId item)
+    private async Task TryProcessCommCheckItem(Guid commCheckCorrelationId, CommsCheckItemWithId item)
     {
         var sw = MetricStart();
         try
         {
-            await ProcessCommCheckItem(item);
+            await ProcessCommCheckItem(commCheckCorrelationId, item);
         }
         catch (Exception e)
         {
@@ -57,11 +57,11 @@ public class MaybeItemToCheckEventHandler(
         CurrentlyProcessing.Add(-1);
     }
 
-    private async Task ProcessCommCheckItem(CommsCheckItemWithId item)
+    private async Task ProcessCommCheckItem(Guid commCheckCorrelationId, CommsCheckItemWithId item)
     {
         if (await IsNotInCache(item.Id))
         {
-            await ProcessCheck(item);
+            await ProcessCheck(commCheckCorrelationId, item);
         }
     }
 
@@ -71,9 +71,9 @@ public class MaybeItemToCheckEventHandler(
         return cacheEntry == null;
     }
 
-    private async Task ProcessCheck(CommsCheckItemWithId item)
+    private async Task ProcessCheck(Guid commCheckCorrelationId, CommsCheckItemWithId item)
     {
-        await _publisher.Publish(new ItemToCheckEvent(item));
+        await _publisher.Publish(new ItemToCheckEvent(commCheckCorrelationId, item));
         ProcessCheckCount.Add(1);
     }
 }

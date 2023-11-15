@@ -12,9 +12,12 @@ public class CommsCheckHostedService(
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        var correlationId = NewCorrelationId();
         await foreach (var item in _reader.ReadAllAsync(stoppingToken))
         {
-           await _publisher.Publish(new MaybeItemToCheckEvent(item), stoppingToken);
+           await _publisher.Publish(new MaybeItemToCheckEvent(correlationId, item), stoppingToken);
         }
     }
+
+    private static Guid NewCorrelationId() =>Guid.NewGuid();
 }

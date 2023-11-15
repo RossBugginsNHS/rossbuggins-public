@@ -47,11 +47,11 @@ public class CommsCheckRulesEngine : ICommCheck
         return rulesEngine;
     }
 
-    public async Task Check(CommsCheckItemWithId toCheck, CancellationToken cancellationToken = default)
+    public async Task Check(Guid commCheckCorrelationId, CommsCheckItemWithId toCheck, CancellationToken cancellationToken = default)
     {
         await Parallel.ForEachAsync(_rules, cancellationToken, async (rule, ct) =>
         {
-            await _publisher.Publish(new RunRuleEvent(rule, _rulesEngine, toCheck), ct);
+            await _publisher.Publish(new RunRuleEvent(commCheckCorrelationId, rule, _rulesEngine, toCheck), ct);
         });
     }
 

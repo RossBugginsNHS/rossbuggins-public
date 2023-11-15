@@ -8,6 +8,7 @@ public class RuleResultsCombinedEvent(
     CommsCheckItemWithId toCheck,
     IEnumerable<IRuleOutcome> outcomes) : ICommsCheckEvent
 {
+    public Guid CommCheckCorrelationId => ruleRunId;
     public Guid RuleRubId => ruleRunId;
     public IEnumerable<IRuleOutcome> Outcomes => outcomes;
     public CommsCheckItemWithId ToCheck => toCheck;

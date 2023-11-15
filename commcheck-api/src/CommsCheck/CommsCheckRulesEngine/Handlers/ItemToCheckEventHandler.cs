@@ -7,6 +7,6 @@ public class ItemToCheckEventHandler(ICommCheck _check) : INotificationHandler<I
 
     public async Task Handle(ItemToCheckEvent notification, CancellationToken cancellationToken)
     {
-        await _check.Check(notification.Item, cancellationToken);
+        await _check.Check(notification.CommCheckCorrelationId, notification.Item, cancellationToken);
     }
 }

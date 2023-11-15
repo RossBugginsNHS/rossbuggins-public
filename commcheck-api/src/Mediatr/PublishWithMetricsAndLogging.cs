@@ -25,62 +25,99 @@ public class PublishWithMetricsAndLogging : Mediator
         INotification notification,
         CancellationToken cancellationToken)
     {
-        await Publish(handlerExecutors, notification, cancellationToken);
+        if (notification is ICommsCheckEvent cce)
+        {
+            await Publish(handlerExecutors, cce, cancellationToken);
+        }
+        else
+        {
+            await base.PublishCore(handlerExecutors, notification, cancellationToken);
+        }
+
     }
 
     public async Task Publish(
       IEnumerable<NotificationHandlerExecutor> handlerExecutors,
-      INotification notification,
+      ICommsCheckEvent notification,
       CancellationToken cancellationToken)
     {
         var executorsList = handlerExecutors.ToList();
-        _logger.LogInformation(
-            "[NOTIFICATION HANDLER COUNT: {notificationName}] => [{executorsCount}] {notification}",
-            notification.GetType().Name,
-            executorsList.Count,
-            notification);
+        
+        PreRunMetricsLogging(executorsList, notification);
         foreach (var handler in executorsList)
         {
-            var sw = Stopwatch.StartNew();
-
-            HandledCounter.Add(
-                1,
-                new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                new KeyValuePair<string, object?>("notification", notification.GetType().Name));
-
-            CurrentlyProcessing.Add(
-                1,
-                new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                new KeyValuePair<string, object?>("notification", notification.GetType().Name));
-
-            _logger.LogInformation(
-                "[NOTIFICATION HANDLER STARTING: {notificationName}] => [{handlerName}] {notification}",
-                notification.GetType().Name,
-                handler.HandlerInstance.GetType().Name,
-                notification);
-
+            var sw = StartMetrics(handler, executorsList, notification);
             try
             {
                 await handler.HandlerCallback(notification, cancellationToken).ConfigureAwait(false);
             }
             finally
             {
-                sw.Stop();
-                _logger.LogInformation(
-                    "[NOTIFICATION HANDLER FINISHED: {notificationName}] => [{handlerName}] {notification}",
-                    notification.GetType().Name,
-                    handler.HandlerInstance.GetType().Name,
-                    notification);
-
-                ProcessTime.Record(sw.Elapsed.TotalSeconds,
-                    new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                    new KeyValuePair<string, object?>("notification", notification.GetType().Name));
-
-                CurrentlyProcessing.Add(
-                    -1,
-                    new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                    new KeyValuePair<string, object?>("notification", notification.GetType().Name));
+                EndMetrics(sw, handler, notification);
             }
         }
+    }
+
+    private void PreRunMetricsLogging(
+        IList<NotificationHandlerExecutor> handlerExecutors,
+        ICommsCheckEvent notification)
+    {
+        _logger.LogInformation(
+            "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER COUNT: {notificationName}] => [{executorsCount}] {notification}",
+            notification.CommCheckCorrelationId,
+            notification.GetType().Name,
+            handlerExecutors.Count,
+            notification);
+    }
+
+    private void EndMetrics(Stopwatch sw,
+        NotificationHandlerExecutor handler,
+        ICommsCheckEvent notification)
+    {
+        sw.Stop();
+        
+        _logger.LogInformation(
+            "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER FINISHED: {notificationName}] => [{handlerName}] {notification}",
+            notification.CommCheckCorrelationId,
+            notification.GetType().Name,
+            handler.HandlerInstance.GetType().Name,
+            notification);
+
+        ProcessTime.Record(sw.Elapsed.TotalSeconds,
+            new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+            new KeyValuePair<string, object?>("notification", notification.GetType().Name));
+
+        CurrentlyProcessing.Add(
+            -1,
+
+            new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+            new KeyValuePair<string, object?>("notification", notification.GetType().Name));
+    }
+
+    private Stopwatch StartMetrics(
+        NotificationHandlerExecutor handler,
+        IList<NotificationHandlerExecutor> handlerExecutors,
+        ICommsCheckEvent notification)
+    {
+        var sw = Stopwatch.StartNew();
+
+        HandledCounter.Add(
+            1,
+            new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+            new KeyValuePair<string, object?>("notification", notification.GetType().Name));
+
+        CurrentlyProcessing.Add(
+            1,
+            new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+            new KeyValuePair<string, object?>("notification", notification.GetType().Name));
+
+        _logger.LogInformation(
+            "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER STARTING: {notificationName}] => [{handlerName}] {notification}",
+            notification.CommCheckCorrelationId,
+            notification.GetType().Name,
+            handler.HandlerInstance.GetType().Name,
+            notification);
+
+        return sw;
     }
 }

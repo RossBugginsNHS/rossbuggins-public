@@ -10,14 +10,12 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
     ICommsCheckRulesEngineRuleRun<T> where T : class, IContactType, new()
 {
     public T Value => new T();
-    public async Task Run(RulesEngine.RulesEngine rulesEngine, CommsCheckItemWithId toCheck)
+    public async Task Run(Guid commCheckCorrelationId, RulesEngine.RulesEngine rulesEngine, CommsCheckItemWithId toCheck)
     {
-       
         var currentMethod = GetMethod();
-        var ruleRunId = Guid.NewGuid();
-         _logger.LogInformation("Running Rules for {checkId} for {method} with localId of {localId}", toCheck.Id, currentMethod, ruleRunId);
+         _logger.LogInformation("Running Rules for {checkId} for {method} with localId of {localId}", toCheck.Id, currentMethod, commCheckCorrelationId);
         await _publisher.Publish(
-            new RulesLoadedEvent(ruleRunId, rulesEngine, currentMethod, toCheck));
+            new RulesLoadedEvent(commCheckCorrelationId, rulesEngine, currentMethod, toCheck));
     }
 
     private static string GetMethod() => typeof(T).Name;

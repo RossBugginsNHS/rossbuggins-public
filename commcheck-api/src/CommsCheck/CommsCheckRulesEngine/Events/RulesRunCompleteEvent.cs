@@ -8,6 +8,7 @@ public class RulesRunCompleteEvent(
     CommsCheckItemWithId toCheck
 ) : ICommsCheckEvent
 {
+    public Guid CommCheckCorrelationId => ruleRunId;
     public Guid RuleRunId => ruleRunId;
     public IRuleOutcome Outcome => outcome;
 

@@ -1,5 +1,5 @@
 namespace CommsCheck;
 public interface ICommCheck
 {
-     Task Check(CommsCheckItemWithId toCheck,  CancellationToken cancellationToken = default);
+     Task Check(Guid commCheckCorrelationId, CommsCheckItemWithId toCheck,  CancellationToken cancellationToken = default);
 }
