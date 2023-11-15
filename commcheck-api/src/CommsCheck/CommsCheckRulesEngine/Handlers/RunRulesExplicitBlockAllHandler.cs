@@ -12,6 +12,7 @@ public class RunRulesExplicitBlockAllHandler(IPublisher _publisher) : INotificat
             request.ToCheck.Item);
 
         await _publisher.Publish(new RulesRunCompleteEvent(
+            request.CommCheckCorrelationId,
             request.RuleRunId,
             result,
             request.Method,

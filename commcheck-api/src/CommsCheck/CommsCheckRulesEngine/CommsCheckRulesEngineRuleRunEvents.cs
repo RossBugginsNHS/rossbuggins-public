@@ -13,10 +13,19 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
     public async Task Run(Guid commCheckCorrelationId, RulesEngine.RulesEngine rulesEngine, CommsCheckItemWithId toCheck)
     {
         var currentMethod = GetMethod();
-         _logger.LogInformation("Running Rules for {checkId} for {method} with localId of {localId}", toCheck.Id, currentMethod, commCheckCorrelationId);
+        var ruleRunId = NewRuleRunId();
+
+         _logger.LogInformation(
+            "[{CorrelationId}] Running Rules for {checkId} for {method} with localId of {localId}", 
+             commCheckCorrelationId,
+             toCheck.Id, 
+             currentMethod, 
+             commCheckCorrelationId);
         await _publisher.Publish(
-            new RulesLoadedEvent(commCheckCorrelationId, rulesEngine, currentMethod, toCheck));
+            new RulesLoadedEvent(commCheckCorrelationId, ruleRunId, rulesEngine, currentMethod, toCheck));
     }
 
     private static string GetMethod() => typeof(T).Name;
+
+    private static Guid NewRuleRunId()=> Guid.NewGuid();
 }

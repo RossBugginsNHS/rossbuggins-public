@@ -8,7 +8,7 @@ public class RulesCombinerService
     public RulesCombinerService(IPublisher publisher)
     {
         _publisher = publisher;
-         _outcomes = new ConcurrentDictionary<Guid, List<IRuleOutcome>>();
+        _outcomes = new ConcurrentDictionary<Guid, List<IRuleOutcome>>();
     }
 
     private readonly IPublisher _publisher;
@@ -29,11 +29,12 @@ public class RulesCombinerService
         if (outcomes.Count == 3)
         {
             await _publisher.Publish(new RuleResultsCombinedEvent(
+              notification.CommCheckCorrelationId,
               notification.RuleRunId,
               notification.Method,
               notification.ToCheck,
               outcomes));
-            
+
             _outcomes.Remove(notification.RuleRunId, out _);
         }
     }

@@ -11,6 +11,7 @@ public class RunRulesAllowdHandler(IPublisher _publisher) : INotificationHandler
             request.ToCheck.Item);
 
         await _publisher.Publish(new RulesRunCompleteEvent(
+            request.CommCheckCorrelationId,
             request.RuleRunId,
             result,
             request.Method,

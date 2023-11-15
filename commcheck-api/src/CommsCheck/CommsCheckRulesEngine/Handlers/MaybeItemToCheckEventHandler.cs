@@ -30,7 +30,7 @@ public class MaybeItemToCheckEventHandler(
         }
         catch (Exception e)
         {
-            ProcessException(e);
+            ProcessException(commCheckCorrelationId, e, item);
         }
         finally
         {
@@ -38,9 +38,13 @@ public class MaybeItemToCheckEventHandler(
         }
     }
 
-    private void ProcessException(Exception ex)
+    private void ProcessException(Guid commCheckCorrelationId, Exception ex, CommsCheckItemWithId item)
     {
-        _logger.LogError(ex, "An unhandled exception occured");
+        _logger.LogError(
+            ex, 
+            "[{commCheckCorrelationId}] An unhandled exception occu whilst proccessing the comms check item {item}", 
+            commCheckCorrelationId,
+            item);
     }
 
     private static Stopwatch MetricStart()
