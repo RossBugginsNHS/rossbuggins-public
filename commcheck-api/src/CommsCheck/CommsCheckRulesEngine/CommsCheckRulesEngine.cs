@@ -55,11 +55,11 @@ public class CommsCheckRulesEngine : ICommCheck
         {
             throw new NoNullAllowedException("Rules engine contents is null.");
         }
-        
+
         return fileData;
     }
 
-    private bool IsContentsLoadedFromCache(string? fileData) => fileData != null;
+    private static bool IsContentsLoadedFromCache(string? fileData) => fileData != null;
 
     private async Task<string?> TryGetContentsFromCache()
     {
