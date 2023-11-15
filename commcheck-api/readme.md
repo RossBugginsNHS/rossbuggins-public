@@ -27,6 +27,24 @@ dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
 
 ```
 
+## Docker
+
+Docker files are there for the api.
+
+### Build 
+
+```
+cd src
+docker buildx build -t commcheckapi .
+```
+
+### Run
+
+```
+docker compose up
+```
+
+
 ## Check 1 - DEA Set
 
 - DEA is set, so all should be blocked.
