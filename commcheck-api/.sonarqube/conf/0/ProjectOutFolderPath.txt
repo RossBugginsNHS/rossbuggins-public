@@ -1,1 +1,0 @@
-/home/rb/source/rossbuggins-public/commcheck-api/.sonarqube/out/0
