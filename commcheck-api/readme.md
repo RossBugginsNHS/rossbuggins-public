@@ -8,6 +8,25 @@ http://localhost:5004/swagger/index.html
 
 ![Api Swagger](image.png)
 
+## sonarqube
+
+If using a local SQ docker instance with defaults, the below can be used to analyse.
+
+```
+dotnet tool install --global dotnet-sonarscanner
+dotnet tool install --global dotnet-coverage
+```
+
+To run tests and send to sq.
+
+```
+dotnet sonarscanner begin /k:"commcheck" /d:sonar.host.url="http://localhost:9000"  /d:sonar.token="ENTERTOKEN" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+dotnet build --no-incremental
+dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
+
+```
+
 ## Check 1 - DEA Set
 
 - DEA is set, so all should be blocked.
