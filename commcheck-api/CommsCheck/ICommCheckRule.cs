@@ -1,3 +1,4 @@
+namespace CommsCheck;
 public interface ICommCheckRule
 {
     public IRuleOutcome Block(string method, CommsCheckItem request) => IRuleOutcome.Ignored();

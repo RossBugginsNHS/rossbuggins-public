@@ -1,3 +1,5 @@
+
+namespace CommsCheck;
 using System.Collections;
 using System.Data.SqlTypes;
 using System.Runtime.CompilerServices;

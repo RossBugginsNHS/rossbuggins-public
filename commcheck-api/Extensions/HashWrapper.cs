@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
 

@@ -1,3 +1,4 @@
+namespace CommsCheck;
 public readonly record struct CommsCheckItem(
     DateOnly DateOfBirth, 
     DateOnly DateOfSmsUpdated,

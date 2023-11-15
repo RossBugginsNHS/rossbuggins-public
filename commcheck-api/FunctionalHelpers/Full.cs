@@ -1,3 +1,4 @@
+
 namespace FunctionalHelpers
 {
     public class Full<T> : Maybe<T>

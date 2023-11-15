@@ -1,4 +1,5 @@
 
+namespace CommsCheck;
 public readonly record struct CommsCheckAnswer(
     string ResultId, 
     string RequestString, 

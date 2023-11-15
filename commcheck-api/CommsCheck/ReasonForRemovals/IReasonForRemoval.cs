@@ -1,3 +1,4 @@
+namespace CommsCheck;
 public interface IReasonForRemoval
 {
     string Code { get; }

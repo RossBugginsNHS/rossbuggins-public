@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using MediatR;
 
 public class LoggingCommandsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>

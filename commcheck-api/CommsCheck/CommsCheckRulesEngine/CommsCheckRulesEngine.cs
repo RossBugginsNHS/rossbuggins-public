@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using System.Collections.Concurrent;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -6,7 +8,7 @@ using RulesEngine.Models;
 
 public class CommsCheckRulesEngine : ICommCheck
 {
-    private readonly RulesEngine.RulesEngine _rulesEngine;
+    private readonly RulesEngine _rulesEngine;
     private readonly ILogger<CommsCheckRulesEngine> _logger;
     private readonly IOptions<CommsCheckRulesEngineOptions> _options;
     private readonly IEnumerable<ICommsCheckRulesEngineRuleRun<IContactType>> _rules;
@@ -25,12 +27,12 @@ public class CommsCheckRulesEngine : ICommCheck
         _rulesEngine = LoadRulesEngine(fileData);
     }
 
-    private RulesEngine.RulesEngine LoadRulesEngine(string fileData)
+    private RulesEngine LoadRulesEngine(string fileData)
     {
         var workflow = System.Text.Json.JsonSerializer.Deserialize<List<Workflow>>(fileData);
         if (workflow == null)
             throw new Exception($"Workflow failed to deserialize from {_options.Value.JsonPath}");
-        var rulesEngine = new RulesEngine.RulesEngine(workflow.ToArray());
+        var rulesEngine = new RulesEngine(workflow.ToArray());
         return rulesEngine;
     }
 

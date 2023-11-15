@@ -1,3 +1,4 @@
+namespace CommsCheck;
 public class CommsCheckNativeRulesOptions(IServiceCollection services)
 {
 

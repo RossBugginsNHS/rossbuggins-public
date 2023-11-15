@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 public enum CommAllowedEnum
 {
     Allowed,

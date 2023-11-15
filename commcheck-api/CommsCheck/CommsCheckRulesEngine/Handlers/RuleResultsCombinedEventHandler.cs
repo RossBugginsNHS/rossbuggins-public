@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using MediatR;
 
 public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificationHandler<RuleResultsCombinedEvent>

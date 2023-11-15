@@ -1,3 +1,4 @@
+namespace CommsCheck;
 public readonly record struct RuleBlocked(string Method, string Reason): IRuleOutcome
 {
     public bool Equals(IRuleOutcome? other)

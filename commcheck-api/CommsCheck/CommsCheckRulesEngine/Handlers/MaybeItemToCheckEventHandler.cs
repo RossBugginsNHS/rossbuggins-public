@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using MediatR;

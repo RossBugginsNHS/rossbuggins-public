@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using MediatR;
 
 public class CheckCommsDirectCommand(CommsCheckQuestionRequestDto dto) : IRequest<CommsCheckAnswerResponseDto>

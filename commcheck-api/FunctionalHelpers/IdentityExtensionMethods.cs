@@ -1,3 +1,4 @@
+
 namespace FunctionalHelpers
 {
     public static class IdentityExtensionMethods

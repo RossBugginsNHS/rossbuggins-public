@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using System.Collections.Concurrent;
 using MediatR;
 

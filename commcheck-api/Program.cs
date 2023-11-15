@@ -1,3 +1,4 @@
+using CommsCheck;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -46,11 +47,8 @@ builder.Services.AddSwaggerGen(
     );
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapPrometheusScrapingEndpoint();
 
 app.MapPost("/check", 

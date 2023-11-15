@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using MediatR;
 using Microsoft.Extensions.ObjectPool;
 using System.Diagnostics.Metrics;

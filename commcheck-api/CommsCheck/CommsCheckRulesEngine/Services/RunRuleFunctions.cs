@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using RulesEngine.Extensions;
 
 public static class RunRuleFunctions

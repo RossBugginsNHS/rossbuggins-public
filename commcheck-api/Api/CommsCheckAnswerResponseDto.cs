@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 public readonly record struct CommsCheckAnswerResponseDto(
     string ResultId, 
     string RequestString, 

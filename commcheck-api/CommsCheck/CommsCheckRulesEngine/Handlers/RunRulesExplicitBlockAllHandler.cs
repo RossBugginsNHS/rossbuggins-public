@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using MediatR;
 
 public class RunRulesExplicitBlockAllHandler(IPublisher _publisher) : INotificationHandler<RulesLoadedEvent>

@@ -1,3 +1,5 @@
+namespace CommsCheck;
+
 using MediatR;
 
 public class RuleRunMethodResultEventHandler(RuleRunMethodResultCacheService _cache) 

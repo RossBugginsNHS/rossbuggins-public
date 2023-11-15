@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using MediatR;
 
 public class RunRulesAllowdHandler(IPublisher _publisher) : INotificationHandler<RulesLoadedEvent>

@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.ObjectPool;
 

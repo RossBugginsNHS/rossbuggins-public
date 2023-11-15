@@ -1,3 +1,4 @@
+namespace CommsCheck;
 using System.Text;
 using System.Threading.Channels;
 using MediatR;
