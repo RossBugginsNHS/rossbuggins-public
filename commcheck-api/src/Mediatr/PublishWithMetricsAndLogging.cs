@@ -46,7 +46,7 @@ public class PublishWithMetricsAndLogging : Mediator
         PreRunMetricsLogging(executorsList, notification);
         foreach (var handler in executorsList)
         {
-            var sw = StartMetrics(handler, executorsList, notification);
+            var sw = StartMetrics(handler, notification);
             try
             {
                 await handler.HandlerCallback(notification, cancellationToken).ConfigureAwait(false);
@@ -96,7 +96,6 @@ public class PublishWithMetricsAndLogging : Mediator
 
     private Stopwatch StartMetrics(
         NotificationHandlerExecutor handler,
-        IList<NotificationHandlerExecutor> handlerExecutors,
         ICommsCheckEvent notification)
     {
         var sw = Stopwatch.StartNew();
