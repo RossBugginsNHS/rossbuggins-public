@@ -26,7 +26,11 @@ public class HashWrapper
             var hash = alg.ComputeHash(b);
             var hashStr = BitConverter.ToString(hash).Replace("-", "").ToLower();
 
-            _logger.LogInformation("Hash for {reasonForHash} of {id} for item {item}", reasonForHash, hashStr, str);
+            _logger.LogInformation(
+                "Hash for {reasonForHash} of {id} for item {item}", 
+                reasonForHash, 
+                hashStr, 
+                str);
             return Task.FromResult(hashStr);
         }
         catch (Exception ex)
