@@ -1,6 +1,8 @@
 namespace CommsCheck;
 
 using System.Collections.Concurrent;
+using System.Runtime.Serialization;
+using System.Text.Json;
 using MediatR;
 using Microsoft.Extensions.Options;
 using RulesEngine;
@@ -23,15 +25,24 @@ public class CommsCheckRulesEngine : ICommCheck
         _options = options;
         _rules = rules;
         _publisher = publisher;
-        var fileData = File.ReadAllText(_options.Value.JsonPath);
-        _rulesEngine = LoadRulesEngine(fileData);
+        
+        _rulesEngine =LoadRulesEngineFromFile (_options.Value.JsonPath);
     }
 
+    private RulesEngine LoadRulesEngineFromFile(string fileName)
+    {
+        _logger.LogInformation("Loading rules engine from {fileLocation}", fileName);
+        var fileData = File.ReadAllText(_options.Value.JsonPath);
+        var rules = LoadRulesEngine(fileData);
+        _logger.LogInformation("Loaded rules engine from {fileLocation}", fileName);
+        return rules;
+
+    }
     private RulesEngine LoadRulesEngine(string fileData)
     {
         var workflow = System.Text.Json.JsonSerializer.Deserialize<List<Workflow>>(fileData);
         if (workflow == null)
-            throw new Exception($"Workflow failed to deserialize from {_options.Value.JsonPath}");
+            throw new SerializationException($"Workflow failed to deserialize from {_options.Value.JsonPath}");
         var rulesEngine = new RulesEngine(workflow.ToArray());
         return rulesEngine;
     }

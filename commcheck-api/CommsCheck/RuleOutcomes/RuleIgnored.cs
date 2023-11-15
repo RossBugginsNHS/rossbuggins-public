@@ -7,4 +7,7 @@ public readonly record struct RuleIgnored(string Method, string Reason) :IRuleOu
             return o == this;
         return false;
     }
+
+    public bool IsAllowed() => false;
+    public bool IsBlocked() => false;
 }

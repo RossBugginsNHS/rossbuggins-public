@@ -7,6 +7,7 @@
     <RootNamespace>commcheck_api</RootNamespace>
     <LangVersion>preview</LangVersion>
     <ProjectGuid>{470d752e-2fa5-4c6f-93f9-8d6422cd15a4}</ProjectGuid>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Mediatr" Version="12.1.1" />

@@ -6,11 +6,11 @@ public interface IReasonForRemoval
     public static MovedAway MovedAway => new MovedAway();
     public static NoReasonForRemoval None => new NoReasonForRemoval();
 
-    public bool IsEmpty() => this is NoReasonForRemoval;
+   bool IsEmpty();
 
-    public bool NotSet => this is NoReasonForRemoval;
+   bool NotSet {get;}
 
-    public bool HasCode => !( this is NoReasonForRemoval);
+   public bool HasCode {get;}
 
     public static IReasonForRemoval FromEnum(RfREnum? e) =>
      e switch

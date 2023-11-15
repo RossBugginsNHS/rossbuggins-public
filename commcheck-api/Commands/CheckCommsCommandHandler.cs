@@ -6,7 +6,6 @@ using System.Threading.Channels;
 
 public class CheckCommsCommandHandler(
     ObjectPool<HashWrapper> shaPool,
-    //CommsCheckItemSha sha, 
     ChannelWriter<CommsCheckItemWithId> writer) : 
     IRequestHandler<CheckCommsCommand, CommsCheckQuestionResponseDto>
 {
@@ -19,15 +18,11 @@ public class CheckCommsCommandHandler(
         CancellationToken cancellationToken)
     {
         var item = CommsCheckItem.FromDto(request.Dto);
-
         var wrapper = shaPool.Get();
         var pooledSha = await wrapper.GetSha(item, "Getting id in the Comms Handler.");
         shaPool.Return(wrapper);
-
-        //var resultId = await sha.GetSha(item, "Getting id in the Comms Handler.");
         var itemWithId = new CommsCheckItemWithId(pooledSha, item);
         await writer.WriteAsync(itemWithId);
-
         HandledCounter.Add(1);
         return new CommsCheckQuestionResponseDto(pooledSha);
     }

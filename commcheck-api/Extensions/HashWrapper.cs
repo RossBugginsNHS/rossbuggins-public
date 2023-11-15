@@ -17,7 +17,7 @@ public class HashWrapper
         alg = new HMACSHA256(b);
     }
 
-    public async Task<string> GetSha(CommsCheckItem item, string reasonForHash)
+    public Task<string> GetSha(CommsCheckItem item, string reasonForHash)
     {
         try
         {
@@ -27,7 +27,7 @@ public class HashWrapper
             var hashStr = BitConverter.ToString(hash).Replace("-", "").ToLower();
 
             _logger.LogInformation("Hash for {reasonForHash} of {id} for item {item}", reasonForHash, hashStr, str);
-            return hashStr;
+            return Task.FromResult(hashStr);
         }
         catch (Exception ex)
         {

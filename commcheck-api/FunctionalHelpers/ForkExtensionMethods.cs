@@ -28,11 +28,13 @@ namespace FunctionalHelpers
         }
 
         public static TOutputType Fork<TInputType, TOutputType>(
-        this Maybe<TInputType> @this, Func<TInputType, TOutputType> fEmpty, Func<TInputType, TOutputType> fFull)
+        this Maybe<TInputType> @this, 
+        Func<TOutputType> fEmpty, 
+        Func<TInputType, TOutputType> fFull)
         {
             var rVal = @this switch
             {
-                Empty<TInputType> empty => fEmpty(empty.Value),
+                Empty<TInputType> empty => fEmpty(),
                 Full<TInputType> full => fFull(full.Value),
                 _ => throw new ArgumentOutOfRangeException()
             };

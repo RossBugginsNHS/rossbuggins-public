@@ -11,8 +11,10 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
 {
     public async Task Run(RulesEngine.RulesEngine rulesEngine, CommsCheckItemWithId toCheck)
     {
+       
         var currentMethod = GetMethod();
         var ruleRunId = Guid.NewGuid();
+         _logger.LogInformation("Running Rules for {checkId} for {method} with localId of {localId}", toCheck.Id, currentMethod, ruleRunId);
         await _publisher.Publish(
             new RulesLoadedEvent(ruleRunId, rulesEngine, currentMethod, toCheck));
     }

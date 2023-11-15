@@ -30,8 +30,8 @@ public readonly record struct CommsCheckAnswerResponseDto(
 
     private static CommAllowedEnum GetEnum(IEnumerable<IRuleOutcome> outcomes, string method)
     {
-        var outCome = outcomes.Where(x=> x.Method == method).FirstOrDefault();
-        if(outCome==null || outCome == default)
+        var outCome = outcomes.FirstOrDefault(x=> x.Method == method);
+        if(outCome==null)
         {
             return CommAllowedEnum.Unknown;
         }
@@ -47,8 +47,8 @@ public readonly record struct CommsCheckAnswerResponseDto(
 
     private static string GetReason(IEnumerable<IRuleOutcome> outcomes, string method)
     {
-        var outCome = outcomes.Where(x=> x.Method == method).FirstOrDefault();
-        if(outCome==null || outCome == default)
+        var outCome = outcomes.FirstOrDefault(x=> x.Method == method);
+        if(outCome==null)
         {
             return string.Empty;
         }

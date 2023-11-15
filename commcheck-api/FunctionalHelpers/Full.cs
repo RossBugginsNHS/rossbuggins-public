@@ -7,5 +7,6 @@ namespace FunctionalHelpers
         {
             Value = value;
         }
+        public virtual T Value { get;}
     }
 }

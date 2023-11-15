@@ -7,5 +7,8 @@ public readonly record struct RuleAllowed(string Method, string Reason) : IRuleO
             return o == this;
         return false;
     }
+
+    public bool IsAllowed() => true;
+    public bool IsBlocked() => false;
 }
 

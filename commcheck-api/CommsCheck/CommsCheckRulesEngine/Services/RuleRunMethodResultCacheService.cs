@@ -9,9 +9,8 @@ using FunctionalHelpers;
 
 public class RuleRunMethodResultCacheService(IDistributedCache _cache)
 {
-    private SemaphoreSlim _slim = new SemaphoreSlim(1, 1);
-
-    private Func<string, Task<byte[]?>> _getFromCache = async x => await _cache.GetAsync(x);
+    private readonly SemaphoreSlim _slim = new SemaphoreSlim(1, 1);
+    private readonly Func<string, Task<byte[]?>> _getFromCache = async x => await _cache.GetAsync(x);
     public async Task NewOrUpdateCacheThreadSafe(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
     {
         //With no eventsouring (or other shared datastore) need to lock this as no concurrency checks.
@@ -32,11 +31,13 @@ public class RuleRunMethodResultCacheService(IDistributedCache _cache)
     private Task NewOrUpdateCacheItem(Maybe<byte[]?> maybe, RuleRunMethodResultEvent notification)
     {
         //curry the functions
-        Func<byte[]?, Task> newItem = x => WriteNewItem(notification);
+        Func<Task> newItem = () => WriteNewItem(notification);
+
+
         Func<byte[]?, Task> updateItem = x => WriteUpdatedItem(x, notification);
 
         var rVal = maybe.Fork(
-            empty => newItem(empty),
+            newItem,
             full => updateItem(full));
 
         return rVal;
@@ -59,8 +60,12 @@ public class RuleRunMethodResultCacheService(IDistributedCache _cache)
         await _cache.SetAsync(notification.ToCheck.Id, b);
     }
 
-    private async Task WriteUpdatedItem(byte[] existingBytes, RuleRunMethodResultEvent notification)
+    private async Task WriteUpdatedItem(byte[]? bytesIn, RuleRunMethodResultEvent notification)
     {
+        byte[] existingBytes = new byte[0];
+        if(bytesIn!=null)
+            existingBytes = bytesIn;
+
         var exitingItem = System.Text.Json.JsonSerializer.Deserialize<CommsCheckAnswer>(existingBytes);
         var updatedItem = exitingItem with { Outcomes = exitingItem.Outcomes.Append(notification.Outcome).ToArray() };
         var b = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(updatedItem);

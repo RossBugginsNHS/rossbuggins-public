@@ -5,7 +5,7 @@ using MediatR;
 
 public class RulesCombinerService(IPublisher _publisher)
 {
-    ConcurrentDictionary<Guid, List<IRuleOutcome>> _outcomes = new ConcurrentDictionary<Guid, List<IRuleOutcome>>();
+    private readonly ConcurrentDictionary<Guid, List<IRuleOutcome>> _outcomes = new ConcurrentDictionary<Guid, List<IRuleOutcome>>();
     public Task Combine(RulesRunCompleteEvent notification)
     {
         var outcomes = _outcomes.AddOrUpdate(

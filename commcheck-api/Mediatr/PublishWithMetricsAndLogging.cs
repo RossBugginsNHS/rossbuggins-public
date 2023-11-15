@@ -11,7 +11,7 @@ public class PublishWithMetricsAndLogging : Mediator
     private static readonly Histogram<double> ProcessTime = MyMeter.CreateHistogram<double>("MyPublish_Duration_Seconds");
     private static readonly UpDownCounter<long> CurrentlyProcessing = MyMeter.CreateUpDownCounter<long>("MyPublish_Active_Count");
 
-    ILogger<PublishWithMetricsAndLogging> _logger;
+    private readonly ILogger<PublishWithMetricsAndLogging> _logger;
     public PublishWithMetricsAndLogging(
      ILogger<PublishWithMetricsAndLogging> logger,
      IServiceProvider serviceFactory)
@@ -41,13 +41,13 @@ public class PublishWithMetricsAndLogging : Mediator
 
             HandledCounter.Add(
                 1,
-                new KeyValuePair<string, object>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                new KeyValuePair<string, object>("notification", notification.GetType().Name));
+                new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+                new KeyValuePair<string, object?>("notification", notification.GetType().Name));
 
             CurrentlyProcessing.Add(
                 1,
-                new KeyValuePair<string, object>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                new KeyValuePair<string, object>("notification", notification.GetType().Name));
+                new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+                new KeyValuePair<string, object?>("notification", notification.GetType().Name));
 
             _logger.LogInformation($"[NOTIFICATION HANDLER STARTING: {notification.GetType().Name}] => [{handler.HandlerInstance.GetType().Name}] {notification} ");
 
@@ -61,13 +61,13 @@ public class PublishWithMetricsAndLogging : Mediator
                 _logger.LogInformation($"[NOTIFICATION HANDLER FINISHED: {notification.GetType().Name}] => [{handler.HandlerInstance.GetType().Name}] {notification} ");
 
                 ProcessTime.Record(sw.Elapsed.TotalSeconds,
-                    new KeyValuePair<string, object>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                    new KeyValuePair<string, object>("notification", notification.GetType().Name));
+                    new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+                    new KeyValuePair<string, object?>("notification", notification.GetType().Name));
 
                 CurrentlyProcessing.Add(
                     -1,
-                    new KeyValuePair<string, object>("notificationHandler", handler.HandlerInstance.GetType().Name),
-                    new KeyValuePair<string, object>("notification", notification.GetType().Name));
+                    new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
+                    new KeyValuePair<string, object?>("notification", notification.GetType().Name));
             }
         }
     }
