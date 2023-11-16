@@ -6,11 +6,26 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Configs;
+
+if(args.Contains("--benchmark") && args.Contains("--debug"))
+{
+    var bm = new CommsCheckBenchmarks();
+    await bm.GlobalSetup();
+    await bm.RunBenchmark();
+    bm.IterationCleanup();
+    return;
+}
+else if (args.Contains("--benchmark"))
+{
+    BenchmarkRunner.Run<CommsCheckBenchmarks>();
+    return;
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<RulesCombinerService>();
-builder.Services.AddSingleton<RuleRunMethodResultCacheService>();
+
 
 builder.Services.AddCommsCheck(options =>
     {
@@ -104,3 +119,18 @@ app.MapGet("/rules",
     });
 
 app.Run();
+
+// public class BenchmarkItemComplete
+// : INotificationHandler<RuleRunMethodResultEvent>
+// {
+//     public static int Count {get;set;}
+//     public static object CountLock = new object();
+//     public  Task Handle(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
+//     {
+//         lock(CountLock)
+//         {
+//             Count++;
+//         }
+//         return Task.CompletedTask;
+//     }
+// }

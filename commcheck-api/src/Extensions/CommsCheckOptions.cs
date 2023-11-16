@@ -15,8 +15,6 @@ public class CommsCheckOptions
         _services = services;
     }
     public byte[] ShaKey { get; set; } = new byte[64];
-
-
     public CommsCheckOptions AddJsonConfig()
     {
         //https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpjsonserviceextensions.configurehttpjsonoptions?view=aspnetcore-7.0
@@ -31,7 +29,6 @@ public class CommsCheckOptions
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
-
         return this;
     }
 
@@ -75,29 +72,22 @@ public class CommsCheckOptions
     {
         _services.AddTransient<ICommCheck, T>();
         var optionsInstance = new CommsCheckRulesEngineConfigurationOptions(_services);
-
-
         config.GetSection(CommsCheckRulesEngineConfigurationOptions.OptionsName).Bind(optionsInstance);
-
         options(optionsInstance);
-
         _services.Configure<CommsCheckRulesEngineOptions>(x =>
         {
             x.JsonPath = optionsInstance.RulesPath;
         });
-
         return this;
     }
 
     public CommsCheckOptions AddShaKey(string key)
     {
         ShaKey = Encoding.UTF8.GetBytes(key);
-
         _services.Configure<HashWrapperOptions>(x =>
         {
             x.HashKey = ShaKey;
         });
-
         _services.TryAddSingleton<HashWrapperObjectPoolPolicy>();
         _services.TryAddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>();
         _services.TryAddSingleton<ObjectPool<HashWrapper>>(serviceProvider =>
@@ -106,7 +96,6 @@ public class CommsCheckOptions
             var policy = serviceProvider.GetRequiredService<HashWrapperObjectPoolPolicy>();
             return provider.Create(policy);
         });
-
         return this;
     }
 }
