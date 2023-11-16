@@ -27,6 +27,23 @@ dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
 
 ```
 
+## Dotnet benchmark
+
+Run with
+
+```
+dotnet run -c Release "--benchmark"
+```
+
+Example below shows approx 1ms for processing a record and reading it out.
+
+| Method       | LoopCount | Mean         | Error      | StdDev    | Median        | MeanPerLoop | Gen0       | Gen1      | Allocated   |
+|------------- |---------- |-------------:|-----------:|----------:|--------------:|------------ |-----------:|----------:|------------:|
+| RunBenchmark | 1         |     1.144 ms |  29.563 ms |  1.620 ms |     0.2773 ms | 1.14ms      |          - |         - |     7.47 KB |
+| RunBenchmark | 10        |    31.255 ms |  48.516 ms |  2.659 ms |    31.8307 ms | 3.13ms      |          - |         - |  5786.97 KB |
+| RunBenchmark | 100       |   375.774 ms | 142.078 ms |  7.788 ms |   373.8246 ms | 3.76ms      |  2000.0000 |         - | 68434.56 KB |
+| RunBenchmark | 1000      | 1,862.572 ms | 721.176 ms | 39.530 ms | 1,872.2948 ms | 1.86ms      | 22000.0000 | 7000.0000 | 653149.8 KB |
+
 ## Docker
 
 Docker files are there for the api.
