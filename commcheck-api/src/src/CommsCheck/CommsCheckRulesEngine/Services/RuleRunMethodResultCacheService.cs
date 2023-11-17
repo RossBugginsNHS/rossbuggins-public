@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.Caching.Distributed;
 using FunctionalHelpers;
+using System.Text.Json;
 
 public class RuleRunMethodResultCacheService
 {
@@ -72,27 +73,46 @@ public class RuleRunMethodResultCacheService
 
     private async Task<CommsCheckAnswer> WriteNewItem(RuleRunMethodResultEvent notification)
     {
-        var newAnswer = new CommsCheckAnswer(
-            notification.ToCheck.Id,
-            notification.ToCheck.ToString(),
-            notification.Outcome);
+        var newAnswer = BuildNewItem(notification);
 
-        var b = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(newAnswer);
+        var b = JsonSerializer.SerializeToUtf8Bytes(newAnswer);
         await _cache.SetAsync(notification.ToCheck.Id, b);
         return newAnswer;
     }
 
+    private CommsCheckAnswer BuildNewItem(RuleRunMethodResultEvent notification) =>
+    new CommsCheckAnswer(
+            notification.ToCheck.Id,
+            notification.ToCheck.ToString(),
+            GetNow(),
+            GetNow(),
+            1,
+            notification.Outcome);
+
+    private CommsCheckAnswer BuildUpdatedItem(
+        RuleRunMethodResultEvent notification, 
+        CommsCheckAnswer existingItem) =>
+        existingItem with 
+            { 
+                Outcomes = existingItem.Outcomes.Append(notification.Outcome).ToArray(),
+                UpdatedCount = existingItem.UpdatedCount + 1 ,
+                UpdatedAt = GetNow()
+            };
+
+    
     private async Task<CommsCheckAnswer> WriteUpdatedItem(byte[]? bytesIn, RuleRunMethodResultEvent notification)
     {
         byte[] existingBytes = Array.Empty<byte>();
         if (bytesIn != null)
             existingBytes = bytesIn;
+        
+        var exitingItem = JsonSerializer.Deserialize<CommsCheckAnswer>(existingBytes);
+        var updatedItem = BuildUpdatedItem(notification, exitingItem);
 
-        var exitingItem = System.Text.Json.JsonSerializer.Deserialize<CommsCheckAnswer>(existingBytes);
-        var updatedItem = exitingItem with { Outcomes = exitingItem.Outcomes.Append(notification.Outcome).ToArray() };
-
-        var b = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(updatedItem);
+        var b = JsonSerializer.SerializeToUtf8Bytes(updatedItem);
         await _cache.SetAsync(notification.ToCheck.Id, b);
         return updatedItem;
     }
+
+    private DateTime GetNow() => DateTime.Now.ToUniversalTime();
 }

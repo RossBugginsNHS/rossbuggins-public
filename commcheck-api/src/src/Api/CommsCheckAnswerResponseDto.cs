@@ -3,6 +3,9 @@ namespace CommsCheck;
 public readonly record struct CommsCheckAnswerResponseDto(
     string ResultId, 
     string RequestString, 
+    DateTime StartedAt,
+    DateTime UpdatedAt,
+    int UpdatedCount,
     CommAllowed App, 
     CommAllowed Email, 
     CommAllowed SMS, 
@@ -17,6 +20,9 @@ public readonly record struct CommsCheckAnswerResponseDto(
         return new CommsCheckAnswerResponseDto(
             answer.ResultId, 
             answer.RequestString, 
+            answer.StartedAt,
+            answer.UpdatedAt,
+            answer.UpdatedCount,
             GetEnum(answer.Outcomes, "App"),
             GetEnum(answer.Outcomes, "Email"),
             GetEnum(answer.Outcomes, "Sms"),
