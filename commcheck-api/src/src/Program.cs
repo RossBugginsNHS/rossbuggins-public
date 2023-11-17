@@ -77,17 +77,21 @@ app.MapPost("/check",
             AcceptedAtRoute<CommsCheckQuestionResponseDto>,
             CreatedAtRoute<CommsCheckQuestionResponseDto>>> (
         [FromBody] CommsCheckQuestionRequestDto request,
+        HttpContext http,
         [FromServices] IDistributedCache cache,
         [FromServices] ISender sender) =>
         {
             var result = await sender.Send(new CheckCommsCommand(request));
             var itemBytes = await cache.GetAsync(result.ResultId);
             if (itemBytes == null)
+            {
+                var retryAfter = 1;
+                http.Response.Headers.RetryAfter = retryAfter.ToString();
                 return TypedResults.AcceptedAtRoute(
-                    result with {RetryAfter = 1},
+                    result with {RetryAfter = retryAfter},
                     "CommCheckResult",
                     new { resultId = result.ResultId});
-
+            }
             return TypedResults.CreatedAtRoute(
                     result with {RetryAfter = 0},
                     "CommCheckResult",
