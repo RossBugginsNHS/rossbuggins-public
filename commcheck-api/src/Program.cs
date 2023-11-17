@@ -8,6 +8,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Options;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Configs;
+using CommsCheck.Benchmarks;
 
 if(args.Contains("--benchmark") && args.Contains("--debug"))
 {
@@ -24,8 +25,6 @@ else if (args.Contains("--benchmark"))
 }
 
 var builder = WebApplication.CreateBuilder(args);
-
-
 
 builder.Services.AddCommsCheck(options =>
     {
@@ -119,18 +118,3 @@ app.MapGet("/rules",
     });
 
 app.Run();
-
-// public class BenchmarkItemComplete
-// : INotificationHandler<RuleRunMethodResultEvent>
-// {
-//     public static int Count {get;set;}
-//     public static object CountLock = new object();
-//     public  Task Handle(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
-//     {
-//         lock(CountLock)
-//         {
-//             Count++;
-//         }
-//         return Task.CompletedTask;
-//     }
-// }

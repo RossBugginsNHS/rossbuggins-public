@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 
-namespace CommsCheck
+namespace CommsCheck.Benchmarks
 {
     /// <summary>
     /// An implementation of <see cref="IDistributedCache"/> using <see cref="IMemoryCache"/>.
@@ -34,8 +34,8 @@ namespace CommsCheck
         /// <param name="loggerFactory">The logger factory to create <see cref="ILogger"/> used to log messages.</param>
         public ClearableMemoryDistributedCache(IOptions<MemoryDistributedCacheOptions> optionsAccessor, ILoggerFactory loggerFactory)
         {
-            ThrowHelper.ThrowIfNull(optionsAccessor);
-            ThrowHelper.ThrowIfNull(loggerFactory);
+            ArgumentNullException.ThrowIfNull(optionsAccessor);
+            ArgumentNullException.ThrowIfNull(loggerFactory);
 
             _memCache = new MemoryCache(optionsAccessor.Value, loggerFactory);
         }
@@ -47,7 +47,7 @@ namespace CommsCheck
         /// <returns>The byte array value of the key.</returns>
         public byte[]? Get(string key)
         {
-            ThrowHelper.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(key);
 
             return (byte[]?)_memCache.Get(key);
         }
@@ -60,8 +60,7 @@ namespace CommsCheck
         /// <returns>The task for getting the byte array value associated with the specified key from the cache.</returns>
         public Task<byte[]?> GetAsync(string key, CancellationToken token = default(CancellationToken))
         {
-            ThrowHelper.ThrowIfNull(key);
-
+            ArgumentNullException.ThrowIfNull(key);
             return Task.FromResult(Get(key));
         }
 
@@ -73,9 +72,9 @@ namespace CommsCheck
         /// <param name="options">The cache options for the item to set.</param>
         public void Set(string key, byte[] value, DistributedCacheEntryOptions options)
         {
-            ThrowHelper.ThrowIfNull(key);
-            ThrowHelper.ThrowIfNull(value);
-            ThrowHelper.ThrowIfNull(options);
+            ArgumentNullException.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(value);
+            ArgumentNullException.ThrowIfNull(options);
 
             var memoryCacheEntryOptions = new MemoryCacheEntryOptions();
             memoryCacheEntryOptions.AbsoluteExpiration = options.AbsoluteExpiration;
@@ -96,9 +95,9 @@ namespace CommsCheck
         /// <returns>The task for setting the byte array value associated with the specified key in the cache.</returns>
         public Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default(CancellationToken))
         {
-            ThrowHelper.ThrowIfNull(key);
-            ThrowHelper.ThrowIfNull(value);
-            ThrowHelper.ThrowIfNull(options);
+            ArgumentNullException.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(value);
+            ArgumentNullException.ThrowIfNull(options);
 
             Set(key, value, options);
             return Task.CompletedTask;
@@ -110,7 +109,7 @@ namespace CommsCheck
         /// <param name="key">The key of the item to refresh.</param>
         public void Refresh(string key)
         {
-            ThrowHelper.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(key);
 
             _memCache.TryGetValue(key, out _);
         }
@@ -123,7 +122,7 @@ namespace CommsCheck
         /// <returns>The task for refreshing the specified key in the cache.</returns>
         public Task RefreshAsync(string key, CancellationToken token = default(CancellationToken))
         {
-            ThrowHelper.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(key);
 
             Refresh(key);
             return Task.CompletedTask;
@@ -135,7 +134,7 @@ namespace CommsCheck
         /// <param name="key">The key of the item to remove.</param>
         public void Remove(string key)
         {
-            ThrowHelper.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(key);
 
             _memCache.Remove(key);
         }
@@ -148,7 +147,7 @@ namespace CommsCheck
         /// <returns>The task for removing the specified key from the cache.</returns>
         public Task RemoveAsync(string key, CancellationToken token = default(CancellationToken))
         {
-            ThrowHelper.ThrowIfNull(key);
+            ArgumentNullException.ThrowIfNull(key);
 
             Remove(key);
             return Task.CompletedTask;
@@ -161,11 +160,3 @@ namespace CommsCheck
     }
 }
 
-public static class ThrowHelper
-{
-    public static void ThrowIfNull<T>(T obj)
-    {
-        if(obj==null)
-            throw new NullReferenceException(typeof(T).Name);
-    }
-}
