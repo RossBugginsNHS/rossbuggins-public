@@ -51,19 +51,9 @@ builder.Services.AddCommsCheck(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
-
     options =>
     {
-        options.MapType<DateOnly>(() => new OpenApiSchema()
-        {
-            Type = "string",
-            Format = "date"
-        });
-
-        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-        options.IncludeXmlComments(xmlPath);
-        options.SchemaFilter<EnumTypesSchemaFilter>(xmlPath);
+        options.AddDateAndEnumFormatters();
     }
     );
 

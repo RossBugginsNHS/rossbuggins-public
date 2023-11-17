@@ -1,4 +1,5 @@
 namespace CommsCheck;
+
 using System.Threading.Channels;
 using MediatR;
 using OpenTelemetry.Metrics;
