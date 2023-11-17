@@ -12,6 +12,8 @@ http://localhost:5004/swagger/index.html
 
 If using a local SQ docker instance with defaults, the below can be used to analyse.
 
+![Alt text](image-1.png)
+
 ```
 dotnet tool install --global dotnet-sonarscanner
 dotnet tool install --global dotnet-coverage

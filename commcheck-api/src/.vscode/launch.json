@@ -35,7 +35,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net8.0/commcheck-api.dll",
+            "program": "${workspaceFolder}/src/bin/Debug/net8.0/commcheck-api.dll",
             "args": ["--benchmark",  "--debug"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
