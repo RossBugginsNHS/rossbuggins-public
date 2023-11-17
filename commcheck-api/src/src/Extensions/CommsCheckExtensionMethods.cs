@@ -18,6 +18,7 @@ public static class CommsCheckExtensionMethods
     {
 
         services.AddHostedService<CommsCheckHostedService>();
+        services.AddSingleton<RunRuleFunctions>();
         services.AddSingleton<RulesCombinerService>();
         services.AddSingleton<RuleRunMethodResultCacheService>();
         services.AddSingleton(Channel.CreateUnbounded<CommsCheckItemWithId>(new UnboundedChannelOptions() { SingleReader = true }));

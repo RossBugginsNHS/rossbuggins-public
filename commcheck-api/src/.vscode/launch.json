@@ -24,7 +24,8 @@
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
-            }
+            },
+            "console": "integratedTerminal"
         },
         {
             // Use IntelliSense to find out which attributes exist for C# debugging

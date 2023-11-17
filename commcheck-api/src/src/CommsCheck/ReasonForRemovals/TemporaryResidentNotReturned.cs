@@ -1,8 +1,9 @@
 
 namespace CommsCheck;
-public readonly record struct Death : IReasonForRemoval
+
+public readonly record struct TemporaryResidentNotReturned : IReasonForRemoval
 {
-    public string Code => "DEA";
+    public string Code => "TRA";
 
     public bool NotSet => false;
     public bool HasCode => true;

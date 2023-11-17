@@ -22,10 +22,9 @@ public class CheckCommsCommandTests
     public void TestCommsCheckQuestionRequestDtoIsNotMutated_NotEmpty()
     {
         //arrange
-        var dto = new CommsCheckQuestionRequestDto(
+        var dto = CommsCheckQuestionRequestDto.DobOnly(
             DateOnly.FromDateTime(new DateTime(2000,1,1)),
-            DateOnly.FromDateTime(new DateTime(2010,1,1)),
-            ReasonForRemoval.DEA);
+            ReasonForRemovals.DEA);
 
         //Act
         var x = new CheckCommsCommand(dto);

@@ -1,8 +1,9 @@
 
 namespace CommsCheck;
-public readonly record struct Death : IReasonForRemoval
+
+public readonly record struct ArmedForcesLocal : IReasonForRemoval
 {
-    public string Code => "DEA";
+    public string Code => "AFL";
 
     public bool NotSet => false;
     public bool HasCode => true;

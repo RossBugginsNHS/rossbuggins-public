@@ -11,7 +11,7 @@ public class AllICommsCheckEventHandler<T> : INotificationHandler<T>
     }
     public Task Handle(T notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("[{name}]: {notification}", notification.GetType().Name, notification);
+        _logger.LogDebug("[{name}]: {notification}", notification.GetType().Name, notification);
         return Task.CompletedTask;
     }
 }

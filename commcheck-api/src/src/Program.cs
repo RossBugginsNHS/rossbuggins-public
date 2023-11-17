@@ -9,8 +9,10 @@ using Microsoft.Extensions.Options;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Configs;
 using CommsCheck.Benchmarks;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
 
-if(args.Contains("--benchmark") && args.Contains("--debug"))
+if (args.Contains("--benchmark") && args.Contains("--debug"))
 {
     var bm = new CommsCheckBenchmarks();
     await bm.GlobalSetup();
@@ -43,7 +45,7 @@ builder.Services.AddCommsCheck(options =>
                         .AddContactType<Postal>()
                         .AddContactType<App>()
                         ;
-            });
+                });
     }
 );
 
@@ -57,6 +59,11 @@ builder.Services.AddSwaggerGen(
             Type = "string",
             Format = "date"
         });
+
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        options.IncludeXmlComments(xmlPath);
+        options.SchemaFilter<EnumTypesSchemaFilter>(xmlPath);
     }
     );
 
@@ -65,25 +72,24 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.MapPrometheusScrapingEndpoint();
 
-app.MapPost("/check", 
+app.MapPost("/check",
     async Task<Results<
-            AcceptedAtRoute<CommsCheckQuestionResponseDto>, 
+            AcceptedAtRoute<CommsCheckQuestionResponseDto>,
             CreatedAtRoute<CommsCheckQuestionResponseDto>>> (
         [FromBody] CommsCheckQuestionRequestDto request,
         [FromServices] IDistributedCache cache,
         [FromServices] ISender sender) =>
         {
             var result = await sender.Send(new CheckCommsCommand(request));
-
             var itemBytes = await cache.GetAsync(result.ResultId);
-            if(itemBytes==null)
-                return TypedResults.CreatedAtRoute(
-                    result,
+            if (itemBytes == null)
+                return TypedResults.AcceptedAtRoute(
+                    result with {RetryAfter = 1},
                     "CommCheckResult",
-                    new { resultId = result.ResultId });
+                    new { resultId = result.ResultId});
 
-            return TypedResults.AcceptedAtRoute(
-                    result,
+            return TypedResults.CreatedAtRoute(
+                    result with {RetryAfter = 0},
                     "CommCheckResult",
                     new { resultId = result.ResultId });
         }
@@ -108,7 +114,7 @@ app.MapGet("/check/result/{resultId}",
 .WithName("CommCheckResult")
 .WithOpenApi();
 
-app.MapGet("/rules", 
+app.MapGet("/rules",
     async (
         [FromServices] IOptions<CommsCheckRulesEngineOptions> options) =>
     {

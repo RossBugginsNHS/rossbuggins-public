@@ -1,8 +1,9 @@
 
 namespace CommsCheck;
-public readonly record struct Death : IReasonForRemoval
+
+public readonly record struct ServiceDependent : IReasonForRemoval
 {
-    public string Code => "DEA";
+    public string Code => "SDN";
 
     public bool NotSet => false;
     public bool HasCode => true;

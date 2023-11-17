@@ -29,7 +29,7 @@ public class CheckCommsCommandHandler(
     }
 
     private static CommsCheckQuestionResponseDto CreateResponse(string sha) => 
-        new CommsCheckQuestionResponseDto(sha);
+        new CommsCheckQuestionResponseDto(sha, null);
 
     private static void WriteCompletedMetrics() => HandledCounter.Add(1);
 

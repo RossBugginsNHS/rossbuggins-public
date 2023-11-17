@@ -2,10 +2,10 @@ namespace CommsCheck;
 
 using RulesEngine.Extensions;
 
-public static class RunRuleFunctions
+public class RunRuleFunctions(ILogger<RunRuleFunctions> _logger)
 {
 
-    public static async Task<IRuleOutcome> RunExplictBlockAll(
+    public async Task<IRuleOutcome> RunExplictBlockAll(
         string method,
         RulesEngine.RulesEngine rulesEngine,
         CommsCheckItem toCheck)
@@ -13,7 +13,7 @@ public static class RunRuleFunctions
         return await RunExplictBlock("All", method, rulesEngine, toCheck);
     }
 
-    public static async Task<IRuleOutcome> RunExplictBlock(
+    public async Task<IRuleOutcome> RunExplictBlock(
         string method,
         RulesEngine.RulesEngine rulesEngine,
         CommsCheckItem toCheck)
@@ -21,7 +21,7 @@ public static class RunRuleFunctions
         return await RunExplictBlock(method, method, rulesEngine, toCheck);
     }
 
-    private static async Task<IRuleOutcome> RunExplictBlock(
+    private async Task<IRuleOutcome> RunExplictBlock(
         string methodToCheck,
         string methodToLog,
         RulesEngine.RulesEngine rulesEngine,
@@ -35,7 +35,7 @@ public static class RunRuleFunctions
             (str) => IRuleOutcome.Blocked(methodToLog, str));
     }
 
-    public static async Task<IRuleOutcome> RunAllowed(
+    public async Task<IRuleOutcome> RunAllowed(
         string method,
         RulesEngine.RulesEngine rulesEngine,
         CommsCheckItem toCheck)
@@ -48,7 +48,7 @@ public static class RunRuleFunctions
             (str) => IRuleOutcome.Allowed(method, str));
     }
 
-    private static async Task<IRuleOutcome> RunRules(
+    private async Task<IRuleOutcome> RunRules(
     string ruleSet,
     string method,
     RulesEngine.RulesEngine rulesEngine,
@@ -56,8 +56,7 @@ public static class RunRuleFunctions
     Func<string, IRuleOutcome> onSuccess)
     {
         var results = await rulesEngine.ExecuteAllRulesAsync(ruleSet + "-" + method, toCheck);
-        //Here can log on each of the rules that was run.
-
+        CheckForExceptions(results);
         IRuleOutcome rVal = IRuleOutcome.Ignored();
 
         results.OnSuccess((a) =>
@@ -66,5 +65,13 @@ public static class RunRuleFunctions
         });
 
         return rVal;
+    }
+
+    private void CheckForExceptions(IEnumerable<RulesEngine.Models.RuleResultTree> results)
+    {
+        foreach (var result in results.Where(x => !string.IsNullOrEmpty(x.ExceptionMessage)))
+        {
+            _logger.LogError("Failure to run rules with {exception}", result.ExceptionMessage);
+        }
     }
 }

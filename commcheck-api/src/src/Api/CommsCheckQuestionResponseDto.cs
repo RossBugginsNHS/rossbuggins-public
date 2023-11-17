@@ -1,6 +1,6 @@
 namespace CommsCheck;
 
-public readonly record struct CommsCheckQuestionResponseDto(string ResultId)
+public readonly record struct CommsCheckQuestionResponseDto(string ResultId, int? RetryAfter)
 {
 
 }

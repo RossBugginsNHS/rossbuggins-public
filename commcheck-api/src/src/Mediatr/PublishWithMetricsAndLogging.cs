@@ -62,7 +62,7 @@ public class PublishWithMetricsAndLogging : Mediator
         IList<NotificationHandlerExecutor> handlerExecutors,
         ICommsCheckEvent notification)
     {
-        _logger.LogInformation(
+        _logger.LogDebug(
             "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER COUNT: {notificationName}] => [{executorsCount}] {notification}",
             notification.CommCheckCorrelationId,
             notification.GetType().Name,
@@ -76,7 +76,7 @@ public class PublishWithMetricsAndLogging : Mediator
     {
         sw.Stop();
         
-        _logger.LogInformation(
+        _logger.LogDebug(
             "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER FINISHED: {notificationName}] => [{handlerName}] {notification}",
             notification.CommCheckCorrelationId,
             notification.GetType().Name,
@@ -110,7 +110,7 @@ public class PublishWithMetricsAndLogging : Mediator
             new KeyValuePair<string, object?>("notificationHandler", handler.HandlerInstance.GetType().Name),
             new KeyValuePair<string, object?>("notification", notification.GetType().Name));
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "[{CommCheckCorrelationId}] [NOTIFICATION HANDLER STARTING: {notificationName}] => [{handlerName}] {notification}",
             notification.CommCheckCorrelationId,
             notification.GetType().Name,

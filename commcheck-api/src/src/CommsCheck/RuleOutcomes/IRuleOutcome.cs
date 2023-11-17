@@ -15,8 +15,10 @@ public interface IRuleOutcome : IEquatable<IRuleOutcome>
     public static IRuleOutcome Blocked(string method, string reason) => new RuleBlocked(method, reason);
     public static IRuleOutcome Ignored()=> new RuleIgnored();
 
-    bool IsAllowed();
-    bool IsBlocked();
+    bool IsAllowed{get;}
+    bool IsBlocked{get;}
+
+    string OutcomeDescription{get;}
 
 }
 

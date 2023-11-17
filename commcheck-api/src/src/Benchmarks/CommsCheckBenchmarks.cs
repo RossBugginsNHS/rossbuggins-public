@@ -114,9 +114,8 @@ public class CommsCheckBenchmarks
     }
 
     public CommsCheckQuestionRequestDto BuildRequestDto(DateTime thisDate) =>
-        new CommsCheckQuestionRequestDto(
+        CommsCheckQuestionRequestDto.DobOnly(
             DateOnly.FromDateTime(thisDate),
-             DateOnly.FromDateTime(thisDate),
              null);
 
     public async Task WaitForResult(string resultId, IDistributedCache cache)

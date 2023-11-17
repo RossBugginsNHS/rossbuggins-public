@@ -5,5 +5,5 @@ public record NoReasonForRemoval : IReasonForRemoval
 
     public bool NotSet => true;
     public bool HasCode => false;
-    public bool IsEmpty() => NotSet;
+    public bool IsEmpty => NotSet;
 }

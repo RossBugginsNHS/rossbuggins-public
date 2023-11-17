@@ -8,7 +8,36 @@
         "ErrorMessage": "",
         "Enabled": true,
         "Expression": "input1.ReasonForRemoval.Code == \"DEA\""
+      },
+      {
+        "RuleName": "Block all LogicalDeletion.",
+        "SuccessEvent": "Explicit Block 20: LogincalDeletion LDN Block",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")"
+      },
+      {
+        "RuleName": "Block all Other.",
+        "SuccessEvent": "Explicit Block 30: Other Block",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.Other\")"
+      },
+      {
+        "RuleName": "Block all Cancellation.",
+        "SuccessEvent": "Explicit Block 40: Cancellation Block",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.Cancellation\")"
+      },
+      {
+        "RuleName": "Block all X.",
+        "SuccessEvent": "Explicit Block 40: X Block",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.X\")"
       }
+
     ]
   },
   {

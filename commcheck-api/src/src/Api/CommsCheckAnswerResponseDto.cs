@@ -28,22 +28,14 @@ public readonly record struct CommsCheckAnswerResponseDto(
             );  
     }
 
-    private static CommAllowed GetEnum(IEnumerable<IRuleOutcome> outcomes, string method)
-    {
-        var outCome = outcomes.FirstOrDefault(x=> x.Method == method);
-        if(outCome==null)
+    private static CommAllowed GetEnum(IEnumerable<IRuleOutcome> outcomes, string method) =>
+        outcomes.FirstOrDefault(x=> x.Method == method) switch
         {
-            return CommAllowed.Unknown;
-        }
-        else if(outCome.IsAllowed())
-        {
-            return CommAllowed.Allowed;
-        }
-        else
-        {
-            return CommAllowed.Blocked;
-        }
-    }
+            null => CommAllowed.Unknown,
+            IRuleOutcome {IsAllowed: true} => CommAllowed.Allowed,
+            _ => CommAllowed.Blocked
+        };
+    
 
     private static string GetReason(IEnumerable<IRuleOutcome> outcomes, string method)
     {
