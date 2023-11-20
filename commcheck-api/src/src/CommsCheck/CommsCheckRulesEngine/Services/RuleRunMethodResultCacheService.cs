@@ -25,7 +25,9 @@ public class RuleRunMethodResultCacheService
         _getFromCache = async x => await _cache.GetAsync(x);
     }
 
-    public async Task NewOrUpdateCacheThreadSafe(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
+    public async Task NewOrUpdateCacheThreadSafe(
+        RuleOutcomeComputedEvent notification, 
+        CancellationToken cancellationToken)
     {
         CommsCheckAnswer? answer;
         //With no eventsouring (or other shared datastore) need to lock this as no concurrency checks.
@@ -42,17 +44,19 @@ public class RuleRunMethodResultCacheService
             _slim.Release();
         }
 
-        if (answer != null)
-        {
-            _logger.LogInformation(
-                "[{correlationId}] Answer updated {answer}", 
-                notification.CommCheckCorrelationId,
-                CommsCheckAnswerResponseDto.FromCommsCheckAnswer(answer.Value)
-                );
-        }
+        ArgumentNullException.ThrowIfNull(answer);
+
+        _logger.LogInformation(
+            "[{correlationId}] Answer updated {answer}",
+            notification.CommCheckCorrelationId,
+            CommsCheckAnswerResponseDto.FromCommsCheckAnswer(answer.Value)
+            );
+
     }
 
-    private Task<CommsCheckAnswer> NewOrUpdateCacheItem(Maybe<byte[]?> maybe, RuleRunMethodResultEvent notification)
+    private Task<CommsCheckAnswer> NewOrUpdateCacheItem(
+        Maybe<byte[]?> maybe, 
+        RuleOutcomeComputedEvent notification)
     {
         //curry the functions
         Func<Task<CommsCheckAnswer>> newItem = () => WriteNewItem(notification);
@@ -71,7 +75,7 @@ public class RuleRunMethodResultCacheService
             .MaybeAsync(async (_id) => await _getFromCache(_id));
 
 
-    private async Task<CommsCheckAnswer> WriteNewItem(RuleRunMethodResultEvent notification)
+    private async Task<CommsCheckAnswer> WriteNewItem(RuleOutcomeComputedEvent notification)
     {
         var newAnswer = BuildNewItem(notification);
 
@@ -80,7 +84,7 @@ public class RuleRunMethodResultCacheService
         return newAnswer;
     }
 
-    private CommsCheckAnswer BuildNewItem(RuleRunMethodResultEvent notification) =>
+    private static CommsCheckAnswer BuildNewItem(RuleOutcomeComputedEvent notification) =>
     new CommsCheckAnswer(
             notification.ToCheck.Id,
             notification.ToCheck.ToString(),
@@ -89,23 +93,25 @@ public class RuleRunMethodResultCacheService
             1,
             notification.Outcome);
 
-    private CommsCheckAnswer BuildUpdatedItem(
-        RuleRunMethodResultEvent notification, 
+    private static CommsCheckAnswer BuildUpdatedItem(
+        RuleOutcomeComputedEvent notification,
         CommsCheckAnswer existingItem) =>
-        existingItem with 
-            { 
-                Outcomes = existingItem.Outcomes.Append(notification.Outcome).ToArray(),
-                UpdatedCount = existingItem.UpdatedCount + 1 ,
-                UpdatedAt = GetNow()
-            };
+        existingItem with
+        {
+            Outcomes = existingItem.Outcomes.Append(notification.Outcome).ToArray(),
+            UpdatedCount = existingItem.UpdatedCount + 1,
+            UpdatedAt = GetNow()
+        };
 
-    
-    private async Task<CommsCheckAnswer> WriteUpdatedItem(byte[]? bytesIn, RuleRunMethodResultEvent notification)
+
+    private async Task<CommsCheckAnswer> WriteUpdatedItem(
+        byte[]? bytesIn, 
+        RuleOutcomeComputedEvent notification)
     {
         byte[] existingBytes = Array.Empty<byte>();
         if (bytesIn != null)
             existingBytes = bytesIn;
-        
+
         var exitingItem = JsonSerializer.Deserialize<CommsCheckAnswer>(existingBytes);
         var updatedItem = BuildUpdatedItem(notification, exitingItem);
 
@@ -114,5 +120,5 @@ public class RuleRunMethodResultCacheService
         return updatedItem;
     }
 
-    private DateTime GetNow() => DateTime.Now.ToUniversalTime();
+    private static DateTime GetNow() => DateTime.Now.ToUniversalTime();
 }

@@ -28,6 +28,7 @@ else if (args.Contains("--benchmark"))
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRulesEngine();
 builder.Services.AddCommsCheck(options =>
     {
         options
@@ -35,6 +36,7 @@ builder.Services.AddCommsCheck(options =>
             .AddDistriubtedCache()
             .AddShaKey("dfgklretlk345dfgml12")
             .AddMetrics()
+            
             .AddRulesEngineRules(
                 builder.Configuration.GetSection("CommsCheck"),
                 ruleEngineOptions =>

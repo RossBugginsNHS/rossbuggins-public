@@ -1,17 +1,19 @@
 namespace CommsCheck;
 
+using System.Diagnostics;
 using MediatR;
 
-public class RuleRunMethodResultEvent(
+public class RulesRunCompletedEvent(
     Guid commCheckCorrelationId,
     Guid ruleRunId,
+    IRuleOutcome outcome,
     string method,
-    CommsCheckItemWithId toCheck,
-    IRuleOutcome outcome) : ICommsCheckEvent
+    CommsCheckItemWithId toCheck
+) : ICommsCheckEvent
 {
     public Guid CommCheckCorrelationId => commCheckCorrelationId;
-    public Guid RuleRubId => ruleRunId;
+    public Guid RuleRunId => ruleRunId;
     public IRuleOutcome Outcome => outcome;
-    public CommsCheckItemWithId ToCheck => toCheck;
     public string Method => method;
+    public CommsCheckItemWithId ToCheck => toCheck;
 }

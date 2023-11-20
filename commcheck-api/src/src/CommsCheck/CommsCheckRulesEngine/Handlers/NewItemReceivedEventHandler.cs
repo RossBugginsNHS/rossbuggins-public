@@ -5,18 +5,18 @@ using System.Diagnostics.Metrics;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
-public class MaybeItemToCheckEventHandler(
+public class NewItemReceivedEventHandler(
     IPublisher _publisher,
-    ILogger<MaybeItemToCheckEventHandler> _logger,
+    ILogger<NewItemReceivedEventHandler> _logger,
     IDistributedCache _cache
-) : INotificationHandler<MaybeItemToCheckEvent>
+) : INotificationHandler<NewItemReceivedEvent>
 {
     private static readonly Meter MyMeter = new("NHS.CommChecker.CommsCheckHostedService", "1.0");
     private static readonly Counter<long> ProcessCheckCount = MyMeter.CreateCounter<long>("ProcessCheck_Count");
     private static readonly Histogram<double> ProcessTime = MyMeter.CreateHistogram<double>("ProcessCheck_Duration_Seconds");
     private static readonly UpDownCounter<long> CurrentlyProcessing = MyMeter.CreateUpDownCounter<long>("ProcessCheck_Active_Count");
 
-    public async Task Handle(MaybeItemToCheckEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(NewItemReceivedEvent notification, CancellationToken cancellationToken)
     {
         await TryProcessCommCheckItem(notification.CommCheckCorrelationId, notification.Item);
     }
@@ -77,7 +77,7 @@ public class MaybeItemToCheckEventHandler(
 
     private async Task ProcessCheck(Guid commCheckCorrelationId, CommsCheckItemWithId item)
     {
-        await _publisher.Publish(new ItemToCheckEvent(commCheckCorrelationId, item));
+        await _publisher.Publish(new ItemNotFoundInCacheEvent(commCheckCorrelationId, item));
         ProcessCheckCount.Add(1);
     }
 }

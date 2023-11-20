@@ -2,10 +2,10 @@ namespace CommsCheck;
 
 using MediatR;
 
-public class RuleRunMethodResultEventHandlerLog(ILogger<RuleRunMethodResultEventHandlerLog> _logger) 
-: INotificationHandler<RuleRunMethodResultEvent>
+public class RuleOutcomeComputedEventHandlerLogger(ILogger<RuleOutcomeComputedEventHandlerLogger> _logger) 
+: INotificationHandler<RuleOutcomeComputedEvent>
 {
-    public Task Handle(RuleRunMethodResultEvent notification, CancellationToken cancellationToken)
+    public Task Handle(RuleOutcomeComputedEvent notification, CancellationToken cancellationToken)
     {
          _logger.LogInformation(
             "[{correlationId}] Completed rule run with result {result} on {method} {itemId} with reason {reason}",

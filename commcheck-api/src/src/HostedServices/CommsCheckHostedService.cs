@@ -15,7 +15,7 @@ public class CommsCheckHostedService(
         var correlationId = NewCorrelationId();
         await foreach (var item in _reader.ReadAllAsync(stoppingToken))
         {
-           await _publisher.Publish(new MaybeItemToCheckEvent(correlationId, item), stoppingToken);
+           await _publisher.Publish(new NewItemReceivedEvent(correlationId, item), stoppingToken);
         }
     }
 

@@ -1,5 +1,5 @@
 namespace CommsCheck;
-public class ItemToCheckEvent (Guid commCheckCorrelationId, CommsCheckItemWithId item): 
+public class ItemNotFoundInCacheEvent (Guid commCheckCorrelationId, CommsCheckItemWithId item): 
     ICommsCheckEvent
 {
     public CommsCheckItemWithId Item => item;

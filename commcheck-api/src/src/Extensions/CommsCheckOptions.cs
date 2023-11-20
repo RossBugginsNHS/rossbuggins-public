@@ -63,6 +63,7 @@ public class CommsCheckOptions
         IConfiguration config,
         Action<CommsCheckRulesEngineConfigurationOptions> options)
     {
+        
         return this.AddRulesEngineRules<CommsCheckRulesEngine>(config, options);
     }
 

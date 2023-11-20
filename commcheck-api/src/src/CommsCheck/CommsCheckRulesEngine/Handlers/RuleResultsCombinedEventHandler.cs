@@ -11,21 +11,21 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
 
         var t = (blocked.Count > 0, allowed.Count > 0) switch
         {
-            (true, _) => _publisher.Publish(new RuleRunMethodResultEvent(
+            (true, _) => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
                 notification.Method,
                 notification.ToCheck,
                 blocked[0]), cancellationToken),
 
-            (false, true) => _publisher.Publish(new RuleRunMethodResultEvent(
+            (false, true) => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
                 notification.Method,
                 notification.ToCheck,
                 allowed[0]), cancellationToken),
 
-            _ => _publisher.Publish(new RuleRunMethodResultEvent(
+            _ => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
                 notification.Method,

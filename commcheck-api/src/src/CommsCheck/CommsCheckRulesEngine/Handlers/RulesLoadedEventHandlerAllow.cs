@@ -1,8 +1,9 @@
 namespace CommsCheck;
 using MediatR;
 
-public class RunRulesAllowdHandler(
-    ILogger<RunRulesAllowdHandler> _logger,
+public class RulesLoadedEventHandlerAllow(
+    RulesEngine.RulesEngine _rulesEngine,
+    ILogger<RulesLoadedEventHandlerAllow> _logger,
     RunRuleFunctions _ruleFunctions, 
     IPublisher _publisher) : INotificationHandler<RulesLoadedEvent>
 {
@@ -10,7 +11,7 @@ public class RunRulesAllowdHandler(
     {
         var result = await _ruleFunctions.RunAllowed(
             request.Method,
-            request.RulesEngine,
+            _rulesEngine,
             request.ToCheck.Item);
 
         _logger.LogInformation(
@@ -19,7 +20,7 @@ public class RunRulesAllowdHandler(
             request.Method,
             result.OutcomeDescription);
 
-        await _publisher.Publish(new RulesRunCompleteEvent(
+        await _publisher.Publish(new RulesRunCompletedEvent(
             request.CommCheckCorrelationId,
             request.RuleRunId,
             result,
