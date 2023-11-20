@@ -94,15 +94,18 @@ public class RuleRunMethodResultCacheService
         return newAnswer;
     }
 
-    private CommsCheckAnswer BuildNewItem(RuleOutcomeComputedEvent notification) =>
-    new CommsCheckAnswer(
+    private CommsCheckAnswer BuildNewItem(RuleOutcomeComputedEvent notification)
+    {
+        var now = GetNow();
+        return new CommsCheckAnswer(
             notification.ToCheck.Id,
             notification.ToCheck.Item.CopyOfSource,
             notification.ToCheck.Item.UtcDateCheckItemCreated,
-            GetNow(),
-            GetNow(),
+            now,
+            now,
             1,
             notification.Outcome);
+    }
 
     private CommsCheckAnswer BuildUpdatedItem(
         RuleOutcomeComputedEvent notification,
