@@ -6,6 +6,7 @@ using MediatR;
 public class RulesRunCompletedEvent(
     Guid commCheckCorrelationId,
     Guid ruleRunId,
+    string rulesHash,
     IRuleOutcome outcome,
     string method,
     CommsCheckItemWithId toCheck
@@ -16,4 +17,5 @@ public class RulesRunCompletedEvent(
     public IRuleOutcome Outcome => outcome;
     public string Method => method;
     public CommsCheckItemWithId ToCheck => toCheck;
+    public string RulesHash =>rulesHash; 
 }

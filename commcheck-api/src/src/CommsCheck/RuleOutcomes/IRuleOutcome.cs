@@ -2,8 +2,7 @@ namespace CommsCheck;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Rewrite;
 
-[JsonPolymorphic(
-    UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToNearestAncestor)]
+[JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
 [JsonDerivedType(typeof(RuleAllowed), typeDiscriminator: "RuleAllowed")]
 [JsonDerivedType(typeof(RuleBlocked), typeDiscriminator: "RuleBlocked")]
 [JsonDerivedType(typeof(RuleIgnored), typeDiscriminator: "RuleIgnored")]

@@ -3,5 +3,6 @@ using RulesEngine;
 
 public class RuleEngineFactory
 {
-    public RulesEngine? RulesEngine { get; set; }
+    public RulesEngineAndHash? RulesEngine { get; set; }
+    public string RulesHash {get;set;} = string.Empty;
 }

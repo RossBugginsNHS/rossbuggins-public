@@ -99,6 +99,8 @@ public class RuleRunMethodResultCacheService
         var now = GetNow();
         return new CommsCheckAnswer(
             notification.ToCheck.Id,
+            notification.RuleHash,
+            notification.ToCheck,
             notification.ToCheck.Item.CopyOfSource,
             notification.ToCheck.Item.UtcDateCheckItemCreated,
             now,

@@ -14,6 +14,7 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
             (true, _) => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
+                notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
                 blocked[0]), cancellationToken),
@@ -21,6 +22,7 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
             (false, true) => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
+                notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
                 allowed[0]), cancellationToken),
@@ -28,6 +30,7 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
             _ => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
                 notification.RuleRunId,
+                notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
                 IRuleOutcome.Blocked(notification.Method, "Default Block"))

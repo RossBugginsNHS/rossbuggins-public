@@ -3,7 +3,7 @@ namespace CommsCheck;
 using MediatR;
 
 public class RulesLoadedEventHandlerExplicitBlock(
-    RulesEngine.RulesEngine _rulesEngine,
+    RulesEngineAndHash _rulesEngine,
     RunRuleFunctions _ruleFunctions, 
     ILogger<RulesLoadedEventHandlerExplicitBlock> _logger,
     IPublisher _publisher) : INotificationHandler<RulesLoadedEvent>
@@ -12,7 +12,7 @@ public class RulesLoadedEventHandlerExplicitBlock(
     {
         var result = await _ruleFunctions.RunExplictBlock(
             request.Method,
-            _rulesEngine,
+            _rulesEngine.RulesEngine,
             request.ToCheck.Item);
 
         _logger.LogInformation(
@@ -24,6 +24,7 @@ public class RulesLoadedEventHandlerExplicitBlock(
         await _publisher.Publish(new RulesRunCompletedEvent(
             request.CommCheckCorrelationId,
             request.RuleRunId,
+            _rulesEngine.RulesHash,
             result,
             request.Method,
             request.ToCheck), cancellationToken);

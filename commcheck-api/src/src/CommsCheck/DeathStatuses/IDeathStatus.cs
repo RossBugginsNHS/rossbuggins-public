@@ -1,5 +1,11 @@
+using System.Text.Json.Serialization;
+
 namespace CommsCheck;
 
+[JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
+[JsonDerivedType(typeof(FormallyDead), typeDiscriminator: "FormallyDead")]
+[JsonDerivedType(typeof(InformallyDead), typeDiscriminator: "InformallyDead")]
+[JsonDerivedType(typeof(NoDeathStatus), typeDiscriminator: "NoDeathStatus")]
 public interface IDeathStatus
 {
     int DeathCode { get; }

@@ -31,6 +31,7 @@ public class RulesCombinerService
             await _publisher.Publish(new RuleResultsCombinedEvent(
               notification.CommCheckCorrelationId,
               notification.RuleRunId,
+              notification.RulesHash,
               notification.Method,
               notification.ToCheck,
               outcomes));

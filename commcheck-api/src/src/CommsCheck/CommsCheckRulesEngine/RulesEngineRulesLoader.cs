@@ -2,11 +2,20 @@ namespace CommsCheck;
 
 using System.Data;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Converters;
 using RulesEngine;
 using RulesEngine.Models;
 
+public class RulesEngineAndHash(RulesEngine rulesEngine, string rulesHash)
+{
+    public RulesEngine RulesEngine => rulesEngine;
+    public string RulesHash => rulesHash;
+
+}
 public class RulesEngineRulesLoader
 {
     public const string CommsCheckRuleEngineCacheKey = "CommsCheckRulesEngineFileData";
@@ -25,7 +34,7 @@ public class RulesEngineRulesLoader
         _options = options;
     }
 
-    public async Task<RulesEngine> LoadRulesEngine()
+    public async Task<RulesEngineAndHash> LoadRulesEngine()
     {
         return await LoadRulesEngine(_options.Value.JsonPath);
     }
@@ -76,13 +85,21 @@ public class RulesEngineRulesLoader
         return data;
     }
 
-    private async Task<RulesEngine> LoadRulesEngine(string fileName)
+    private async Task<RulesEngineAndHash> LoadRulesEngine(string fileName)
     {
         var fileData = await LoadData(fileName);
         var rules = LoadRulesEngineFromContext(fileData);
-        return rules;
-
+        var hash = GetHash(fileData);
+        return new RulesEngineAndHash(rules, hash);
     }
+
+    private string GetHash(string data)
+    {
+        var b = UTF8Encoding.UTF8.GetBytes(data);
+        var hash = SHA256.HashData(b);
+        return BitConverter.ToString(hash).Replace("-", "").ToLower();
+    }
+
     private RulesEngine LoadRulesEngineFromContext(string data)
     {
         var workflow = System.Text.Json.JsonSerializer.Deserialize<List<Workflow>>(data);

@@ -8,7 +8,7 @@ public static class RulesEngineExtensionMethods
         services.AddTransient<RulesEngineRulesLoader>();
         services.AddHostedService<RulesEngineLoaderHostedService>();
         services.AddSingleton<RuleEngineFactory>();
-        services.AddSingleton<RulesEngine>(sp =>
+        services.AddSingleton<RulesEngineAndHash>(sp =>
         {
             var rehosted = sp.GetRequiredService<RuleEngineFactory>();
             var re = rehosted.RulesEngine;
