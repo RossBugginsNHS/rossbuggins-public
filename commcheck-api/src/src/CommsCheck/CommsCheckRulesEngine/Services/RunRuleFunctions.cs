@@ -30,6 +30,7 @@ public class RunRuleFunctions(ILogger<RunRuleFunctions> _logger)
         return await RunRules(
             "ExplicitBlock",
             methodToCheck,
+            methodToLog,
             rulesEngine,
             toCheck,
             (str) => IRuleOutcome.Blocked(methodToLog, str));
@@ -37,12 +38,14 @@ public class RunRuleFunctions(ILogger<RunRuleFunctions> _logger)
 
     public async Task<IRuleOutcome> RunAllowed(
         string method,
+        string methodToLog,
         RulesEngine.RulesEngine rulesEngine,
         CommsCheckItem toCheck)
     {
         return await RunRules(
             "Allow",
             method,
+            methodToLog,
             rulesEngine,
             toCheck,
             (str) => IRuleOutcome.Allowed(method, str));
@@ -51,12 +54,17 @@ public class RunRuleFunctions(ILogger<RunRuleFunctions> _logger)
     private async Task<IRuleOutcome> RunRules(
     string ruleSet,
     string method,
+    string methodToLog,
     RulesEngine.RulesEngine rulesEngine,
     CommsCheckItem toCheck,
     Func<string, IRuleOutcome> onSuccess)
     {
         var results = await rulesEngine.ExecuteAllRulesAsync(ruleSet + "-" + method, toCheck);
-        CheckForExceptions(results);
+        var errored = CheckForExceptions(results);
+        if(errored.Exception)
+        {
+            return IRuleOutcome.Blocked(methodToLog, $"Error running rules {string.Join(", ", errored.ExceptionStrings)}");
+        }
         IRuleOutcome rVal = IRuleOutcome.Ignored();
 
         results.OnSuccess((a) =>
@@ -67,11 +75,24 @@ public class RunRuleFunctions(ILogger<RunRuleFunctions> _logger)
         return rVal;
     }
 
-    private void CheckForExceptions(IEnumerable<RulesEngine.Models.RuleResultTree> results)
+    private RuleException CheckForExceptions(IEnumerable<RulesEngine.Models.RuleResultTree> results)
     {
-        foreach (var result in results.Where(x => !string.IsNullOrEmpty(x.ExceptionMessage)))
+        var error = new RuleException(false, Array.Empty<string>());
+        foreach (var result in results
+            .Where(x => !string.IsNullOrEmpty(x.ExceptionMessage))
+            .Select(x=> x.ExceptionMessage))
         {
-            _logger.LogError("Failure to run rules with {exception}", result.ExceptionMessage);
+            _logger.LogError("Failure to run rules with {exception}", result);
+            error = error with {
+                Exception = true, 
+                ExceptionStrings = error.ExceptionStrings.Append(result).ToArray()};
+        
         }
+
+        return error;
     }
+}
+
+public readonly record struct RuleException(bool Exception, string[] ExceptionStrings)
+{
 }

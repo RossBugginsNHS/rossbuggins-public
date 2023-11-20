@@ -36,8 +36,52 @@
         "ErrorMessage": "",
         "Enabled": true,
         "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.X\")"
+      },
+      {
+        "RuleName": "Block informally dead",
+        "SuccessEvent": "Explicit Block 50: Informally dead",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.DeathStatus, \"CommsCheck.InformallyDead\")"
+      },
+      {
+        "RuleName": "Block formally dead",
+        "SuccessEvent": "Explicit Block 60: Formally dead",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "Is(input1.DeathStatus, \"CommsCheck.FormallyDead\")"
+      },
+      {
+        "RuleName": "Block most recent more than a year",
+        "SuccessEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "input1.DaysSinceMostRecentCommsUpdate > 365"
+      },
+      {
+        "RuleName": "Block most old comms update more than 10 years",
+        "SuccessEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "input1.DaysSinceOldestCommsUpdate > 3650"
+      },
+      {
+        "RuleName": "Person not currently born",
+        "SuccessEvent": "Explicit Block 100: Person not currently born",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "input1.DaysOld < 0"
+      },
+      {
+        "RuleName": "Person older than 120",
+        "SuccessEvent": "Explicit Block 110: Person older than 120",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "input1.YearsOld > 120"
       }
 
+
+      
     ]
   },
   {

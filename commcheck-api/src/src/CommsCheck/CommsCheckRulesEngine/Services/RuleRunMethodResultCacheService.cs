@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.Caching.Distributed;
 using FunctionalHelpers;
 using System.Text.Json;
-
+using MediatR;
 public class RuleRunMethodResultCacheService
 {
     private readonly ILogger<RuleRunMethodResultCacheService> _logger;
@@ -15,10 +15,14 @@ public class RuleRunMethodResultCacheService
     private readonly SemaphoreSlim _slim;
     private readonly Func<string, Task<byte[]?>> _getFromCache;
 
+    private readonly IPublisher _publisher;
+
     public RuleRunMethodResultCacheService(
+        IPublisher publisher,
         IDistributedCache cache,
         ILogger<RuleRunMethodResultCacheService> logger)
     {
+        _publisher= publisher;
         _logger = logger;
         _slim = new SemaphoreSlim(1, 1);
         _cache = cache;
@@ -45,6 +49,8 @@ public class RuleRunMethodResultCacheService
         }
 
         ArgumentNullException.ThrowIfNull(answer);
+
+        await _publisher.Publish(new ItemCacheUpdatedEvent(answer.Value), cancellationToken);
 
         _logger.LogInformation(
             "[{correlationId}] Answer updated {answer}",

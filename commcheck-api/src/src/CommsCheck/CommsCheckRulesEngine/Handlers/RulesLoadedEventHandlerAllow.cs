@@ -4,13 +4,14 @@ using MediatR;
 public class RulesLoadedEventHandlerAllow(
     RulesEngine.RulesEngine _rulesEngine,
     ILogger<RulesLoadedEventHandlerAllow> _logger,
-    RunRuleFunctions _ruleFunctions, 
+    RunRuleFunctions _ruleFunctions,
     IPublisher _publisher) : INotificationHandler<RulesLoadedEvent>
 {
     public async Task Handle(RulesLoadedEvent request, CancellationToken cancellationToken)
     {
         var result = await _ruleFunctions.RunAllowed(
             request.Method,
+             request.Method,
             _rulesEngine,
             request.ToCheck.Item);
 

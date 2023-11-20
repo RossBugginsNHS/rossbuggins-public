@@ -5,6 +5,7 @@ using System.Diagnostics.Metrics;
 using System.Threading.Channels;
 
 public class CheckCommsCommandHandler(
+    CommsCheckItemFactory _commCheckItemFactory,
     ObjectPool<HashWrapper> shaPool,
     ChannelWriter<CommsCheckItemWithId> writer) :
     IRequestHandler<CheckCommsCommand, CommsCheckQuestionResponseDto>
@@ -44,8 +45,8 @@ public class CheckCommsCommandHandler(
     private static CommsCheckItemWithId GetItemWithId(string sha, CommsCheckItem item ) =>
         new CommsCheckItemWithId(sha, item);
 
-    private static CommsCheckItem GetItem(CheckCommsCommand request) =>
-        CommsCheckItem.FromDto(request.Dto);
+    private CommsCheckItem GetItem(CheckCommsCommand request) =>
+        _commCheckItemFactory.FromDtoRelativeToToday(request.Dto);
 
     private async Task<string> GetSha(CommsCheckItem item)
     {

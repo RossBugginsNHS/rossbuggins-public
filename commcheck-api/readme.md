@@ -29,6 +29,16 @@ dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
 
 ```
 
+## Stream data
+
+Stream all responses that are being submitted
+
+```
+curl http://localhost:5004/check/results/stream
+```
+
+Will show real time live data.
+
 ## Dotnet benchmark
 
 Run with

@@ -17,16 +17,19 @@ public class CommsCheckOptions
     public byte[] ShaKey { get; set; } = new byte[64];
     public CommsCheckOptions AddJsonConfig()
     {
+
         //https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpjsonserviceextensions.configurehttpjsonoptions?view=aspnetcore-7.0
         _services.ConfigureHttpJsonOptions(options =>
         {
             options.SerializerOptions.WriteIndented = true;
             options.SerializerOptions.IncludeFields = true;
             options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.SerializerOptions.PropertyNameCaseInsensitive = true;
         });
 
         _services.Configure<JsonOptions>(options =>
         {
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
         return this;

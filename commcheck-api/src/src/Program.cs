@@ -11,6 +11,8 @@ using BenchmarkDotNet.Configs;
 using CommsCheck.Benchmarks;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading.Channels;
 
 if (args.Contains("--benchmark") && args.Contains("--debug"))
 {
@@ -29,6 +31,10 @@ else if (args.Contains("--benchmark"))
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRulesEngine();
+builder.Services.AddSingleton<CommsCheckItemFactory>();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddRule100();
+
 builder.Services.AddCommsCheck(options =>
     {
         options
@@ -36,7 +42,7 @@ builder.Services.AddCommsCheck(options =>
             .AddDistriubtedCache()
             .AddShaKey("dfgklretlk345dfgml12")
             .AddMetrics()
-            
+
             .AddRulesEngineRules(
                 builder.Configuration.GetSection("CommsCheck"),
                 ruleEngineOptions =>
@@ -80,12 +86,12 @@ app.MapPost("/check",
                 var retryAfter = 1;
                 http.Response.Headers.RetryAfter = retryAfter.ToString();
                 return TypedResults.AcceptedAtRoute(
-                    result with {RetryAfter = retryAfter},
+                    result with { RetryAfter = retryAfter },
                     "CommCheckResult",
-                    new { resultId = result.ResultId});
+                    new { resultId = result.ResultId });
             }
             return TypedResults.CreatedAtRoute(
-                    result with {RetryAfter = 0},
+                    result with { RetryAfter = 0 },
                     "CommCheckResult",
                     new { resultId = result.ResultId });
         }
@@ -108,6 +114,39 @@ app.MapGet("/check/result/{resultId}",
         }
  )
 .WithName("CommCheckResult")
+.WithOpenApi();
+
+app.MapGet("/check/results",
+      async Task<Results<Ok<IEnumerable<CommsCheckAnswerResponseDto>>, NotFound>> (
+        [FromServices] MostRecent100Cache cache) =>
+        {
+            await Task.Yield();
+            var items = cache.Get().Reverse();
+            if (items == null)
+                return TypedResults.NotFound();
+            return TypedResults.Ok(items);
+        }
+ )
+.WithName("CommCheckResults")
+.WithOpenApi();
+
+app.MapGet("/check/results/stream",
+        async ([FromServices] MostRecent100Cache cache, CancellationToken ct) =>
+        {
+            await Task.Yield();
+            async IAsyncEnumerable<CommsCheckAnswerResponseDto> Str(
+                [EnumeratorCancellation] CancellationToken cancellationToken)
+            {
+                await foreach (var item in cache.GetStream(cancellationToken))
+                {
+                    yield return item;
+                }
+            }
+
+            return Str(ct);
+        }
+ )
+.WithName("CommCheckResultsStream")
 .WithOpenApi();
 
 app.MapGet("/rules",
