@@ -2,7 +2,8 @@
 namespace CommsCheck;
 public readonly record struct CommsCheckAnswer(
     string ResultId, 
-    string RequestString, 
+    CommsCheckQuestionRequestDtoCopy Request, 
+    DateOnly RelativeDate,
     DateTime StartedAt,
     DateTime  UpdatedAt,
     int UpdatedCount,

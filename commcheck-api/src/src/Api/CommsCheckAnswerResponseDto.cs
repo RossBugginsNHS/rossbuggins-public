@@ -2,7 +2,8 @@ namespace CommsCheck;
 
 public readonly record struct CommsCheckAnswerResponseDto(
     string ResultId, 
-    string RequestString, 
+    CommsCheckQuestionRequestDto Request, 
+    DateOnly RelativeDate, // DateOnly RelativeDate, used for all date calculations.
     DateTime StartedAt,
     DateTime UpdatedAt,
     int UpdatedCount,
@@ -19,7 +20,8 @@ public readonly record struct CommsCheckAnswerResponseDto(
     {
         return new CommsCheckAnswerResponseDto(
             answer.ResultId, 
-            answer.RequestString, 
+            answer.Request.ToDto(), 
+            answer.RelativeDate,
             answer.StartedAt,
             answer.UpdatedAt,
             answer.UpdatedCount,

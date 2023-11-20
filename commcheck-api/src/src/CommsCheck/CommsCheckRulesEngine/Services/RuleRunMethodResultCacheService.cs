@@ -17,11 +17,15 @@ public class RuleRunMethodResultCacheService
 
     private readonly IPublisher _publisher;
 
+    private readonly TimeProvider _timeProvider;
+
     public RuleRunMethodResultCacheService(
+        TimeProvider timeProvider,
         IPublisher publisher,
         IDistributedCache cache,
         ILogger<RuleRunMethodResultCacheService> logger)
     {
+        _timeProvider= timeProvider;
         _publisher= publisher;
         _logger = logger;
         _slim = new SemaphoreSlim(1, 1);
@@ -90,16 +94,17 @@ public class RuleRunMethodResultCacheService
         return newAnswer;
     }
 
-    private static CommsCheckAnswer BuildNewItem(RuleOutcomeComputedEvent notification) =>
+    private CommsCheckAnswer BuildNewItem(RuleOutcomeComputedEvent notification) =>
     new CommsCheckAnswer(
             notification.ToCheck.Id,
-            notification.ToCheck.ToString(),
+            notification.ToCheck.Item.CopyOfSource,
+            notification.ToCheck.Item.UtcDateCheckItemCreated,
             GetNow(),
             GetNow(),
             1,
             notification.Outcome);
 
-    private static CommsCheckAnswer BuildUpdatedItem(
+    private CommsCheckAnswer BuildUpdatedItem(
         RuleOutcomeComputedEvent notification,
         CommsCheckAnswer existingItem) =>
         existingItem with
@@ -126,5 +131,5 @@ public class RuleRunMethodResultCacheService
         return updatedItem;
     }
 
-    private static DateTime GetNow() => DateTime.Now.ToUniversalTime();
+    private DateTime GetNow() => _timeProvider.GetUtcNow().UtcDateTime;
 }

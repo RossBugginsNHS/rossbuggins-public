@@ -8,7 +8,8 @@ public readonly record struct CommsCheckItem(
     DateOnly DateOfPostalMostRecentUpdate,
     DateOnly DateOfReasonForRemovalMostRecentUpdate,
     IReasonForRemoval ReasonForRemoval,
-    IDeathStatus DeathStatus)
+    IDeathStatus DeathStatus,
+    CommsCheckQuestionRequestDtoCopy CopyOfSource)
 {
     public int DaysOld =>
         UtcDateCheckItemCreated.DayNumber - DateOfBirth.DayNumber;
@@ -34,10 +35,10 @@ public readonly record struct CommsCheckItem(
 
     public int YearsOld => (int)Math.Floor(DaysOld / (float)365);
 
-    public int DaysSinceMostRecentCommsUpdate => 
+    public int DaysSinceMostRecentCommsUpdate =>
          UtcDateCheckItemCreated.DayNumber - DateOfMostRecentCommsUpdate.DayNumber;
 
-    public int DaysSinceOldestCommsUpdate => 
+    public int DaysSinceOldestCommsUpdate =>
          UtcDateCheckItemCreated.DayNumber - DateOfOldestCommsUpdate.DayNumber;
 }
 
@@ -46,7 +47,7 @@ public class CommsCheckItemFactory(TimeProvider timeProvider)
     public CommsCheckItem FromDtoRelativeToToday(CommsCheckQuestionRequestDto dto)
     {
         return new CommsCheckItem(
-        DateOnly.FromDateTime(timeProvider.GetUtcNow().DateTime),
+        DateOnly.FromDateTime(timeProvider.GetUtcNow().UtcDateTime),
         dto.DateOfBirth,
         dto.DateOfSmsMostRecentUpdate,
         dto.DateOfEmailMostRecentUpdate,
@@ -54,6 +55,40 @@ public class CommsCheckItemFactory(TimeProvider timeProvider)
         dto.DateOfPostalMostRecentUpdate,
         dto.DateOfReasonForRemovalMostRecentUpdate,
         IReasonForRemoval.FromEnum(dto.RfR),
-        IDeathStatus.FromEnum(dto.DeathStatusValue));
+        IDeathStatus.FromEnum(dto.DeathStatusValue),
+        CommsCheckQuestionRequestDtoCopy.FromDto(dto));
     }
+}
+
+public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBirth,
+    DateOnly DateOfSmsMostRecentUpdate,
+    DateOnly DateOfEmailMostRecentUpdate,
+    DateOnly DateOfAppMostRecentUpdate,
+    DateOnly DateOfPostalMostRecentUpdate,
+    DateOnly DateOfReasonForRemovalMostRecentUpdate,
+    DeathStatus? DeathStatusValue,
+    ReasonForRemovals? RfR
+    )
+{
+    public static CommsCheckQuestionRequestDtoCopy FromDto(CommsCheckQuestionRequestDto dto) =>
+         new CommsCheckQuestionRequestDtoCopy(
+              dto.DateOfBirth,
+                dto.DateOfSmsMostRecentUpdate,
+                dto.DateOfEmailMostRecentUpdate,
+                dto.DateOfAppMostRecentUpdate,
+                dto.DateOfPostalMostRecentUpdate,
+                dto.DateOfReasonForRemovalMostRecentUpdate,
+                dto.DeathStatusValue,
+                 dto.RfR);
+
+    public CommsCheckQuestionRequestDto ToDto() => 
+             new CommsCheckQuestionRequestDto(
+              DateOfBirth,
+                DateOfSmsMostRecentUpdate,
+                DateOfEmailMostRecentUpdate,
+                DateOfAppMostRecentUpdate,
+                DateOfPostalMostRecentUpdate,
+                DateOfReasonForRemovalMostRecentUpdate,
+                DeathStatusValue,
+                RfR);
 }
