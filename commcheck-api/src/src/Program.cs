@@ -62,6 +62,17 @@ builder.Services.AddSwaggerGen(
     options =>
     {
         options.AddDateAndEnumFormatters();
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Version = "v1",
+            Title = "Comms Check API v1",
+            Description = "Rules engine for communication with persons.",
+            Contact = new OpenApiContact
+            {
+                Name = "Readme",
+                Url = new Uri("https://github.com/RossBugginsNHS/rossbuggins-public/blob/master/commcheck-api/readme.md")
+            }
+        });
     }
     );
 
@@ -70,10 +81,10 @@ app.UseSwagger(option =>
     {
         option.RouteTemplate = "{documentName}/swagger.json";
     });
-app.UseSwaggerUI(option => 
-    { 
+app.UseSwaggerUI(option =>
+    {
         option.SwaggerEndpoint("/v1/swagger.json", "Comms Check API");
-        option.RoutePrefix = ""; 
+        option.RoutePrefix = "";
     });
 app.MapPrometheusScrapingEndpoint();
 
