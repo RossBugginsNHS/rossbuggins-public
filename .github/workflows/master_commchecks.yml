@@ -12,7 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./commcheck-api/src/src
+        
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +43,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+        
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
