@@ -66,8 +66,15 @@ builder.Services.AddSwaggerGen(
     );
 
 var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwagger(option =>
+    {
+        option.RouteTemplate = "{documentName}/swagger.json";
+    });
+app.UseSwaggerUI(option => 
+    { 
+        option.SwaggerEndpoint("/v1/swagger.json", "Comms Check API");
+        option.RoutePrefix = ""; 
+    });
 app.MapPrometheusScrapingEndpoint();
 
 app.MapPost("/check",
