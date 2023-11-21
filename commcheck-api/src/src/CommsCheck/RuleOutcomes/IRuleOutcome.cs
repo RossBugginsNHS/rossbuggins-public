@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Rewrite;
 [JsonDerivedType(typeof(RuleIgnored), typeDiscriminator: "RuleIgnored")]
 public interface IRuleOutcome : IEquatable<IRuleOutcome>
 {
+    string RuleSet{get;}
     string Method{get;}
     string Reason{get;}
-    public static IRuleOutcome Allowed(string method, string reason) => new RuleAllowed(method, reason);
-    public static IRuleOutcome Blocked(string method, string reason) => new RuleBlocked(method, reason);
+    public static IRuleOutcome Allowed(string ruleSet, string method, string reason) => new RuleAllowed(ruleSet, method, reason);
+    public static IRuleOutcome Blocked(string ruleSet, string method, string reason) => new RuleBlocked(ruleSet, method, reason);
     public static IRuleOutcome Ignored()=> new RuleIgnored();
 
     bool IsAllowed{get;}

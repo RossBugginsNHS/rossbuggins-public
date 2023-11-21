@@ -9,6 +9,7 @@ public readonly record struct CommsCheckAnswer(
     DateTime StartedAt,
     DateTime  UpdatedAt,
     int UpdatedCount,
+    IEnumerable<RuleResultSummary> Summaries,
     params IRuleOutcome[] Outcomes)
 {
 }

@@ -26,16 +26,42 @@ public class CommsCheckRulesEngine : ICommCheck
     }
 
     public async Task Check(
-        Guid commCheckCorrelationId, 
-        CommsCheckItemWithId toCheck, 
+        Guid commCheckCorrelationId,
+        CommsCheckItemWithId toCheck,
         CancellationToken cancellationToken = default)
     {
-        _logger.LogInformation("[{commCheckCorrelationId}] Parallel invoking of rules started", commCheckCorrelationId);
+        Starting(commCheckCorrelationId);
         await Parallel.ForEachAsync(_rules, cancellationToken, async (rule, ct) =>
         {
-            _logger.LogInformation("[{commCheckCorrelationId}] Parallel invoking of rule started", commCheckCorrelationId);
-            await _publisher.Publish(new RunRuleStartedEvent(commCheckCorrelationId, rule, toCheck), ct);
+            await InvokeRule(commCheckCorrelationId, toCheck, rule, ct);
         });
+
+        Completed(commCheckCorrelationId);
+    }
+
+    private async Task InvokeRule(
+         Guid commCheckCorrelationId,
+        CommsCheckItemWithId toCheck,
+        ICommsCheckRulesEngineRuleRun<IContactType> rule,
+        CancellationToken cancellationToken = default)
+    {
+        Invoking(commCheckCorrelationId);
+        await _publisher.Publish(
+            new RunRuleStartedEvent(commCheckCorrelationId, rule, toCheck), cancellationToken);
+    }
+
+    private void Starting(Guid commCheckCorrelationId)
+    {
+        _logger.LogInformation("[{commCheckCorrelationId}] Parallel invoking of rules started", commCheckCorrelationId);
+    }
+
+    private void Invoking(Guid commCheckCorrelationId)
+    {
+        _logger.LogInformation("[{commCheckCorrelationId}] Parallel invoking of rule started", commCheckCorrelationId);
+    }
+
+    private void Completed(Guid commCheckCorrelationId)
+    {
         _logger.LogInformation("[{commCheckCorrelationId}] Parallel invoking of rules completed", commCheckCorrelationId);
     }
 }

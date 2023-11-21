@@ -2,10 +2,11 @@ namespace CommsCheck;
 
 public readonly record struct CommsCheckAnswerResponseDto(
     string ResultId, 
-    CommsCheckQuestionRequestDto Request, 
+    CommsCheckQuestionRequestDto Request,
+    CommsCheckAnswerDto Response, 
     CommsCheckItem Item,
     string RulesFileHash,
-    CommsCheckAnswerDto Response
+    RuleOutcomesDto RuleOutcomes
 )
 {
     public static CommsCheckAnswerResponseDto FromCommsCheckAnswer(CommsCheckAnswer answer)
@@ -13,10 +14,10 @@ public readonly record struct CommsCheckAnswerResponseDto(
         return new CommsCheckAnswerResponseDto(
             answer.ResultId,
             answer.Request.ToDto(), 
+            CommsCheckAnswerDto.FromCommsCheckAnswer(answer),
             answer.CommsCheckItemWithId.Item,
             answer.RuleHash,
-            CommsCheckAnswerDto.FromCommsCheckAnswer(answer));  
+            new RuleOutcomesDto(answer.Summaries.ToArray())
+            );  
     }
-
-
 }

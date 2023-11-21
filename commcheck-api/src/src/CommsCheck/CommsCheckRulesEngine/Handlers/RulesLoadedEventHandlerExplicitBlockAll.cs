@@ -10,10 +10,12 @@ public class RulesLoadedEventHandlerExplicitBlockAll(
 {
     public async Task Handle(RulesLoadedEvent request, CancellationToken cancellationToken)
     {
-        var result = await _ruleFunctions.RunExplictBlockAll(
+        var resultAndSummary = await _ruleFunctions.RunExplictBlockAll(
             request.Method,
             _rulesEngine.RulesEngine,
             request.ToCheck.Item);
+
+        var result = resultAndSummary.Outcome;
 
         _logger.LogInformation(
             "[{correlation}] Explicit Block All rule check for {method} complete with outcome {outcome}",
@@ -27,6 +29,7 @@ public class RulesLoadedEventHandlerExplicitBlockAll(
             _rulesEngine.RulesHash,
             result,
             request.Method,
-            request.ToCheck), cancellationToken);
+            request.ToCheck,
+            resultAndSummary.Summaries.ToList()), cancellationToken);
     }
 }

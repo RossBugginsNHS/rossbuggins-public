@@ -1,9 +1,5 @@
 
 namespace CommsCheck;
-using System.Collections;
-using System.Data.SqlTypes;
-using System.Runtime.CompilerServices;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.Extensions.Caching.Distributed;
 using FunctionalHelpers;
 using System.Text.Json;
@@ -14,9 +10,7 @@ public class RuleRunMethodResultCacheService
     private readonly IDistributedCache _cache;
     private readonly SemaphoreSlim _slim;
     private readonly Func<string, Task<byte[]?>> _getFromCache;
-
     private readonly IPublisher _publisher;
-
     private readonly TimeProvider _timeProvider;
 
     public RuleRunMethodResultCacheService(
@@ -61,7 +55,6 @@ public class RuleRunMethodResultCacheService
             notification.CommCheckCorrelationId,
             CommsCheckAnswerResponseDto.FromCommsCheckAnswer(answer.Value)
             );
-
     }
 
     private Task<CommsCheckAnswer> NewOrUpdateCacheItem(
@@ -84,7 +77,6 @@ public class RuleRunMethodResultCacheService
             id.ToIdentity()
             .MaybeAsync(async (_id) => await _getFromCache(_id));
 
-
     private async Task<CommsCheckAnswer> WriteNewItem(RuleOutcomeComputedEvent notification)
     {
         var newAnswer = BuildNewItem(notification);
@@ -106,6 +98,7 @@ public class RuleRunMethodResultCacheService
             now,
             now,
             1,
+            notification.Summaries,
             notification.Outcome);
     }
 
@@ -114,11 +107,11 @@ public class RuleRunMethodResultCacheService
         CommsCheckAnswer existingItem) =>
         existingItem with
         {
+            Summaries = existingItem.Summaries.Concat(notification.Summaries),
             Outcomes = existingItem.Outcomes.Append(notification.Outcome).ToArray(),
             UpdatedCount = existingItem.UpdatedCount + 1,
             UpdatedAt = GetNow()
         };
-
 
     private async Task<CommsCheckAnswer> WriteUpdatedItem(
         byte[]? bytesIn, 

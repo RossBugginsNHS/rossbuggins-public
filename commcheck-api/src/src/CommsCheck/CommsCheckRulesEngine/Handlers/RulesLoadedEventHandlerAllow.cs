@@ -9,11 +9,13 @@ public class RulesLoadedEventHandlerAllow(
 {
     public async Task Handle(RulesLoadedEvent request, CancellationToken cancellationToken)
     {
-        var result = await _ruleFunctions.RunAllowed(
+        var resultAndSummary = await _ruleFunctions.RunAllowed(
             request.Method,
              request.Method,
             _rulesEngine.RulesEngine,
             request.ToCheck.Item);
+
+        var result = resultAndSummary.Outcome;
 
         _logger.LogInformation(
             "[{correlation}] Allowed rule check for {method} complete with outcome {outcome}",
@@ -27,6 +29,7 @@ public class RulesLoadedEventHandlerAllow(
             _rulesEngine.RulesHash,
             result,
             request.Method,
-            request.ToCheck), cancellationToken);
+            request.ToCheck,
+            resultAndSummary.Summaries.ToList()), cancellationToken);
     }
 }

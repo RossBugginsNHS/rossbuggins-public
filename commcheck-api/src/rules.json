@@ -7,77 +7,77 @@
         "SuccessEvent": "Explicit Block 10: DEA Block",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "input1.ReasonForRemoval.Code == \"DEA\""
+        "Expression": "item.ReasonForRemoval.Code == \"DEA\""
       },
       {
         "RuleName": "Block all LogicalDeletion.",
         "SuccessEvent": "Explicit Block 20: LogincalDeletion LDN Block",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")"
+        "Expression": "Is(item.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")"
       },
       {
         "RuleName": "Block all Other.",
         "SuccessEvent": "Explicit Block 30: Other Block",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.Other\")"
+        "Expression": "Is(item.ReasonForRemoval, \"CommsCheck.Other\")"
       },
       {
         "RuleName": "Block all Cancellation.",
         "SuccessEvent": "Explicit Block 40: Cancellation Block",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.Cancellation\")"
+        "Expression": "Is(item.ReasonForRemoval, \"CommsCheck.Cancellation\")"
       },
       {
         "RuleName": "Block all X.",
         "SuccessEvent": "Explicit Block 40: X Block",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.ReasonForRemoval, \"CommsCheck.X\")"
+        "Expression": "Is(item.ReasonForRemoval, \"CommsCheck.X\")"
       },
       {
         "RuleName": "Block informally dead",
         "SuccessEvent": "Explicit Block 50: Informally dead",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.DeathStatus, \"CommsCheck.InformallyDead\")"
+        "Expression": "Is(item.DeathStatus, \"CommsCheck.InformallyDead\")"
       },
       {
         "RuleName": "Block formally dead",
         "SuccessEvent": "Explicit Block 60: Formally dead",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "Is(input1.DeathStatus, \"CommsCheck.FormallyDead\")"
+        "Expression": "Is(item.DeathStatus, \"CommsCheck.FormallyDead\")"
       },
       {
         "RuleName": "Block most recent more than a year",
         "SuccessEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "input1.DaysSinceMostRecentCommsUpdate > 365"
+        "Expression": "item.DaysSinceMostRecentCommsUpdate > 365"
       },
       {
         "RuleName": "Block most old comms update more than 10 years",
         "SuccessEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "input1.DaysSinceOldestCommsUpdate > 3650"
+        "Expression": "item.DaysSinceOldestCommsUpdate > 3650"
       },
       {
         "RuleName": "Person not currently born",
         "SuccessEvent": "Explicit Block 100: Person not currently born",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "input1.DaysOld < 0"
+        "Expression": "item.DaysOld < 0"
       },
       {
         "RuleName": "Person older than 120",
         "SuccessEvent": "Explicit Block 110: Person older than 120",
         "ErrorMessage": "",
         "Enabled": true,
-        "Expression": "input1.YearsOld > 120"
+        "Expression": "item.YearsOld > 120"
       }
 
 
@@ -139,7 +139,7 @@
         "RuleName": "AllowApp-HasNoExitCode",
         "SuccessEvent": "10 App allowed when no RfR is set.",
         "ErrorMessage": "",
-        "Expression": "input1.ReasonForRemoval.NotSet == true"
+        "Expression": "item.ReasonForRemoval.NotSet == true"
       }
     ]
   },
@@ -150,7 +150,7 @@
         "RuleName": "AllowEmail-HasNoExitCode",
         "SuccessEvent": "10 Email allowed when no RfR is set.",
         "ErrorMessage": "",
-        "Expression": "input1.ReasonForRemoval.NotSet == true"
+        "Expression": "item.ReasonForRemoval.NotSet == true"
       }
     ]
   },
@@ -161,13 +161,13 @@
         "RuleName": "AllowSms-HasNoExitCode",
         "SuccessEvent": "10 Sms allowed when no RfR is set.",
         "ErrorMessage": "",
-        "Expression": "input1.ReasonForRemoval.NotSet == true"
+        "Expression": "item.ReasonForRemoval.NotSet == true"
       },
       {
         "RuleName": "AllowSms-WithCGA",
         "SuccessEvent": "20 Sms allowed to be sent even when CGA RfR is set",
         "ErrorMessage": "",
-        "Expression": "input1.ReasonForRemoval.Code == \"CGA\""
+        "Expression": "item.ReasonForRemoval.Code == \"CGA\""
       }
     ]
   }
@@ -179,7 +179,7 @@
         "RuleName": "Allow-PostalHasNoExitCode",
         "SuccessEvent": "10 Postal allowed when no RfR is set.",
         "ErrorMessage": "",
-        "Expression": "input1.ReasonForRemoval.NotSet == true"
+        "Expression": "item.ReasonForRemoval.NotSet == true"
       }
     ]
   }

@@ -1,5 +1,5 @@
 namespace CommsCheck;
-public readonly record struct RuleIgnored(string Method, string Reason) :IRuleOutcome
+public readonly record struct RuleIgnored(string RuleSet, string Method, string Reason) :IRuleOutcome
 {
     public bool Equals(IRuleOutcome? other)
     {

@@ -14,18 +14,28 @@ public class CommsCheckRulesEngineRuleRunEvents<T>(
     {
         var currentMethod = GetMethod();
         var ruleRunId = NewRuleRunId();
-
-         _logger.LogInformation(
-            "[{CorrelationId}] Running Rules for {checkId} for {method} with localId of {localId}", 
-             commCheckCorrelationId,
-             toCheck.Id, 
-             currentMethod, 
-             commCheckCorrelationId);
+        
+        Starting(commCheckCorrelationId, toCheck, currentMethod, ruleRunId);
         await _publisher.Publish(
             new RulesLoadedEvent(commCheckCorrelationId, ruleRunId, currentMethod, toCheck));
     }
 
+    private void Starting(
+        Guid commCheckCorrelationId,
+        CommsCheckItemWithId toCheck,
+        string currentMethod,
+        Guid ruleRunId
+        )
+    {
+        _logger.LogInformation(
+           "[{CorrelationId}] Running Rules for {checkId} for {method} with localId of {localId}",
+            commCheckCorrelationId,
+            toCheck.Id,
+            currentMethod,
+            ruleRunId);
+    }
+
     private static string GetMethod() => typeof(T).Name;
 
-    private static Guid NewRuleRunId()=> Guid.NewGuid();
+    private static Guid NewRuleRunId() => Guid.NewGuid();
 }

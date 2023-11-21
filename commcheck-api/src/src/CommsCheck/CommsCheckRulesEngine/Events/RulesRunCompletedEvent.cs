@@ -9,7 +9,8 @@ public class RulesRunCompletedEvent(
     string rulesHash,
     IRuleOutcome outcome,
     string method,
-    CommsCheckItemWithId toCheck
+    CommsCheckItemWithId toCheck,
+    List<RuleResultSummary> ruleSummaries
 ) : ICommsCheckEvent
 {
     public Guid CommCheckCorrelationId => commCheckCorrelationId;
@@ -18,4 +19,6 @@ public class RulesRunCompletedEvent(
     public string Method => method;
     public CommsCheckItemWithId ToCheck => toCheck;
     public string RulesHash =>rulesHash; 
+
+    public List<RuleResultSummary> RuleSummaries => ruleSummaries;
 }

@@ -17,7 +17,8 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
                 notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
-                blocked[0]), cancellationToken),
+                blocked[0],
+                notification.Summaries), cancellationToken),
 
             (false, true) => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
@@ -25,7 +26,8 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
                 notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
-                allowed[0]), cancellationToken),
+                allowed[0],
+                notification.Summaries), cancellationToken),
 
             _ => _publisher.Publish(new RuleOutcomeComputedEvent(
                 notification.CommCheckCorrelationId,
@@ -33,10 +35,15 @@ public class RuleResultsCombinedEventHandler(IPublisher _publisher) : INotificat
                 notification.RuleHash,
                 notification.Method,
                 notification.ToCheck,
-                IRuleOutcome.Blocked(notification.Method, "Default Block"))
-                , cancellationToken)
+                Blocked(notification.Method),
+                notification.Summaries), cancellationToken)
         };
-
         await t;
     }
+
+    private IRuleOutcome Blocked(string method) =>
+        IRuleOutcome.Blocked(
+            RunRuleFunctions.RuleSetExplictBlock, 
+            method, 
+            RunRuleFunctions.DefaultBlock);
 }

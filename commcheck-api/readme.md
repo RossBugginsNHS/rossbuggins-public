@@ -1,4 +1,4 @@
-# run application
+## run application
 
 By default available at
 
@@ -27,6 +27,732 @@ dotnet build --no-incremental
 dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
 dotnet sonarscanner end /d:sonar.token="ENTERTOKEN"
 
+```
+
+## Response Data
+
+Basic Schema
+
+```
+{
+  "resultId": "",
+  "request": {
+  },
+    "response": {
+  },
+  "item": {
+   
+  },
+  "rulesFileHash": "",
+  "ruleOutcomes":
+  {
+   "summaries":[]
+  }
+}
+```
+
+### Result Id
+
+Unique Id for the provided request. Generated based on a hash of the request.
+
+### Request
+
+The provided request for this response
+
+### Response
+
+The response from the outcome of the rules based on the given request.
+
+### Item
+
+The data item that the rules are run against. All data used for the decision is here.
+
+### Rules File Hash
+
+Hash of the rules file used to process the response.
+
+### Summaries 
+
+The results of each rule execution. 
+
+### Example Response Data
+
+#### Request
+
+```
+{
+  "dateOfBirth": "2019-11-20",
+  "dateOfSmsMostRecentUpdate": "2021-11-20",
+  "dateOfEmailMostRecentUpdate": "2020-11-20",
+  "dateOfAppMostRecentUpdate": "2020-11-20",
+  "dateOfPostalMostRecentUpdate": "2022-11-20",
+  "dateOfReasonForRemovalMostRecentUpdate": "2020-11-20",
+  "deathStatusValue": "None",
+  "rfR": "None"
+}
+```
+
+#### Response
+
+```
+{
+  "resultId": "77ad27f366719ea3a57e7e5940ddc24317687f68c9ee2a4351711efccd0f7fbe",
+  "request": {
+    "dateOfBirth": "2019-11-20",
+    "dateOfSmsMostRecentUpdate": "2021-11-20",
+    "dateOfEmailMostRecentUpdate": "2020-11-20",
+    "dateOfAppMostRecentUpdate": "2020-11-20",
+    "dateOfPostalMostRecentUpdate": "2022-11-20",
+    "dateOfReasonForRemovalMostRecentUpdate": "2020-11-20",
+    "deathStatusValue": "None",
+    "rfR": "None"
+  },
+  "response": {
+    "relativeDate": "2023-11-21",
+    "startedAt": "2023-11-21T06:52:35.6695903Z",
+    "updatedAt": "2023-11-21T06:52:35.7431474Z",
+    "updatedCount": 4,
+    "app": "Blocked",
+    "email": "Blocked",
+    "sms": "Blocked",
+    "postal": "Blocked",
+    "appReason": "Explicit Block 70: Most recent comms update was more than a year ago",
+    "emailReason": "Explicit Block 70: Most recent comms update was more than a year ago",
+    "smsReason": "Explicit Block 70: Most recent comms update was more than a year ago",
+    "postalReason": "Explicit Block 70: Most recent comms update was more than a year ago"
+  },
+  "item": {
+    "utcDateCheckItemCreated": "2023-11-21",
+    "dateOfBirth": "2019-11-20",
+    "dateOfSmsMostRecentUpdate": "2021-11-20",
+    "dateOfEmailMostRecentUpdate": "2020-11-20",
+    "dateOfAppMostRecentUpdate": "2020-11-20",
+    "dateOfPostalMostRecentUpdate": "2022-11-20",
+    "dateOfReasonForRemovalMostRecentUpdate": "2020-11-20",
+    "reasonForRemoval": {
+      "$type": "NoReasonForRemoval",
+      "code": "",
+      "notSet": true,
+      "hasCode": false,
+      "isEmpty": true
+    },
+    "deathStatus": {
+      "$type": "NoDeathStatus",
+      "deathCode": 0,
+      "deathStatusDescription": "None"
+    },
+    "copyOfSource": {
+      "dateOfBirth": "2019-11-20",
+      "dateOfSmsMostRecentUpdate": "2021-11-20",
+      "dateOfEmailMostRecentUpdate": "2020-11-20",
+      "dateOfAppMostRecentUpdate": "2020-11-20",
+      "dateOfPostalMostRecentUpdate": "2022-11-20",
+      "dateOfReasonForRemovalMostRecentUpdate": "2020-11-20",
+      "deathStatusValue": "None",
+      "rfR": "None"
+    },
+    "daysOld": 1462,
+    "daySinceSmsUpdate": 731,
+    "dateOfMostRecentCommsUpdate": "2022-11-20",
+    "dateOfOldestCommsUpdate": "2020-11-20",
+    "yearsOld": 4,
+    "daysSinceMostRecentCommsUpdate": 366,
+    "daysSinceOldestCommsUpdate": 1096
+  },
+  "rulesFileHash": "726fc033c6aaf244d682b32baa97892c1980820f395602395eb4d17b128c5a16",
+  "ruleOutcomes": {
+    "summaries": [
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all DEA.",
+        "ruleExpression": "item.ReasonForRemoval.Code == \"DEA\"",
+        "successEvent": "Explicit Block 10: DEA Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all LogicalDeletion.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")",
+        "successEvent": "Explicit Block 20: LogincalDeletion LDN Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Other.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Other\")",
+        "successEvent": "Explicit Block 30: Other Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Cancellation.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Cancellation\")",
+        "successEvent": "Explicit Block 40: Cancellation Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all X.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.X\")",
+        "successEvent": "Explicit Block 40: X Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block informally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.InformallyDead\")",
+        "successEvent": "Explicit Block 50: Informally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block formally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.FormallyDead\")",
+        "successEvent": "Explicit Block 60: Formally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": true,
+        "ruleName": "Block most recent more than a year",
+        "ruleExpression": "item.DaysSinceMostRecentCommsUpdate > 365",
+        "successEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block most old comms update more than 10 years",
+        "ruleExpression": "item.DaysSinceOldestCommsUpdate > 3650",
+        "successEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person not currently born",
+        "ruleExpression": "item.DaysOld < 0",
+        "successEvent": "Explicit Block 100: Person not currently born",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person older than 120",
+        "ruleExpression": "item.YearsOld > 120",
+        "successEvent": "Explicit Block 110: Person older than 120",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "Allow",
+        "method": "Postal",
+        "methodToLog": "Postal",
+        "enabled": true,
+        "success": true,
+        "ruleName": "Allow-PostalHasNoExitCode",
+        "ruleExpression": "item.ReasonForRemoval.NotSet == true",
+        "successEvent": "10 Postal allowed when no RfR is set.",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all DEA.",
+        "ruleExpression": "item.ReasonForRemoval.Code == \"DEA\"",
+        "successEvent": "Explicit Block 10: DEA Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all LogicalDeletion.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")",
+        "successEvent": "Explicit Block 20: LogincalDeletion LDN Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Other.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Other\")",
+        "successEvent": "Explicit Block 30: Other Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Cancellation.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Cancellation\")",
+        "successEvent": "Explicit Block 40: Cancellation Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all X.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.X\")",
+        "successEvent": "Explicit Block 40: X Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block informally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.InformallyDead\")",
+        "successEvent": "Explicit Block 50: Informally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block formally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.FormallyDead\")",
+        "successEvent": "Explicit Block 60: Formally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": true,
+        "ruleName": "Block most recent more than a year",
+        "ruleExpression": "item.DaysSinceMostRecentCommsUpdate > 365",
+        "successEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block most old comms update more than 10 years",
+        "ruleExpression": "item.DaysSinceOldestCommsUpdate > 3650",
+        "successEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person not currently born",
+        "ruleExpression": "item.DaysOld < 0",
+        "successEvent": "Explicit Block 100: Person not currently born",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person older than 120",
+        "ruleExpression": "item.YearsOld > 120",
+        "successEvent": "Explicit Block 110: Person older than 120",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "Allow",
+        "method": "App",
+        "methodToLog": "App",
+        "enabled": true,
+        "success": true,
+        "ruleName": "AllowApp-HasNoExitCode",
+        "ruleExpression": "item.ReasonForRemoval.NotSet == true",
+        "successEvent": "10 App allowed when no RfR is set.",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all DEA.",
+        "ruleExpression": "item.ReasonForRemoval.Code == \"DEA\"",
+        "successEvent": "Explicit Block 10: DEA Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all LogicalDeletion.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")",
+        "successEvent": "Explicit Block 20: LogincalDeletion LDN Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Other.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Other\")",
+        "successEvent": "Explicit Block 30: Other Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Cancellation.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Cancellation\")",
+        "successEvent": "Explicit Block 40: Cancellation Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all X.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.X\")",
+        "successEvent": "Explicit Block 40: X Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block informally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.InformallyDead\")",
+        "successEvent": "Explicit Block 50: Informally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block formally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.FormallyDead\")",
+        "successEvent": "Explicit Block 60: Formally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": true,
+        "ruleName": "Block most recent more than a year",
+        "ruleExpression": "item.DaysSinceMostRecentCommsUpdate > 365",
+        "successEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block most old comms update more than 10 years",
+        "ruleExpression": "item.DaysSinceOldestCommsUpdate > 3650",
+        "successEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person not currently born",
+        "ruleExpression": "item.DaysOld < 0",
+        "successEvent": "Explicit Block 100: Person not currently born",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person older than 120",
+        "ruleExpression": "item.YearsOld > 120",
+        "successEvent": "Explicit Block 110: Person older than 120",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "Allow",
+        "method": "Sms",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": true,
+        "ruleName": "AllowSms-HasNoExitCode",
+        "ruleExpression": "item.ReasonForRemoval.NotSet == true",
+        "successEvent": "10 Sms allowed when no RfR is set.",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "Allow",
+        "method": "Sms",
+        "methodToLog": "Sms",
+        "enabled": true,
+        "success": false,
+        "ruleName": "AllowSms-WithCGA",
+        "ruleExpression": "item.ReasonForRemoval.Code == \"CGA\"",
+        "successEvent": "20 Sms allowed to be sent even when CGA RfR is set",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all DEA.",
+        "ruleExpression": "item.ReasonForRemoval.Code == \"DEA\"",
+        "successEvent": "Explicit Block 10: DEA Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all LogicalDeletion.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.LogicalDeletion\")",
+        "successEvent": "Explicit Block 20: LogincalDeletion LDN Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Other.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Other\")",
+        "successEvent": "Explicit Block 30: Other Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all Cancellation.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.Cancellation\")",
+        "successEvent": "Explicit Block 40: Cancellation Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block all X.",
+        "ruleExpression": "Is(item.ReasonForRemoval, \"CommsCheck.X\")",
+        "successEvent": "Explicit Block 40: X Block",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block informally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.InformallyDead\")",
+        "successEvent": "Explicit Block 50: Informally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block formally dead",
+        "ruleExpression": "Is(item.DeathStatus, \"CommsCheck.FormallyDead\")",
+        "successEvent": "Explicit Block 60: Formally dead",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": true,
+        "ruleName": "Block most recent more than a year",
+        "ruleExpression": "item.DaysSinceMostRecentCommsUpdate > 365",
+        "successEvent": "Explicit Block 70: Most recent comms update was more than a year ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Block most old comms update more than 10 years",
+        "ruleExpression": "item.DaysSinceOldestCommsUpdate > 3650",
+        "successEvent": "Explicit Block 90: oldest comms update was more than 10 years ago",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person not currently born",
+        "ruleExpression": "item.DaysOld < 0",
+        "successEvent": "Explicit Block 100: Person not currently born",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "ExplicitBlock",
+        "method": "All",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": false,
+        "ruleName": "Person older than 120",
+        "ruleExpression": "item.YearsOld > 120",
+        "successEvent": "Explicit Block 110: Person older than 120",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      },
+      {
+        "ruleSet": "Allow",
+        "method": "Email",
+        "methodToLog": "Email",
+        "enabled": true,
+        "success": true,
+        "ruleName": "AllowEmail-HasNoExitCode",
+        "ruleExpression": "item.ReasonForRemoval.NotSet == true",
+        "successEvent": "10 Email allowed when no RfR is set.",
+        "errorMessage": "",
+        "exceptionMessage": ""
+      }
+    ]
+  }
+}
 ```
 
 ## Stream data
