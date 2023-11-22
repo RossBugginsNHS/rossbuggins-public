@@ -15,6 +15,12 @@ public static class SwaggerGenExtensions
             Format = "date"
         });
 
+        options.MapType<PostalCode>(() => new OpenApiSchema()
+        {
+            Type = "string"
+        });
+
+
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         options.IncludeXmlComments(xmlPath);

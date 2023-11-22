@@ -24,6 +24,7 @@ public class CommsCheckOptions
             options.SerializerOptions.WriteIndented = true;
             options.SerializerOptions.IncludeFields = true;
             options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.SerializerOptions.Converters.Add(new PostalCodeJsonConverter());
             options.SerializerOptions.PropertyNameCaseInsensitive = true;
         });
 
@@ -31,6 +32,7 @@ public class CommsCheckOptions
         {
             options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.JsonSerializerOptions.Converters.Add(new PostalCodeJsonConverter());
         });
         return this;
     }

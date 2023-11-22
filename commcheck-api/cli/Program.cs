@@ -8,25 +8,42 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 
-var fileOption = new Option<DateOnly>(
+var dobOption = new Option<DateOnly>(
     name: "--dob",
-    description: "Date of birth (yyyy-mm-dd)");
+    description: "Date of birth (yyyy-mm-dd)")
+{
+    IsRequired = true
+};
+
+var baseUrl = new Option<Uri>(
+    name: "--host",
+    description: "Base url. defaults to https://commchecks.azurewebsites.net");
+baseUrl.SetDefaultValue(new Uri("https://commchecks.azurewebsites.net"));
+
+var rfrCode = new Option<string>(
+    name: "--rfr",
+    description: "Reason for removal code")
+    {
+        IsRequired = true
+    };
 
 var rootCommand = new RootCommand("Commcheck cli v1");
-rootCommand.AddOption(fileOption);
+rootCommand.AddOption(dobOption);
+rootCommand.AddOption(baseUrl);
+rootCommand.AddOption(rfrCode);
 
-rootCommand.SetHandler(async (dob) => 
+rootCommand.SetHandler(async (dob, url, rfr) => 
     { 
         var builder = Host.CreateApplicationBuilder(args);
         builder.Services.AddHttpClient<CommsCheck>(options=>
         {
-            options.BaseAddress = new Uri("https://commchecks.azurewebsites.net");
+            options.BaseAddress = url;
         });
         var host = builder.Build();
         var check = host.Services.GetRequiredService<CommsCheck>();
-        var content = await check.Check(dob);
+        var content = await check.Check(dob, Enum.Parse<ReasonForRemovals>(rfr));
     },
-    fileOption);
+    dobOption, baseUrl, rfrCode);
 
 return await rootCommand.InvokeAsync(args);
 
@@ -34,13 +51,15 @@ return await rootCommand.InvokeAsync(args);
 
 public class CommsCheck(HttpClient client, ILogger<CommsCheck> logger)
 {
-    public async Task<CommsCheckAnswerResponseDto>  Check(DateOnly dob)
+    public async Task<CommsCheckAnswerResponseDto>  Check(
+        DateOnly dob, 
+        ReasonForRemovals rfr)
     {
         var response = await client.PostAsJsonAsync(
             "check", 
             CommsCheckQuestionRequestDto.DobOnly(
                 dob,
-                ReasonForRemovals.None));
+                rfr));
 
        
         var location = response.Headers.Location;

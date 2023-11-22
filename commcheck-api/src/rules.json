@@ -129,6 +129,13 @@
         "ErrorMessage": "",
         "Enabled": false,
         "Expression": "true"
+      },
+      {
+        "RuleName": "Block ZZ99",
+        "SuccessEvent": "Explicit Postal Block 99: Block ZZ99",
+        "ErrorMessage": "",
+        "Enabled": true,
+        "Expression": "item.PostCode.IsZZ99 == true"
       }
     ]
   },

@@ -9,6 +9,7 @@ public readonly record struct CommsCheckItem(
     DateOnly DateOfReasonForRemovalMostRecentUpdate,
     IReasonForRemoval ReasonForRemoval,
     IDeathStatus DeathStatus,
+    PostalCode PostCode,
     CommsCheckQuestionRequestDtoCopy CopyOfSource)
 {
     public int DaysOld =>
@@ -56,6 +57,7 @@ public class CommsCheckItemFactory(TimeProvider timeProvider)
         dto.DateOfReasonForRemovalMostRecentUpdate,
         IReasonForRemoval.FromEnum(dto.RfR),
         IDeathStatus.FromEnum(dto.DeathStatusValue),
+        dto.PostCode,
         CommsCheckQuestionRequestDtoCopy.FromDto(dto));
     }
 }
@@ -67,7 +69,8 @@ public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBi
     DateOnly DateOfPostalMostRecentUpdate,
     DateOnly DateOfReasonForRemovalMostRecentUpdate,
     DeathStatus? DeathStatusValue,
-    ReasonForRemovals? RfR
+    ReasonForRemovals? RfR,
+    PostalCode PostCode
     )
 {
     public static CommsCheckQuestionRequestDtoCopy FromDto(CommsCheckQuestionRequestDto dto) =>
@@ -79,7 +82,8 @@ public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBi
                 dto.DateOfPostalMostRecentUpdate,
                 dto.DateOfReasonForRemovalMostRecentUpdate,
                 dto.DeathStatusValue,
-                 dto.RfR);
+                 dto.RfR,
+                 dto.PostCode);
 
     public CommsCheckQuestionRequestDto ToDto() => 
              new CommsCheckQuestionRequestDto(
@@ -90,5 +94,6 @@ public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBi
                 DateOfPostalMostRecentUpdate,
                 DateOfReasonForRemovalMostRecentUpdate,
                 DeathStatusValue,
-                RfR);
+                RfR,
+                PostCode);
 }
