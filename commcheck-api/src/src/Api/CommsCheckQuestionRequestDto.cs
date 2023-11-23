@@ -10,11 +10,23 @@ public readonly record struct CommsCheckQuestionRequestDto(
     [property: SwaggerSchema("Date of birth yyyy-mm-dd")]
     [property: SwaggerSchemaExample("2000-06-07")]
     DateOnly DateOfBirth,
+
+    [property: SwaggerSchemaExample("2022-01-01")]
     DateOnly DateOfSmsMostRecentUpdate,
+
+    [property: SwaggerSchemaExample("2022-06-01")]
     DateOnly DateOfEmailMostRecentUpdate,
+
+    [property: SwaggerSchemaExample("2022-07-01")]
     DateOnly DateOfAppMostRecentUpdate,
+
+    [property: SwaggerSchema("Date postal address was last updated. yyyy-mm-dd")]
+    [property: SwaggerSchemaExample("2021-01-01")]
     DateOnly DateOfPostalMostRecentUpdate,
+
+    [property: SwaggerSchemaExample("2023-01-01")]
     DateOnly DateOfReasonForRemovalMostRecentUpdate,
+    
     DeathStatus? DeathStatusValue,
     ReasonForRemovals? RfR,
 
