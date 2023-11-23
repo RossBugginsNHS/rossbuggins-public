@@ -75,10 +75,17 @@ builder.Services.AddSwaggerGen(
 
         Available at the readme github repo is source for a cli tool for directly calling the api.
 
+        - GET /check/results provides a list of the last 100 queries
+        - GET /check/results/stream can be used to provide a realtime stream of requests.
 
-        GET /check/results provides a list of the last 100 queries
+        Notes for data payload:
+        - Relative Date - this is used to calculate any date spans, for example Age based on Date of birth. 
+        - Dob will be always set to first day of the month.
+        - Postcode will be set to first 4 characters of postcode.
 
-        GET /check/results/stream can be used to provide a realtime stream of requests.
+        Notes for API:
+        - The api is deterministic. It will always give the same result based on input data (as long as the rule set is the same)
+        - Metrics for the API can be found at GET /metrics endpoint.
         """;
 
  
