@@ -71,12 +71,11 @@ builder.Services.AddSwaggerGen(
         - Submit data using the POST /check endpoint
         - The response contains a Location header with a url and unique id
         - Retrieve answer from GET /check/results/{resultId} endpoint
-        - View the current rules at the GET /rules endpoint 
 
         Available at the readme github repo is source for a cli tool for directly calling the api.
 
-        - GET /check/results provides a list of the last 100 queries
-        - GET /check/results/stream can be used to provide a realtime stream of requests.
+        - GET <a href="/check/results">/check/results</a> provides a list of the last 100 queries
+        - GET <a href="/check/results/stream">/check/results/stream</a> can be used to provide a realtime stream of requests.
 
         Notes for data payload:
         - Relative Date - this is used to calculate any date spans, for example Age based on Date of birth. 
@@ -85,7 +84,8 @@ builder.Services.AddSwaggerGen(
 
         Notes for API:
         - The api is deterministic. It will always give the same result based on input data (as long as the rule set is the same)
-        - Metrics for the API can be found at GET /metrics endpoint.
+        - Metrics for the API can be found at GET <a href="/metrics">/metrics</a> endpoint.
+        - View current rules at GET <a href="/rules">/rules</a> endpoint.
         """;
 
  
