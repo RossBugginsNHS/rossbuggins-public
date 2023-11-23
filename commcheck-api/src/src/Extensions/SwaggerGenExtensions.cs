@@ -1,6 +1,7 @@
 namespace CommsCheck;
 
 using System.Reflection;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -17,7 +18,9 @@ public static class SwaggerGenExtensions
 
         options.MapType<PostalCode>(() => new OpenApiSchema()
         {
-            Type = "string"
+            Type = "string", 
+            Default = new OpenApiString("None"), 
+            Example = new OpenApiString("None")
         });
 
 

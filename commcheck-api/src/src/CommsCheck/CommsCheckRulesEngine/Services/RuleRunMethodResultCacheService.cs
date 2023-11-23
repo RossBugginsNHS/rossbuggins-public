@@ -94,7 +94,7 @@ public class RuleRunMethodResultCacheService
             notification.RuleHash,
             notification.ToCheck,
             notification.ToCheck.Item.CopyOfSource,
-            notification.ToCheck.Item.UtcDateCheckItemCreated,
+            notification.ToCheck.Item.RelativeDate,
             now,
             now,
             1,

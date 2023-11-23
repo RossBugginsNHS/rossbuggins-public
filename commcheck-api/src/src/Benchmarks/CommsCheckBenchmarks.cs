@@ -115,6 +115,7 @@ public class CommsCheckBenchmarks
 
     public CommsCheckQuestionRequestDto BuildRequestDto(DateTime thisDate) =>
         CommsCheckQuestionRequestDto.DobOnly(
+            new DateOnly(2000,1,1),
             DateOnly.FromDateTime(thisDate),
              null);
 

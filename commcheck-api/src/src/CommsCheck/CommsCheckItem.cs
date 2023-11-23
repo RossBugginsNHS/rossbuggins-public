@@ -1,6 +1,6 @@
 namespace CommsCheck;
 public readonly record struct CommsCheckItem(
-    DateOnly UtcDateCheckItemCreated,
+    DateOnly RelativeDate,
     DateOnly DateOfBirth,
     DateOnly DateOfSmsMostRecentUpdate,
     DateOnly DateOfEmailMostRecentUpdate,
@@ -13,10 +13,10 @@ public readonly record struct CommsCheckItem(
     CommsCheckQuestionRequestDtoCopy CopyOfSource)
 {
     public int DaysOld =>
-        UtcDateCheckItemCreated.DayNumber - DateOfBirth.DayNumber;
+        RelativeDate.DayNumber - DateOfBirth.DayNumber;
 
     public int DaySinceSmsUpdate =>
-        UtcDateCheckItemCreated.DayNumber - DateOfSmsMostRecentUpdate.DayNumber;
+        RelativeDate.DayNumber - DateOfSmsMostRecentUpdate.DayNumber;
 
     public DateOnly DateOfMostRecentCommsUpdate =>
         Enumerable.Max(
@@ -37,18 +37,18 @@ public readonly record struct CommsCheckItem(
     public int YearsOld => (int)Math.Floor(DaysOld / (float)365);
 
     public int DaysSinceMostRecentCommsUpdate =>
-         UtcDateCheckItemCreated.DayNumber - DateOfMostRecentCommsUpdate.DayNumber;
+         RelativeDate.DayNumber - DateOfMostRecentCommsUpdate.DayNumber;
 
     public int DaysSinceOldestCommsUpdate =>
-         UtcDateCheckItemCreated.DayNumber - DateOfOldestCommsUpdate.DayNumber;
+         RelativeDate.DayNumber - DateOfOldestCommsUpdate.DayNumber;
 }
 
-public class CommsCheckItemFactory(TimeProvider timeProvider)
+public class CommsCheckItemFactory
 {
     public CommsCheckItem FromDtoRelativeToToday(CommsCheckQuestionRequestDto dto)
     {
         return new CommsCheckItem(
-        DateOnly.FromDateTime(timeProvider.GetUtcNow().UtcDateTime),
+        dto.RelativeDate,
         dto.DateOfBirth,
         dto.DateOfSmsMostRecentUpdate,
         dto.DateOfEmailMostRecentUpdate,
@@ -62,7 +62,9 @@ public class CommsCheckItemFactory(TimeProvider timeProvider)
     }
 }
 
-public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBirth,
+public readonly record struct CommsCheckQuestionRequestDtoCopy(
+    DateOnly RelativeDate,
+    DateOnly DateOfBirth,
     DateOnly DateOfSmsMostRecentUpdate,
     DateOnly DateOfEmailMostRecentUpdate,
     DateOnly DateOfAppMostRecentUpdate,
@@ -75,6 +77,7 @@ public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBi
 {
     public static CommsCheckQuestionRequestDtoCopy FromDto(CommsCheckQuestionRequestDto dto) =>
          new CommsCheckQuestionRequestDtoCopy(
+            dto.RelativeDate,
               dto.DateOfBirth,
                 dto.DateOfSmsMostRecentUpdate,
                 dto.DateOfEmailMostRecentUpdate,
@@ -87,6 +90,7 @@ public readonly record struct CommsCheckQuestionRequestDtoCopy(DateOnly DateOfBi
 
     public CommsCheckQuestionRequestDto ToDto() => 
              new CommsCheckQuestionRequestDto(
+                RelativeDate,
               DateOfBirth,
                 DateOfSmsMostRecentUpdate,
                 DateOfEmailMostRecentUpdate,

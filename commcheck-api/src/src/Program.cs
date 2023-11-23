@@ -61,12 +61,34 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
     {
+        var desc = """
+        Rules engine for providing a standardised and central decision tree for deciding 
+        if there should be communication with a person.
+
+        This API makes its decision based on the data provided in the request payload, and does
+        not use data sources directly.
+
+        - Submit data using the POST /check endpoint
+        - The response contains a Location header with a url and unique id
+        - Retrieve answer from GET /check/results/{resultId} endpoint
+        - View the current rules at the GET /rules endpoint 
+
+        Available at the readme github repo is source for a cli tool for directly calling the api.
+
+
+        GET /check/results provides a list of the last 100 queries
+
+        GET /check/results/stream can be used to provide a realtime stream of requests.
+        """;
+
+ 
         options.AddDateAndEnumFormatters();
         options.SwaggerDoc("v1", new OpenApiInfo
         {
             Version = "v1",
             Title = "Comms Check API v1",
-            Description = "Rules engine for communication with persons.",
+            Description = desc,
+             
             Contact = new OpenApiContact
             {
                 Name = "Readme",
@@ -97,7 +119,16 @@ app.MapPost("/check",
         [FromServices] IDistributedCache cache,
         [FromServices] ISender sender) =>
         {
-            var result = await sender.Send(new CheckCommsCommand(request));
+            var filteredRequest = request with 
+            {
+                DateOfBirth = new DateOnly(
+                    request.DateOfBirth.Year,
+                    request.DateOfBirth.Month,
+                    1),
+                PostCode = request.PostCode.DistrictOnly()
+            };
+
+            var result = await sender.Send(new CheckCommsCommand(filteredRequest));
             var itemBytes = await cache.GetAsync(result.ResultId);
             if (itemBytes == null)
             {
