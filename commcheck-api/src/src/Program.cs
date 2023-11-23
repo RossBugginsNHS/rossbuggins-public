@@ -29,12 +29,6 @@ else if (args.Contains("--benchmark"))
 }
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddRulesEngine();
-builder.Services.AddSingleton<CommsCheckItemFactory>();
-builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddRule100();
-
 builder.Services.AddCommsCheck(options =>
     {
         options
@@ -61,40 +55,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
     {
-        var desc = """
-        Rules engine for providing a standardised and central decision tree for deciding 
-        if there should be communication with a person.
-
-        This API makes its decision based on the data provided in the request payload, and does
-        not use data sources directly.
-
-        - Submit data using the POST /check endpoint
-        - The response contains a Location header with a url and unique id
-        - Retrieve answer from GET /check/results/{resultId} endpoint
-
-        Available at the readme github repo is source for a cli tool for directly calling the api.
-
-        - GET <a href="/check/results">/check/results</a> provides a list of the last 100 queries
-        - GET <a href="/check/results/stream">/check/results/stream</a> can be used to provide a realtime stream of requests.
-
-        Notes for data payload:
-        - Relative Date - this is used to calculate any date spans, for example Age based on Date of birth. 
-        - Dob will be always set to first day of the month.
-        - Postcode will be set to first 4 characters of postcode.
-
-        Notes for API:
-        - The api is deterministic. It will always give the same result based on input data (as long as the rule set is the same)
-        - Metrics for the API can be found at GET <a href="/metrics">/metrics</a> endpoint.
-        - View current rules at GET <a href="/rules">/rules</a> endpoint.
-        """;
-
- 
         options.AddDateAndEnumFormatters();
         options.SwaggerDoc("v1", new OpenApiInfo
         {
             Version = "v1",
             Title = "Comms Check API v1",
-            Description = desc,
+            Description = SwaggerGenExtensions.OpenApiDescription,
              
             Contact = new OpenApiContact
             {
@@ -106,6 +72,7 @@ builder.Services.AddSwaggerGen(
     );
 
 var app = builder.Build();
+
 app.UseSwagger(option =>
     {
         option.RouteTemplate = "{documentName}/swagger.json";
@@ -126,16 +93,7 @@ app.MapPost("/check",
         [FromServices] IDistributedCache cache,
         [FromServices] ISender sender) =>
         {
-            var filteredRequest = request with 
-            {
-                DateOfBirth = new DateOnly(
-                    request.DateOfBirth.Year,
-                    request.DateOfBirth.Month,
-                    1),
-                PostCode = request.PostCode.DistrictOnly()
-            };
-
-            var result = await sender.Send(new CheckCommsCommand(filteredRequest));
+            var result = await sender.Send(new CheckCommsCommand(request.FilteredVersion()));
             var itemBytes = await cache.GetAsync(result.ResultId);
             if (itemBytes == null)
             {

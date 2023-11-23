@@ -17,7 +17,9 @@ public static class CommsCheckExtensionMethods
 
     public static IServiceCollection AddCommsCheck(this IServiceCollection services)
     {
-
+        services.AddSingleton<CommsCheckItemFactory>();
+        services.AddSingleton(TimeProvider.System);
+        services.AddRule100();
         services.AddHostedService<CommsCheckHostedService>();
         services.AddSingleton<RunRuleFunctions>();
         services.AddSingleton<RulesCombinerService>();

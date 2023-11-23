@@ -76,6 +76,7 @@ public class CommsCheckOptions
         IConfiguration config,
         Action<CommsCheckRulesEngineConfigurationOptions> options) where T : class, ICommCheck
     {
+        _services.AddRulesEngine();
         _services.AddTransient<ICommCheck, T>();
         var optionsInstance = new CommsCheckRulesEngineConfigurationOptions(_services);
         config.GetSection(CommsCheckRulesEngineConfigurationOptions.OptionsName).Bind(optionsInstance);
