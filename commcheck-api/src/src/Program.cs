@@ -29,6 +29,16 @@ else if (args.Contains("--benchmark"))
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+options.AddDefaultPolicy(builder =>
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                    .WithExposedHeaders("*"));
+});
+
 builder.Services.AddCommsCheck(options =>
     {
         options
@@ -72,7 +82,7 @@ builder.Services.AddSwaggerGen(
     );
 
 var app = builder.Build();
-
+app.UseCors();
 app.UseSwagger(option =>
     {
         option.RouteTemplate = "{documentName}/swagger.json";

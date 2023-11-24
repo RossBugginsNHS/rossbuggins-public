@@ -1,0 +1,89 @@
+﻿@page "/"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory ClientFactory
+@inject AntiforgeryStateProvider Antiforgery
+@inject ILogger<Home> Logger
+
+<PageTitle>CommCheck</PageTitle>
+
+<h1>CommCheck</h1>
+
+<p>
+<textarea cols="100" rows="12"  @bind="@CurrentValue" />
+</p>
+<p>
+<button class="btn btn-primary" @onclick="IncrementCount">Check!</button>
+</p>
+<pre>
+@strResp
+</pre>
+
+
+@code {
+
+    private string strResp = string.Empty;
+
+    private string CurrentValue {get;set;} = "blazor";
+
+    private string starting =  "{\"relativeDate\": \"2023-11-24\",\"dateOfBirth\": \"2000-06-07\",\"dateOfSmsMostRecentUpdate\": \"2022-01-01\",\"dateOfEmailMostRecentUpdate\": \"2022-06-01\",\"dateOfAppMostRecentUpdate\": \"2022-07-01\",\"dateOfPostalMostRecentUpdate\": \"2023-01-01\",\"dateOfReasonForRemovalMostRecentUpdate\": \"2023-01-01\",\"deathStatusValue\": \"None\",\"rfR\": \"None\", \"postCode\": \"AB01 1AB\"}";
+    protected override async Task OnInitializedAsync()
+    {
+       var y = starting ; //await File.ReadAllTextAsync("payload.json");
+        var obj = JsonSerializer.Deserialize<object>(y); 
+        CurrentValue =  JsonSerializer.Serialize(obj, new JsonSerializerOptions() { WriteIndented = true });
+    }
+
+    private async Task IncrementCount()
+    {
+        var antiforgery = Antiforgery.GetAntiforgeryToken();
+        var request = new HttpRequestMessage(HttpMethod.Post,
+        "http://localhost:5004/check");// "https://commchecks.azurewebsites.net/check");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+      //  request.Headers.Add("RequestVerificationToken", antiforgery.Value);
+        
+
+        request.Content = new StringContent(CurrentValue, System.Text.Encoding.UTF8, "application/json");
+
+        var client = ClientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+        var rCont = await response.Content.ReadAsStringAsync();
+        Logger.LogInformation("Response code {code}", response.StatusCode.ToString());
+        Logger.LogInformation("Response data {code}", rCont);
+
+        var l = response.Headers.Location;
+
+        Logger.LogInformation("Got location {location}", l);
+
+        var y = string.Empty;
+        var success = false;
+
+        Logger.LogInformation("Starting LOOOOP");
+        while(!success)
+        {
+            var requestGet = new HttpRequestMessage(HttpMethod.Get, l);
+            var response2 = await client.SendAsync(requestGet);
+            Logger.LogInformation("STATUS CODE IS {code}", response2.StatusCode.ToString());
+            if(response2.StatusCode != System.Net.HttpStatusCode.NotFound)
+            {
+                Logger.LogInformation("Successful response");
+                y = await response2.Content.ReadAsStringAsync();
+                success = true;
+            }
+            else
+            {
+                Logger.LogWarning("Non succesful response");
+                await Task.Delay(500);
+            }
+        }
+
+        var options = new JsonSerializerOptions(){PropertyNameCaseInsensitive = true, WriteIndented=true};
+        options.Converters.Add(new JsonStringEnumConverter());
+
+        var obj = JsonSerializer.Deserialize<CommsCheckAnswerResponseDto>(y, options); 
+
+        strResp = JsonSerializer.Serialize(obj.Response, options);
+    }
+}
