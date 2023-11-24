@@ -38,7 +38,7 @@
     {
         var antiforgery = Antiforgery.GetAntiforgeryToken();
         var request = new HttpRequestMessage(HttpMethod.Post,
-        "http://localhost:5004/check");// "https://commchecks.azurewebsites.net/check");
+        "https://commchecks.azurewebsites.net/check");// "https://commchecks.azurewebsites.net/check");
         request.Headers.Add("Accept", "application/vnd.github.v3+json");
         request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
       //  request.Headers.Add("RequestVerificationToken", antiforgery.Value);
