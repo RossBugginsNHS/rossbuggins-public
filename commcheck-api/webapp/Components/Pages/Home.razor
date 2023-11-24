@@ -1,0 +1,65 @@
+﻿@page "/"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory ClientFactory
+@inject AntiforgeryStateProvider Antiforgery
+@rendermode InteractiveServer
+
+<PageTitle>CommCheck</PageTitle>
+
+<h1>CommCheck</h1>
+
+<p>
+<textarea cols="100" rows="12"  @bind="@CurrentValue" />
+</p>
+<p>
+<button class="btn btn-primary" @onclick="IncrementCount">Check!</button>
+</p>
+<pre>
+@strResp
+</pre>
+
+
+@code {
+
+    private string strResp = string.Empty;
+
+    private string CurrentValue {get;set;} = "blazor";
+
+    protected override async Task OnInitializedAsync()
+    {
+       var y = await File.ReadAllTextAsync("payload.json");
+        var obj = JsonSerializer.Deserialize<object>(y); 
+        CurrentValue = JsonSerializer.Serialize(obj, new JsonSerializerOptions() { WriteIndented = true });
+    }
+
+    private async Task IncrementCount()
+    {
+        var antiforgery = Antiforgery.GetAntiforgeryToken();
+        var request = new HttpRequestMessage(HttpMethod.Post,
+         "https://commchecks.azurewebsites.net/check");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+        request.Headers.Add("RequestVerificationToken", antiforgery.Value);
+        
+
+        request.Content = new StringContent(CurrentValue, System.Text.Encoding.UTF8, "application/json");
+
+        var client = ClientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+        var l = response.Headers.Location;
+
+        var requestGet = new HttpRequestMessage(HttpMethod.Get, l);
+        request.Headers.Add("RequestVerificationToken", Antiforgery.GetAntiforgeryToken().Value);
+        var response2 = await client.SendAsync(requestGet);
+        var y = await response2.Content.ReadAsStringAsync();
+        
+        var options = new JsonSerializerOptions(){PropertyNameCaseInsensitive = true, WriteIndented=true};
+        options.Converters.Add(new JsonStringEnumConverter());
+
+        var obj = JsonSerializer.Deserialize<CommsCheckAnswerResponseDto>(y, options); 
+
+        strResp = JsonSerializer.Serialize(obj.Response, options);
+    }
+}
