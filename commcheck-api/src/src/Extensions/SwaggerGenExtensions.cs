@@ -46,6 +46,9 @@ public static class SwaggerGenExtensions
         - 2) Explicit Block for that communication type. For example - ZZ99 post code blocks postal.
         - 3) Allow rules for that communication type.
         - 4) If no allow rules succeed, then the default is to block.
+
+        Example Client:
+        - <a href="https://salmon-water-09aab3203.4.azurestaticapps.net">Example Blazor App</a>
         """;
 
     public static SwaggerGenOptions AddDateAndEnumFormatters(
