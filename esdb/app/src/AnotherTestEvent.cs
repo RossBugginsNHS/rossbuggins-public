@@ -1,0 +1,1 @@
+public record AnotherTestEvent(string EntityId, string ImportantData);
