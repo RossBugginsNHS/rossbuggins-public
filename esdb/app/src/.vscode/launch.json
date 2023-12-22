@@ -9,7 +9,7 @@
             "program": "${workspaceFolder}/bin/Debug/net8.0/src.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {
