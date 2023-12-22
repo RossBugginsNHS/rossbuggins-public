@@ -7,8 +7,9 @@ var cancellationToken = cts.Token;
 
 const string connectionString = "esdb://admin:changeit@node1:2113?tls=false&tlsVerifyCert=false";
 
-const string streamName = "some-stream";
+const string streamPrefix = "users-";
 const string eventType = "TestEvent";
+const string streamsReadPrefix = "$ce-users";
 
 var settings = EventStoreClientSettings.Create(connectionString);
 var client = new EventStoreClient(settings);
@@ -19,6 +20,8 @@ var t = Task.Run(async () =>
 {
     while (!cancellationToken.IsCancellationRequested)
     {
+        var userNumber = 123;
+
         Console.WriteLine("Writing event");
         var evt = new TestEvent(Guid.NewGuid().ToString("N"), "I wrote my first event!");
         var eventData = new EventData(
@@ -28,7 +31,7 @@ var t = Task.Run(async () =>
         );
 
         await client.AppendToStreamAsync(
-            streamName,
+            streamPrefix + userNumber,
             StreamState.Any,
             new[] { eventData },
             cancellationToken: cancellationToken
@@ -39,20 +42,14 @@ var t = Task.Run(async () =>
     }
 });
 
-var result = client.ReadStreamAsync(
-    Direction.Forwards,
-    streamName,
-    StreamPosition.Start,
-    cancellationToken: cancellationToken
-);
 
 
-await client.SubscribeToStreamAsync(streamName, FromStream.Start, async (s, e, c) =>
+await client.SubscribeToStreamAsync(streamsReadPrefix, FromStream.Start, async (s, e, c) =>
 {
     var te = JsonSerializer.Deserialize<TestEvent>(e.Event.Data.ToArray());
     Console.WriteLine(e.Event.EventNumber + "\t" + e.Event.EventType + "\t" + te);
     await Task.Yield();
-});
+}, resolveLinkTos: true);
 
 await t;
 
