@@ -196,7 +196,37 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - Sam Newman - building microservices, oreilly books
 - 
 
+## Lunch
+
+- does pressing lift buttons with a non body part increase chance of lift coming?
+- is static from body just lighting up the button led?…
+
 ## Actionable Observability
+
+1:8
+
+- observability: understanding what is happening inside software systems to debug a problem, from telemetry emitted by system 
+- utilising telemetry with goal of improving application reliability
+- identify, debug, address tech issues
+- incident management cycle
+- role of automation.. reduce complexity, manage cognitive load
+- collect ->identify->debug->….
+- automate identity otherwise sat there looking at dashboards. Be proactive.
+- infra metrics, service metrics, app metrics, user experience metrics
+- define user journey, define metric, define thresholds. Eg:
+- message send request submitted. => time to result of send received => a threshold…
+- coming up with thresholds will often be iterative
+- service level objectives:
+- prioritise user journeys, focus on most important
+- “North Star” metrics
+- don’t let SLOs become overwhelmingly huge
+- Service Level Indicator - reliability is different to availability. SLI should represent reliability. Eg very high latency could be counted equivalent to offline.
+- setting error budget
+- reliability 0-100% score
+- alerting strategy:
+- consumption of budget vs rate of change of budget (burn rate)
+- automation not about replacing us, it’s about enabling us
+-  
 
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
 
