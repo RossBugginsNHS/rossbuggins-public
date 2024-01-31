@@ -115,6 +115,22 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 - cognitive bias - it’s a feature not a bug 😂
 - it give swift thinking - useful at times in real life
 - but don’t need that quick reaction at work
+- most common biases:
+- false causality…. Are those events all connected?… 
+- HIPPO effect.. highest paid persons opinion 😂😂
+- authority bias
+- confirmation bias
+- assumption… something we believe so much we don’t even question it..
+- why do I actually believe this?
+- how to catch your biases:
+- mindfulness… building Lego is mindful
+- invite a devils advocate
+- their job to involve in observing and catching the bias assumptions. Assign someone to the role and rotate it
+- we want your feedback - rfc. Scale it big and you don’t have to wait for everyone. !!!!!!!!!!!!!!!!
+- take aways;
+- slow down
+- write it down
+- work together and collaborate
 - 
 
 
