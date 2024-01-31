@@ -148,12 +148,35 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - blazor united - new in 8 - hybrid of server and web assembly. !!!!!!
 - maui and blazor…:
 - = blazor hybrid. 
-- 
+- dotnetpodcasts.com - a cool example app. Is on GitHub.
 
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
 
-- !!!!
-- 
+![async](you-keep-using-that-word.jpg)
+
+- boxes and arrows 😂
+- meaning of words
+- this talk is not about the boxes, but about the arrows
+- microservice architecture 😂
+- arrow =>dependancy
+- some sort of logical dependancy
+- EDA - it’s all about facts. Something has happened.
+- an inversion to o request response model. There is the dependancy but it’s implemented the other way round
+- don’t get stuck in the con game (v3)
+- use term eventual convergence instead of eventual consistency 
+- The reactive manifesto (2014 v2)
+- problem with blocking calls - sum latency
+- temporal decoupling
+- intermediary between A and B eg message broker
+- need to trust your broker
+- stateless stateless stateless
+- making requests idempotent makes retry’s safe
+- SET - the word with the most meanings in the OED. 430 different meaning. RUN, will have 645 in next draft.
+- derive meaning of a word from its context 
+- “in the context and of this paper…..” context is important 😊
+- socialtechnical systems 
+- Tower of Babel old test 
+- Sam Newman - building microservices, oreilly books
 - 
 
 ## Actionable Observability
