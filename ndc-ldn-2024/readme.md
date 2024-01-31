@@ -1,6 +1,8 @@
 
 # NDC London 2024
 
+![ndc](ndc.jpg)
+
 
 ## Wednesday, 2024-01-31
 
@@ -48,7 +50,17 @@ Dylan Beattie - Thursday  Room 1 13:40 - 14:40 [Analogue Evolution, Digital Revo
 https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc19cqz
 
 
+## Ratings
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+
+1:xxxx - initial review
+2:xxx - adjusted review 2
+n: xxxx - adjusted n
+
 ## Keynote: Debug your thinking
+
+1: 21
 
 - Single sparkler age 😂
 - building on a foundation that wasn’t designed for the scale
@@ -132,19 +144,172 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 - write it down
 - work together and collaborate
 - 
-
+I
 
 ## Failing Successfully
 
+1:5
+
+CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-net-maui-blazor-and-signalr/0179973be3cc
+
+
+
+- ms employee
+- signal r - started with basic example
+- Maui
+- evolution of xamarin forms
+- wrapper on iOS and andoird Mac and windows apis
+- blazor. Run it all in c#
+- forget needing to know js..
+- blazor united - new in 8 - hybrid of server and web assembly. !!!!!!
+- maui and blazor…:
+- = blazor hybrid. 
+- dotnetpodcasts.com - a cool example app. Is on GitHub.
+
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
+
+1: 13
+![async](you-keep-using-that-word.jpg)
+
+- boxes and arrows 😂
+- meaning of words
+- this talk is not about the boxes, but about the arrows
+- microservice architecture 😂
+- arrow =>dependancy
+- some sort of logical dependancy
+- EDA - it’s all about facts. Something has happened.
+- an inversion to o request response model. There is the dependancy but it’s implemented the other way round
+- don’t get stuck in the con game (v3)
+- use term eventual convergence instead of eventual consistency 
+- The reactive manifesto (2014 v2)
+- problem with blocking calls - sum latency
+- temporal decoupling
+- intermediary between A and B eg message broker
+- need to trust your broker
+- stateless stateless stateless
+- making requests idempotent makes retry’s safe
+- SET - the word with the most meanings in the OED. 430 different meaning. RUN, will have 645 in next draft.
+- derive meaning of a word from its context 
+- “in the context and of this paper…..” context is important 😊
+- socialtechnical systems 
+- Tower of Babel old test 
+- Sam Newman - building microservices, oreilly books
+- 
+
+## Lunch
+
+- does pressing lift buttons with a non body part increase chance of lift coming?
+- is static from body just lighting up the button led?…
 
 ## Actionable Observability
 
+1:8
+
+- observability: understanding what is happening inside software systems to debug a problem, from telemetry emitted by system 
+- utilising telemetry with goal of improving application reliability
+- identify, debug, address tech issues
+- incident management cycle
+- role of automation.. reduce complexity, manage cognitive load
+- collect ->identify->debug->….
+- automate identity otherwise sat there looking at dashboards. Be proactive.
+- infra metrics, service metrics, app metrics, user experience metrics
+- define user journey, define metric, define thresholds. Eg:
+- message send request submitted. => time to result of send received => a threshold…
+- coming up with thresholds will often be iterative
+- service level objectives:
+- prioritise user journeys, focus on most important
+- “North Star” metrics
+- don’t let SLOs become overwhelmingly huge
+- Service Level Indicator - reliability is different to availability. SLI should represent reliability. Eg very high latency could be counted equivalent to offline.
+- setting error budget
+- reliability 0-100% score
+- alerting strategy:
+- consumption of budget vs rate of change of budget (burn rate)
+- automation not about replacing us, it’s about enabling us
+-  
+- 
+
+## Snack bar
+
+![snack](snacks.jpg) 
+
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
 
+1:21 / 34
+
+- nick tune- architecture modernisation - book
+- ran the workshop sessions on ddd that JB attended 
+- teams deploying multiple times a day
+- need to see it early enough that you need to modernise
+- open table stopped all features and modernised for 8 months… not always advocating that approach
+- doing nothing- how long until irrelevant or fail?
+- even if make good arch decisions, your assumptions your decisions are based on will change over time
+- result: still end up with messy architecture…
+- arch modernisation -> convert disadvantage to advantage
+- talk overview:
+- architecting for flow
+- tools 
+- kickstarting and enabling arch modernisation
+- rewriting / using new tech, doesn’t fix all the problems. It’s deeper than that. It enables you to then be able to fix actual problem
+- make changes / features fit inside one subdomain
+- empower teams
+- software decoupled
+- always will have the question of should we do modernisation work or new feature work
+- time to listen - indi young - book
+- need the business objective to support the modernisation decisions
+- impact mapping
+- wardley mapping
+- make decisions based on how component is evolving, not its current state
+- ask how quickly each component is evolving
+-  Event storming. Big picture and process modelling
+- getting a true wide-perspective picture
+- domains and subdomains
+- grouping and transition points
+- modernisation strategy selector..
+- how to maximise roi on modernisation 
+- platform modernisation and also,
+- product, domain, software modernisation 
+- codescene tool
+- keeping momentum after event storming workshops
+- architecture modernisation enabling team AMET. Don’t own a part of system, but help them achieve the change.
+- team for range of skills not just arch’s.
+- don’t get lost in all upfront planning
+- make a decision on when first change will be seen. Aim a target of 3 - 6 months?
+- patterns for migrations. Strangler fig. DDD bubble pattern. Danger of strangler fig.
+- 
+ 
 ## The definitive deep dive into the .git folder
 
+1:13
+
+- .git that folder is all you need
+- objects - all git zlib compressed. Files created on commit. Files are named by hash of commit
+- all the slides are on his GitHub 
+- the commit reference another object id node
+- tree node lists files and permissions 
+- and is double zlib compressed
+- the tree references blobs
+- git cat-file
+- git add puts the file in as a blob - it’s staged.
+- the commit creates the commit object and links it to the blobs via tree object
+- folders nested are represented by another tree node 
+- git commit with -amend, this changed the file. But history is still stored.
+- branches - refs folders
+- git remotes can also be relative local file system paths…
+- hooks folder, great for automation
+- although hooks can’t be committed… so look at npm githooks which use symlinks
+Git config files - alias section
+
+
 ## Supercharge your team by building clarity, not consensus
+
+
+CANCELLED
+
+instead watch this:
+
+https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0bv2/0s6o9bizrgp
+
 
 ## So You Want to Build An Event Driven System?
 
