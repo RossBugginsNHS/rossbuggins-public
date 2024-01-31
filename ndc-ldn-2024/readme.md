@@ -235,6 +235,8 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
 
+1:21 / 34
+
 - nick tune- architecture modernisation - book
 - ran the workshop sessions on ddd that JB attended 
 - teams deploying multiple times a day
@@ -278,7 +280,36 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
  
 ## The definitive deep dive into the .git folder
 
+1:13
+
+- .git that folder is all you need
+- objects - all git zlib compressed. Files created on commit. Files are named by hash of commit
+- all the slides are on his GitHub 
+- the commit reference another object id node
+- tree node lists files and permissions 
+- and is double zlib compressed
+- the tree references blobs
+- git cat-file
+- git add puts the file in as a blob - it’s staged.
+- the commit creates the commit object and links it to the blobs via tree object
+- folders nested are represented by another tree node 
+- git commit with -amend, this changed the file. But history is still stored.
+- branches - refs folders
+- git remotes can also be relative local file system paths…
+- hooks folder, great for automation
+- although hooks can’t be committed… so look at npm githooks which use symlinks
+Git config files - alias section
+
+
 ## Supercharge your team by building clarity, not consensus
+
+
+CANCELLED
+
+instead watch this:
+
+https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0bv2/0s6o9bizrgp
+
 
 ## So You Want to Build An Event Driven System?
 
