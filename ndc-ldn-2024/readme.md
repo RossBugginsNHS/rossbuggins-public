@@ -48,7 +48,17 @@ Dylan Beattie - Thursday  Room 1 13:40 - 14:40 [Analogue Evolution, Digital Revo
 https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc19cqz
 
 
+## Ratings
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+
+1:xxxx - initial review
+2:xxx - adjusted review 2
+n: xxxx - adjusted n
+
 ## Keynote: Debug your thinking
+
+1: 21
 
 - Single sparkler age 😂
 - building on a foundation that wasn’t designed for the scale
@@ -136,7 +146,11 @@ I
 
 ## Failing Successfully
 
+1:5
+
 CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-net-maui-blazor-and-signalr/0179973be3cc
+
+
 
 - ms employee
 - signal r - started with basic example
@@ -152,6 +166,7 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
 
+1: 13
 ![async](you-keep-using-that-word.jpg)
 
 - boxes and arrows 😂
