@@ -1,6 +1,8 @@
 
 # NDC London 2024
 
+![ndc](ndc.jpg)
+
 
 ## Wednesday, 2024-01-31
 
