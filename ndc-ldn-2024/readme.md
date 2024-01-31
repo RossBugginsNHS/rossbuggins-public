@@ -50,6 +50,74 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 
 ## Keynote: Debug your thinking
 
+- Single sparkler age 😂
+- building on a foundation that wasn’t designed for the scale
+- sales / product selling something before it is ready / poc work
+- making the right architecture choices at the start
+- doing everything right from the start - worry of running out of budget 
+- you think you are doing everything right, but have you considered all the variables?
+- no such thing as right architecture… no perfect language.. 
+- what decisions have you made?
+- what was impact?
+- what negatives?
+- what problems trying to solve?
+- long term or short term?
+- how many options considered?
+- assumptions on context?
+- how not overly bias on my “chosen” solution?
+- how do I debug my thoughts?
+- critical thinking 
+- debug your thinking
+- the trap: working in solution mode…
+- ohh i have this problem, can you fix it for me…
+- this is dangerous, bias into jumping into solution mode
+- we are incentivised to jump into this. We need time to understand the problem.
+- we might be trying to solve the wrong problem to begin with
+- we need to slow down…
+- is it actually a problem 
+- people often bring us “a solution” 
+- we must always dig deeper to try to understand what is going on
+- always keep asking “why”
+- 5 whys… 🙄
+- use it for framing initial analysis 
+- write it down 
+- writing is natures way of telling you how sloppy your thinking is 😂😂😂
+- got to make your thinking concise and clear
+- framing problem:
+- writing down
+- avoid tech terms
+- no solutions!
+- make it measurable 
+- then ask if this is the right problem
+- the elevator problem 
+- change from elevator is to slow, to, the wait time is to annoying
+- added mirrors 😆😆😆 people stopped complaining
+- reframing a problem
+- we are here to solve business problems
+- we should call out if there is a solution that involves no technical involvement at all
+- ask:
+- is this statement even true?
+- who is affected by this?
+- is there solution bias?
+- what happened before this problem was occurring?
+- hidden influences?
+- sub optimal solution to the right problem is so much better than a perfect solution to the wrong problem 
+- BIAS to speed JFDI
+- why sql server used so much to store json 😂
+- we are techies we want to use cool stuff
+- children are naturally out of the box thinkers
+- convergent and divergent thinking
+- other people’s suggestions might be outside of our own box
+- we feel safe in our own box of thinking
+- curiosity over judgement
+- hmm that’s an interesting idea, can you walk me though your thinking process on it?
+- get different perspectives
+- cognitive bias - it’s a feature not a bug 😂
+- it give swift thinking - useful at times in real life
+- but don’t need that quick reaction at work
+- 
+
+
 ## Failing Successfully
 
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
