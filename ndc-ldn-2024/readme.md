@@ -132,11 +132,29 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 - write it down
 - work together and collaborate
 - 
-
+I
 
 ## Failing Successfully
 
+CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-net-maui-blazor-and-signalr/0179973be3cc
+
+- ms employee
+- signal r - started with basic example
+- Maui
+- evolution of xamarin forms
+- wrapper on iOS and andoird Mac and windows apis
+- blazor. Run it all in c#
+- forget needing to know js..
+- blazor united - new in 8 - hybrid of server and web assembly. !!!!!!
+- maui and blazor…:
+- = blazor hybrid. 
+- 
+
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
+
+- !!!!
+- 
+- 
 
 ## Actionable Observability
 
