@@ -227,6 +227,11 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - consumption of budget vs rate of change of budget (burn rate)
 - automation not about replacing us, it’s about enabling us
 -  
+- 
+
+## Snack bar
+
+![snack](snacks.jpg) 
 
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
 
