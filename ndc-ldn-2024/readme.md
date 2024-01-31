@@ -235,6 +235,47 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
 
+- nick tune- architecture modernisation - book
+- ran the workshop sessions on ddd that JB attended 
+- teams deploying multiple times a day
+- need to see it early enough that you need to modernise
+- open table stopped all features and modernised for 8 months… not always advocating that approach
+- doing nothing- how long until irrelevant or fail?
+- even if make good arch decisions, your assumptions your decisions are based on will change over time
+- result: still end up with messy architecture…
+- arch modernisation -> convert disadvantage to advantage
+- talk overview:
+- architecting for flow
+- tools 
+- kickstarting and enabling arch modernisation
+- rewriting / using new tech, doesn’t fix all the problems. It’s deeper than that. It enables you to then be able to fix actual problem
+- make changes / features fit inside one subdomain
+- empower teams
+- software decoupled
+- always will have the question of should we do modernisation work or new feature work
+- time to listen - indi young - book
+- need the business objective to support the modernisation decisions
+- impact mapping
+- wardley mapping
+- make decisions based on how component is evolving, not its current state
+- ask how quickly each component is evolving
+-  Event storming. Big picture and process modelling
+- getting a true wide-perspective picture
+- domains and subdomains
+- grouping and transition points
+- modernisation strategy selector..
+- how to maximise roi on modernisation 
+- platform modernisation and also,
+- product, domain, software modernisation 
+- codescene tool
+- keeping momentum after event storming workshops
+- architecture modernisation enabling team AMET. Don’t own a part of system, but help them achieve the change.
+- team for range of skills not just arch’s.
+- don’t get lost in all upfront planning
+- make a decision on when first change will be seen. Aim a target of 3 - 6 months?
+- patterns for migrations. Strangler fig. DDD bubble pattern. Danger of strangler fig.
+- 
+ 
 ## The definitive deep dive into the .git folder
 
 ## Supercharge your team by building clarity, not consensus
