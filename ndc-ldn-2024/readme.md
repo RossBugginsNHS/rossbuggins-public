@@ -434,13 +434,89 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 - suggest code changes rather than just saying something is bad / wrong. Teach.
 - framing feedback as questions
 - if your arguing in code reviews, probably doing it wrong.
-- 
+ 
 
 ## How to get a grip on your microservices system using a service-mesh
 
+- this is heavy on k8s
+- what is service mesh and why use it
+- observability
+- chaos engineering
+-  service mesh almost always use sidecar pattern
+- ambient mesh coming soon, does it without another container
+- sidecar runs alongside actual container, in the same pod
+- istio as a mesh provider
+- kiali very cool graph views ok k8s injections and traffic etc between them
+- service mesh - power comes from mirroring requests to new versions of a service. Ie test a new version with real live data (obv any transactions etc have to be separate db etc)
+- chaos engineering, injection faults, including network level style failures
+
+
+
 ## Let's build the worst Event Sourcing system!
 
+1: 21/34
+
+![worst es](worst-es.jpg)
+
+- project franz 
+- worst es system ever
+- event store db
+- Kafka for event storing or event bridge
+- idempotency
+- event ordering
+- the queue we are standing in is always the slowest 😂
+- Kafka topic and partition split. Topic is logical, partition is physical.
+- event disordering 😂
+- process managers. 
+- the confusion between event sourcing and event streaming
+- optimistic concurrency
+- strong consistency
+- Kafka can’t do the optimist concurrency
+- basically don’t use Kafka for event sourcing.
+- Kafka is good for what it should be used for.
+- Kafka is for event streaming.
+- event sourcing is about recording and storing business events.
+- event streaming is about moving data from one place to another.
+- cap theorem - consistency, availability, partitioning - can’t have all 3
+- outbox pattern, store state and output message at same time. Both or neither
+- CRAP theorem - managers wanting 100% of c an and p…
+- passive aggressive events
+- eg the bin is full, the dishwasher has finished 😂😂😂😂
+- stream design. Event sourcing is still just storage.
+- events on the inside and events on the outside.
+- domain and integration events.
+- important to have the distinction.
+- keep granular events in your domain, in your domains own event store.
+- long living streams. More events a stream, iops goes up
+- snapshots. Every event? Some period of time? Every x events?
+- hope driven design HDD
+- snaps shots are a cache…
+- closing the book. Eg rather than account, accounting month. Stream restarts each month.
+- a bad system will beat a good person every time.
+- fear uncertainty and doubt
+- Peter principle
+- running with an empty barrow
+
+
 ## It’s time to rebuild DevOps.
+
+- breaking the mould
+- may be a triggering talk for some 😂
+- gene kim devops handbook, book
+- Chris reed. Unless your pretty code is in production, you’re just wasting time.
+- 2019 there were 80 devops days
+- already 60 this year
+- devops eating up the world 
+- solving comms between devs and ops
+- Etsy - infra / devops done well 
+- key problems:
+- paper cuts. All the little things that are a bit hard. Tool after tool to fix crap they comes before.
+- collaboration. Pull requests / git, increase barriers to collaboration.
+- source of truth. The actual infra, or the source control?…
+- Rick Rubin. Book / quote. Average is nothing to aspire to.
+- system initiative. Utilises digital twins.
+- local stack
+- 
 
 ## CS Fundamentals: Why SSL and SSH are Secure
 
