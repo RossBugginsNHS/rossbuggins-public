@@ -438,6 +438,19 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 ## How to get a grip on your microservices system using a service-mesh
 
+- this is heavy on k8s
+- what is service mesh and why use it
+- observability
+- chaos engineering
+-  service mesh almost always use sidecar pattern
+- ambient mesh coming soon, does it without another container
+- sidecar runs alongside actual container, in the same pod
+- istio as a mesh provider
+- kiali very cool graph views ok k8s injections and traffic etc between them
+- service mesh - power comes from mirroring requests to new versions of a service. Ie test a new version with real live data (obv any transactions etc have to be separate db etc)
+- chaos engineering, injection faults, including network level style failures
+- 
+
 ## Let's build the worst Event Sourcing system!
 
 ## It’s time to rebuild DevOps.
