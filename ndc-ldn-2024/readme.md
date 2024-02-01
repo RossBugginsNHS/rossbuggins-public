@@ -313,9 +313,128 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 
 ## So You Want to Build An Event Driven System?
 
+1:21
+
+- yuval Noah harari- sapiens - book:
+- about stories being so important
+- EDA is a communication pattern
+- modelling the integration
+- James Eastham - aws architect
+- built EDA in the past, and many have failed
+- learn more from failure than success
+- example is that we are devs at plant based pizza, system currently request response.
+- order processing have dependency on everything, kitchen, delivery etc
+- aim for high cohesion, and low coupling 
+- an appropriate level of coupling depends on the level of control you have over the endpoints.
+- Martin fowlers talk on eda:
+- what is eda - reversing dependencies 
+- what is an event.. An immutable fact. Something that has happened in the past. It cannot be changed.
+- event driven system vs event based system:
+- eds- it’s driven by business events eg: PizzaBoxed, DeliveryNotificationSent.
+- tell the story of your business through events
+- events are first class citizens: events designed even before api.: Event First Design.
+- notification event. Lightweight. Anaemic. Often leads to an api call to the sender. Can lead to fire, as far to many calls back to originator. The producer of events should be unaware of downstream consumers.
+- event carried state transfer - a fat event. More in there for downstream consumers can use.
+-  producer, consumer and event broker (bus, queue etc) - pub sub.
+- always put a queue in front of compute. Eventbus ==>>> my domain (my queue => my compute). Protect your self from overload.
+- go do event storming - to understand what the business events are 
+- governance for controlling events… stop the unknowns breaking.
+- put out a public RFC before changing.
+-  payload. Split to data and meta. Meta should contain ids, event type, version. VERSION NUMBER. Depreciated flag? Sunset dates.
+- fat vs sparse. Always - it depends.
+- enriched pattern
+- use eventual convergence over term eventual consistency. Embracing this is the EDA trade off.
+- EDA dealing with http request response. Wrap events into a way to make call, and the publish event when finished, with a queue.
+- meta data to contain trace ids. Previous event that triggered it.
+- boundaries. Going to need request response somewhere at the edge. Really thin synchronous wrapper that dumps onto event bus - posts.
+- but for gets.. separation of command events and queries. 
+- processing commands synchronously. Eg send an email. 
+- where should the responsibility lay. If truely event, eg email service listening to order created. Using queue for async commands.
+- load on cqrs.
+- transactional outbox pattern. Storing data in service before publishing it to the service.
+- change data capture - stream output, publish events from the back of it. Using dynamodb streams. publish events.
+- redid cache for query.
+
+
+Question: integration event bus, fire and forget, or persistent and support event replay ability?
+
+It depends on the use case. Does it need to get there? Then if persistent horizontal client scaling is hard. Or fifo queue. Ugh.
+
+Question: how to deal with the common question of: now everything is dependant on a single event bus. Worry?
+
+
+
+
 ## Distribu-ready with the Modular Monolith
 
+1:13
+![micro mod](mono-micro.jpg)
+
+https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i
+
+
+https://ndclondon.com/speakers/layla-porter
+
+
+
+-  complexity is your enemy. Anyone can make something complicated. It’s hard to keep it simple.. Richard Branson
+- monolith. Single executable. Some benefits. But problems. Simple deploy.
+- hard to scale and maintain.
+- microservice architecture. Divide into lots of small independently deployable services.
+- what needs? Want to scale. What are options:
+- go through code or infra and scale vertical / horizontal.
+- or distributed system.
+- the cost of distributed is simplicity.
+- distro monolith is the worse place to be
+- shared db is the evil of distro monoliths.
+- DM: hard bits of complexity. But not of the independence benefits. None of the monolith ease of debug.
+- DDD. Lose coupling and high cohesion.
+- the more pleasant system to get there…
+- the modular monolith.
+- mono to modular mono (not distro mono) to microservice.
+- the kitkat pattern.
+- how to decompose the mono app.
+- decomposing the database. Code first or db first. START db separation first. Then move onto code separation… 
+- be pragmatic, not dogmatic.
+- so…. The how?:
+- how to ensure completely independent?
+- how to communicate?:
+- external not much change.
+- internal inter proc comms:
+- mediator pattern.
+- messaging pattern.
+- thin and fat content payloads
+- how to enforce architecture… code review. 
+- .net aspire https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview
+
+Question: this focused on mono to micro. What happens if already in the distro mono hole?
+
+A: pray 😂 communicate why it’s a problem. Need people to see why it’s a bad place to be.
+ 
+
 ## Better Code Reviews FTW!
+
+1: 13
+
+- why do code reviews? 
+- finding defects least of concerns?
+- it should focus on sharing knowledge and sharing patterns
+- sharing knowledge
+- shared ownership of code in the squad. 
+- on merge it’s going from my code to our code
+- how to do code reviews like a human
+- be open for feedback
+- appreciate what people do right, not brining down on the what they do wrong.
+- award ties in discussions to the reviewer.! (The reviewer has a fresh set of eyes..) or at least consider this.
+- review your own PR first
+- have an absolute style guide.
+- PR review should be a higher priority than anything else at all. Help someone to finishing something is better than starting something new.
+- developers don’t have much patience. From a given list will pick the low hanging fruit and ignore the complex points
+- regular little is the way forward. Through PR aim to get D grade code to C grade, not A grade. Next time it’s touched it can go from C to B/A. Or do a separate extra or to improve that.
+- suggest code changes rather than just saying something is bad / wrong. Teach.
+- framing feedback as questions
+- if your arguing in code reviews, probably doing it wrong.
+- 
 
 ## How to get a grip on your microservices system using a service-mesh
 
@@ -338,3 +457,18 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 ## Co-Create: Creating Better Together
 
 ## How JavaScript Happened: A Short History of Programming Languages
+
+# general notes 
+
+- implement org or arch wide RFC process
+- notify AMET team
+- notify set target for first “change” in modernisation process 
+- in maturity doc - eda for comms. Micro arch for compute. 
+- whys.
+- what is our distro-ready state - ie the point we are ready to separate.
+
+## es next step session
+
+- map out sub domain boundaries
+- explore how the db can be separated
+-  map out what are the contract for events. Utilising dynamo db change stream.
