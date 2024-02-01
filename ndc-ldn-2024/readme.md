@@ -408,9 +408,33 @@ https://ndclondon.com/speakers/layla-porter
 - .net aspire https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview
 
 Question: this focused on mono to micro. What happens if already in the distro mono hole?
+
+A: pray 😂 communicate why it’s a problem. Need people to see why it’s a bad place to be.
  
 
 ## Better Code Reviews FTW!
+
+1: 13
+
+- why do code reviews? 
+- finding defects least of concerns?
+- it should focus on sharing knowledge and sharing patterns
+- sharing knowledge
+- shared ownership of code in the squad. 
+- on merge it’s going from my code to our code
+- how to do code reviews like a human
+- be open for feedback
+- appreciate what people do right, not brining down on the what they do wrong.
+- award ties in discussions to the reviewer.! (The reviewer has a fresh set of eyes..) or at least consider this.
+- review your own PR first
+- have an absolute style guide.
+- PR review should be a higher priority than anything else at all. Help someone to finishing something is better than starting something new.
+- developers don’t have much patience. From a given list will pick the low hanging fruit and ignore the complex points
+- regular little is the way forward. Through PR aim to get D grade code to C grade, not A grade. Next time it’s touched it can go from C to B/A. Or do a separate extra or to improve that.
+- suggest code changes rather than just saying something is bad / wrong. Teach.
+- framing feedback as questions
+- if your arguing in code reviews, probably doing it wrong.
+- 
 
 ## How to get a grip on your microservices system using a service-mesh
 
