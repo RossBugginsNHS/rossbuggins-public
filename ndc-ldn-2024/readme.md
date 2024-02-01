@@ -496,9 +496,27 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 - fear uncertainty and doubt
 - Peter principle
 - running with an empty barrow
-- 
+
 
 ## It’s time to rebuild DevOps.
+
+- breaking the mould
+- may be a triggering talk for some 😂
+- gene kim devops handbook, book
+- Chris reed. Unless your pretty code is in production, you’re just wasting time.
+- 2019 there were 80 devops days
+- already 60 this year
+- devops eating up the world 
+- solving comms between devs and ops
+- Etsy - infra / devops done well 
+- key problems:
+- paper cuts. All the little things that are a bit hard. Tool after tool to fix crap they comes before.
+- collaboration. Pull requests / git, increase barriers to collaboration.
+- source of truth. The actual infra, or the source control?…
+- Rick Rubin. Book / quote. Average is nothing to aspire to.
+- system initiative. Utilises digital twins.
+- local stack
+- 
 
 ## CS Fundamentals: Why SSL and SSH are Secure
 
