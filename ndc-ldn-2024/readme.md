@@ -313,6 +313,8 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 
 ## So You Want to Build An Event Driven System?
 
+1:21
+
 - yuval Noah harari- sapiens - book:
 - about stories being so important
 - EDA is a communication pattern
@@ -350,11 +352,13 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 - where should the responsibility lay. If truely event, eg email service listening to order created. Using queue for async commands.
 - load on cqrs.
 - transactional outbox pattern. Storing data in service before publishing it to the service.
-- change data capture - stream output, publish events from the back of it. Using dynamodb streams-> publish events.
+- change data capture - stream output, publish events from the back of it. Using dynamodb streams. publish events.
 - redid cache for query.
-- 
+
 
 Question: integration event bus, fire and forget, or persistent and support event replay ability?
+
+It depends on the use case. Does it need to get there? Then if persistent horizontal client scaling is hard. Or fifo queue. Ugh.
 
 Question: how to deal with the common question of: now everything is dependant on a single event bus. Worry?
 
@@ -362,6 +366,49 @@ Question: how to deal with the common question of: now everything is dependant o
 
 
 ## Distribu-ready with the Modular Monolith
+
+1:13
+![micro mod](mono-micro.jpg)
+
+https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i
+
+
+https://ndclondon.com/speakers/layla-porter
+
+
+
+-  complexity is your enemy. Anyone can make something complicated. It’s hard to keep it simple.. Richard Branson
+- monolith. Single executable. Some benefits. But problems. Simple deploy.
+- hard to scale and maintain.
+- microservice architecture. Divide into lots of small independently deployable services.
+- what needs? Want to scale. What are options:
+- go through code or infra and scale vertical / horizontal.
+- or distributed system.
+- the cost of distributed is simplicity.
+- distro monolith is the worse place to be
+- shared db is the evil of distro monoliths.
+- DM: hard bits of complexity. But not of the independence benefits. None of the monolith ease of debug.
+- DDD. Lose coupling and high cohesion.
+- the more pleasant system to get there…
+- the modular monolith.
+- mono to modular mono (not distro mono) to microservice.
+- the kitkat pattern.
+- how to decompose the mono app.
+- decomposing the database. Code first or db first. START db separation first. Then move onto code separation… 
+- be pragmatic, not dogmatic.
+- so…. The how?:
+- how to ensure completely independent?
+- how to communicate?:
+- external not much change.
+- internal inter proc comms:
+- mediator pattern.
+- messaging pattern.
+- thin and fat content payloads
+- how to enforce architecture… code review. 
+- .net aspire https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview
+
+Question: this focused on mono to micro. What happens if already in the distro mono hole?
+ 
 
 ## Better Code Reviews FTW!
 
@@ -390,4 +437,14 @@ Question: how to deal with the common question of: now everything is dependant o
 # general notes 
 
 - implement org or arch wide RFC process
-- 
+- notify AMET team
+- notify set target for first “change” in modernisation process 
+- in maturity doc - eda for comms. Micro arch for compute. 
+- whys.
+- what is our distro-ready state - ie the point we are ready to separate.
+
+## es next step session
+
+- map out sub domain boundaries
+- explore how the db can be separated
+-  map out what are the contract for events. Utilising dynamo db change stream.
