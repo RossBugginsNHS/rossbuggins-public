@@ -313,6 +313,54 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 
 ## So You Want to Build An Event Driven System?
 
+- yuval Noah harari- sapiens - book:
+- about stories being so important
+- EDA is a communication pattern
+- modelling the integration
+- James Eastham - aws architect
+- built EDA in the past, and many have failed
+- learn more from failure than success
+- example is that we are devs at plant based pizza, system currently request response.
+- order processing have dependency on everything, kitchen, delivery etc
+- aim for high cohesion, and low coupling 
+- an appropriate level of coupling depends on the level of control you have over the endpoints.
+- Martin fowlers talk on eda:
+- what is eda - reversing dependencies 
+- what is an event.. An immutable fact. Something that has happened in the past. It cannot be changed.
+- event driven system vs event based system:
+- eds- it’s driven by business events eg: PizzaBoxed, DeliveryNotificationSent.
+- tell the story of your business through events
+- events are first class citizens: events designed even before api.: Event First Design.
+- notification event. Lightweight. Anaemic. Often leads to an api call to the sender. Can lead to fire, as far to many calls back to originator. The producer of events should be unaware of downstream consumers.
+- event carried state transfer - a fat event. More in there for downstream consumers can use.
+-  producer, consumer and event broker (bus, queue etc) - pub sub.
+- always put a queue in front of compute. Eventbus ==>>> my domain (my queue => my compute). Protect your self from overload.
+- go do event storming - to understand what the business events are 
+- governance for controlling events… stop the unknowns breaking.
+- put out a public RFC before changing.
+-  payload. Split to data and meta. Meta should contain ids, event type, version. VERSION NUMBER. Depreciated flag? Sunset dates.
+- fat vs sparse. Always - it depends.
+- enriched pattern
+- use eventual convergence over term eventual consistency. Embracing this is the EDA trade off.
+- EDA dealing with http request response. Wrap events into a way to make call, and the publish event when finished, with a queue.
+- meta data to contain trace ids. Previous event that triggered it.
+- boundaries. Going to need request response somewhere at the edge. Really thin synchronous wrapper that dumps onto event bus - posts.
+- but for gets.. separation of command events and queries. 
+- processing commands synchronously. Eg send an email. 
+- where should the responsibility lay. If truely event, eg email service listening to order created. Using queue for async commands.
+- load on cqrs.
+- transactional outbox pattern. Storing data in service before publishing it to the service.
+- change data capture - stream output, publish events from the back of it. Using dynamodb streams-> publish events.
+- redid cache for query.
+- 
+
+Question: integration event bus, fire and forget, or persistent and support event replay ability?
+
+Question: how to deal with the common question of: now everything is dependant on a single event bus. Worry?
+
+
+
+
 ## Distribu-ready with the Modular Monolith
 
 ## Better Code Reviews FTW!
@@ -338,3 +386,8 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 ## Co-Create: Creating Better Together
 
 ## How JavaScript Happened: A Short History of Programming Languages
+
+# general notes 
+
+- implement org or arch wide RFC process
+- 
