@@ -572,6 +572,16 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ## Software Reimagined: The Power of Vertical Slice Architecture
 
+Missed due to Long chat with Oskar Dudycz re event sourcing and event db
+
+- closing the book strategies
+- right to be forgotten, encryption payloads, multiple rolling keys etc
+- persistent subs
+- event store cloud offering
+- iot usage
+- todo read his esdb blog post on closing book + other links he’s going to send through
+- 
+
 ## How GitHub delivers GitHub using GitHub
 
 ## Keep your nose out of it. Denying yourself access to production
