@@ -516,7 +516,7 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 - Rick Rubin. Book / quote. Average is nothing to aspire to.
 - system initiative. Utilises digital twins.
 - local stack
-- 
+
 
 ## CS Fundamentals: Why SSL and SSH are Secure
 
@@ -536,6 +536,38 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ![rise chat gpt](rise-gpt.jpg)
 
+- kesha Williams
+- transformer architecture patterns
+- GPT - stands for:
+- generative pretrained transformer 
+- talk:
+- origins
+- deep dive
+- real world
+- more than meet eye
+- commanding power
+- autobots roll out.
+- Natural language processing 
+- nlp helps machines understand our language
+- nlp, seri Alexa
+- gen ai is for nlp what the all spark was for Optimus prime 😂😂
+- GenAI, creates new content
+- powered by large foundation models
+- top layer, AI, next is ML, then Deep Learning, under that GenAI
+- FM FOUNDATION MODEL
+- fm powering chat GPT is called GPT
+-  One fm can replace many prior gen models
+- pre train, and adapt & fine tune
+- chat gpt is fine tuned gpt
+- input processing, understand context, generation
+- 2018 transformer architecture
+- 2018 gpt1, text generation summarise and translate
+- 2019 gpt2 gpt1 + qa
+- 2020 gpt3 gpt2 + code gen + creative writing
+- 2022 gpt3.5 gpt3 + fine tuned for conversation
+- 2023 gpt4 multi modal image etc
+- message KW on linked in for free access to her linked in learning courses
+- cloud career journeys - book
 - 
 
 ## Software Reimagined: The Power of Vertical Slice Architecture
