@@ -534,6 +534,8 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ## Keynote: Transformers: The Rise of ChatGPT
 
+13
+
 ![rise chat gpt](rise-gpt.jpg)
 
 - kesha Williams
@@ -596,6 +598,8 @@ Went to end of what’s new in net 8
 
 ## How GitHub delivers GitHub using GitHub
 
+13 / 21
+
 - April Edwards
 - been at GitHub for 11 months
 - at ms before
@@ -613,9 +617,33 @@ Went to end of what’s new in net 8
 
 ## Keep your nose out of it. Denying yourself access to production
 
+1: 5
+- Glenn 
+- why block yourself:
+- blamability. You can’t touch it so can’t be blamed. Arse cover.
+- criminal users at work
+- criminal external
+- limit attack surface
+- explicit and auditable
+- big shop Vs small shop, governance
+- need to keep some agility. Deploying.
+- zero trust. Assume breach.
+- least privileged access
+- application segmation, fits with microservices. Only have access to your part.
+- azure managed identities, only can ever be assigned to a service.
+- push logs out of prod that don’t have PII.
+- just in time access
+- azure PIM, request access for a set amount of time for certain resources, with reason specified and approval process.
+- immutable ledgers for audit logs
+- make a tool for it 😊
+
 ## Co-Create: Creating Better Together
 
+- todo: watch online
+
 ## How JavaScript Happened: A Short History of Programming Languages
+
+- todo: watch online
 
 # general notes 
 
