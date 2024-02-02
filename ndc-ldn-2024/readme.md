@@ -596,7 +596,20 @@ Went to end of what’s new in net 8
 
 ## How GitHub delivers GitHub using GitHub
 
-
+- April Edwards
+- been at GitHub for 11 months
+- at ms before
+- 3 week sprints. But it is set per feature team, vertical slices.
+- at GitHub, all non tech staff use GitHub for their work, hr, sales, all of them 
+- no local code
+- all GitHub GitHub dev is using code spaces
+- epics, stories, tasks
+- epics mgmt quarterly 
+- extensive use of feature flags
+- docsets, collection of repos 
+- code spaces 
+- use of devcontainer for pre setting extensions for vs code workspaces
+- 
 
 ## Keep your nose out of it. Denying yourself access to production
 
