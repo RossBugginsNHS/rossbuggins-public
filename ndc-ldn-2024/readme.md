@@ -516,23 +516,134 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 - Rick Rubin. Book / quote. Average is nothing to aspire to.
 - system initiative. Utilises digital twins.
 - local stack
-- 
+
 
 ## CS Fundamentals: Why SSL and SSH are Secure
 
+Alternate instead
+
+https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-radio-075j/0m0z3hlqpf2
+
+- redis stack for streaming and event state 
+
+
 ## NDC Party - Conference reception
+
+- 🍸🍸🍸
+- 🍺🍺🍺
 
 ## Keynote: Transformers: The Rise of ChatGPT
 
+13
+
+![rise chat gpt](rise-gpt.jpg)
+
+- kesha Williams
+- transformer architecture patterns
+- GPT - stands for:
+- generative pretrained transformer 
+- talk:
+- origins
+- deep dive
+- real world
+- more than meet eye
+- commanding power
+- autobots roll out.
+- Natural language processing 
+- nlp helps machines understand our language
+- nlp, seri Alexa
+- gen ai is for nlp what the all spark was for Optimus prime 😂😂
+- GenAI, creates new content
+- powered by large foundation models
+- top layer, AI, next is ML, then Deep Learning, under that GenAI
+- FM FOUNDATION MODEL
+- fm powering chat GPT is called GPT
+-  One fm can replace many prior gen models
+- pre train, and adapt & fine tune
+- chat gpt is fine tuned gpt
+- input processing, understand context, generation
+- 2018 transformer architecture
+- 2018 gpt1, text generation summarise and translate
+- 2019 gpt2 gpt1 + qa
+- 2020 gpt3 gpt2 + code gen + creative writing
+- 2022 gpt3.5 gpt3 + fine tuned for conversation
+- 2023 gpt4 multi modal image etc
+- message KW on linked in for free access to her linked in learning courses
+- cloud career journeys - book
+- 
+
 ## Software Reimagined: The Power of Vertical Slice Architecture
+
+Missed due to Long chat with Oskar Dudycz re event sourcing and event db
+
+- closing the book strategies
+- right to be forgotten, encryption payloads, multiple rolling keys etc
+- persistent subs
+- event store cloud offering
+- iot usage
+- todo read his esdb blog post on closing book + other links he’s going to send through
+- https://www.eventstore.com/blog/keep-your-streams-short-temporal-modelling-for-fast-reads-and-optimal-data-retention
+
+Went to end of what’s new in net 8
+
+- interceptors
+- debuggerhidden attribute 😂😂😂😂
+- span, stack, hence not in async await. MemoryT uses heap
+- collection to expressions
+- optional parameters on lambdas, niiiice
+- alias any type
+- filip ekberg 
+- filip@ekberg.dev
+- 
 
 ## How GitHub delivers GitHub using GitHub
 
+13 / 21
+
+- April Edwards
+- been at GitHub for 11 months
+- at ms before
+- 3 week sprints. But it is set per feature team, vertical slices.
+- at GitHub, all non tech staff use GitHub for their work, hr, sales, all of them 
+- no local code
+- all GitHub GitHub dev is using code spaces
+- epics, stories, tasks
+- epics mgmt quarterly 
+- extensive use of feature flags
+- docsets, collection of repos 
+- code spaces 
+- use of devcontainer for pre setting extensions for vs code workspaces
+- 
+
 ## Keep your nose out of it. Denying yourself access to production
+
+1: 5
+- Glenn 
+- why block yourself:
+- blamability. You can’t touch it so can’t be blamed. Arse cover.
+- criminal users at work
+- criminal external
+- limit attack surface
+- explicit and auditable
+- big shop Vs small shop, governance
+- need to keep some agility. Deploying.
+- zero trust. Assume breach.
+- least privileged access
+- application segmation, fits with microservices. Only have access to your part.
+- azure managed identities, only can ever be assigned to a service.
+- push logs out of prod that don’t have PII.
+- just in time access
+- azure PIM, request access for a set amount of time for certain resources, with reason specified and approval process.
+- immutable ledgers for audit logs
+- make a tool for it 😊
 
 ## Co-Create: Creating Better Together
 
+- todo: watch online
+
 ## How JavaScript Happened: A Short History of Programming Languages
+
+- todo: watch online
 
 # general notes 
 
