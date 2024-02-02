@@ -580,9 +580,23 @@ Missed due to Long chat with Oskar Dudycz re event sourcing and event db
 - event store cloud offering
 - iot usage
 - todo read his esdb blog post on closing book + other links he’s going to send through
+- https://www.eventstore.com/blog/keep-your-streams-short-temporal-modelling-for-fast-reads-and-optimal-data-retention
+
+Went to end of what’s new in net 8
+
+- interceptors
+- debuggerhidden attribute 😂😂😂😂
+- span, stack, hence not in async await. MemoryT uses heap
+- collection to expressions
+- optional parameters on lambdas, niiiice
+- alias any type
+- filip ekberg 
+- filip@ekberg.dev
 - 
 
 ## How GitHub delivers GitHub using GitHub
+
+
 
 ## Keep your nose out of it. Denying yourself access to production
 
