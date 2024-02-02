@@ -520,9 +520,21 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 ## CS Fundamentals: Why SSL and SSH are Secure
 
+Alternate instead
+
+https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-radio-075j/0m0z3hlqpf2
+
+- redis stack for streaming and event state 
+
+
 ## NDC Party - Conference reception
 
+- 🍸🍸🍸
+- 🍺🍺🍺
+
 ## Keynote: Transformers: The Rise of ChatGPT
+
+- 
 
 ## Software Reimagined: The Power of Vertical Slice Architecture
 
