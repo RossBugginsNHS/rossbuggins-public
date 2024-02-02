@@ -534,6 +534,8 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ## Keynote: Transformers: The Rise of ChatGPT
 
+![rise chat gpt](rise-gpt.jpg)
+
 - 
 
 ## Software Reimagined: The Power of Vertical Slice Architecture
