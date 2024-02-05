@@ -6,30 +6,30 @@
 
 ## Wednesday, 2024-01-31
 
-| Session Review                                                             | Title                                                                                                                                                                                       | Start | Finish | Location | Speaker                                                | Role | Org |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | ------------------------------------------------------ | ---- | --- |
-| [01](#keynote-debug-your-thinking)                                         | [Keynote: Debug your thinking](https://ndclondon.com/agenda/debug-your-thinking/b9254f6c8eed)                                                                                               | 09:00 | 10:00  | Room 1   |                                                        |      |     |
-| [02](#failing-successfully)                                                | [Failing Successfully](https://ndclondon.com/agenda/failing-successfully-0vg6/0hcvcyly3c4)                                                                                                  | 10:20 | 11:20  | Room 5   |                                                        |      |     |
-| [03](#you-keep-using-that-word-asynchronous-and-interprocess-comms)        | [You Keep Using That Word: Asynchronous And Interprocess Comms](https://ndclondon.com/agenda/you-keep-using-that-word-asynchronous-and-interprocess-comms-075y/0f8reo5nftf)                 | 11:40 | 12:40  | Room 2   | [Sam Newman](https://ndclondon.com/speakers/samnewman) |      |     |
-| [04](#actionable-observability)                                            | [Actionable Observability](https://ndclondon.com/agenda/actionable-observability-0m4b/0useabey7eh)                                                                                          | 13:40 | 14:40  | Room 4   |                                                        |      |     |
-| [05](#architecture-modernization-aligning-software-strategy-and-structure) | [Architecture Modernization: Aligning Software, Strategy, and Structure](https://ndclondon.com/agenda/architecture-modernization-aligning-software-strategy-and-structure-0dbk/0n8z6idpn3h) | 15:00 | 16:00  | Room 2   |                                                        |      |     |
-| [06](#the-definitive-deep-dive-into-the-git-folder)                        | [The definitive deep dive into the .git folder](https://ndclondon.com/agenda/the-definitive-deep-dive-into-the-git-folder-0ple/0eug0l826i7)                                                 | 16:20 | 17:20  | Room 3   |                                                        |      |     |
-| [07](#supercharge-your-team-by-building-clarity-not-consensus)             | [Supercharge your team by building clarity, not consensus](https://ndclondon.com/agenda/supercharge-your-team-by-building-clarity-not-consensus-0p85/00zgrkrl28z)                           | 17:40 | 18:40  | Room 5   |                                                        |      |     |
+| Session Review                                                                | Title                                                                                                                                                                                       | Start | Finish | Location | Speaker                                                | Role      | Org            |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | ------------------------------------------------------ | --------- | -------------- |
+| [** 01](#keynote-debug-your-thinking)                                         | [Keynote: Debug your thinking](https://ndclondon.com/agenda/debug-your-thinking/b9254f6c8eed)                                                                                               | 09:00 | 10:00  | Room 1   | Laila Bougria                                          |           |                |
+| [02](#failing-successfully)  CANCELLD                                         | [Failing Successfully](https://ndclondon.com/agenda/failing-successfully-0vg6/0hcvcyly3c4)                                                                                                  | 10:20 | 11:20  | Room 5   | n/a                                                    |           |                |
+| [** 03](#you-keep-using-that-word-asynchronous-and-interprocess-comms)        | [You Keep Using That Word: Asynchronous And Interprocess Comms](https://ndclondon.com/agenda/you-keep-using-that-word-asynchronous-and-interprocess-comms-075y/0f8reo5nftf)                 | 11:40 | 12:40  | Room 2   | [Sam Newman](https://ndclondon.com/speakers/samnewman) |           |                |
+| [04](#actionable-observability)                                               | [Actionable Observability](https://ndclondon.com/agenda/actionable-observability-0m4b/0useabey7eh)                                                                                          | 13:40 | 14:40  | Room 4   | Lesley Cordero                                         | Tech Lead | New York Times |
+| [** 05](#architecture-modernization-aligning-software-strategy-and-structure) | [Architecture Modernization: Aligning Software, Strategy, and Structure](https://ndclondon.com/agenda/architecture-modernization-aligning-software-strategy-and-structure-0dbk/0n8z6idpn3h) | 15:00 | 16:00  | Room 2   | Nick Tune                                              |           |                |
+| [* 06](#the-definitive-deep-dive-into-the-git-folder)                         | [The definitive deep dive into the .git folder](https://ndclondon.com/agenda/the-definitive-deep-dive-into-the-git-folder-0ple/0eug0l826i7)                                                 | 16:20 | 17:20  | Room 3   | Rob Richardson                                         |           |                |
+| [07](#supercharge-your-team-by-building-clarity-not-consensus)     CANCELLED  | [Supercharge your team by building clarity, not consensus](https://ndclondon.com/agenda/supercharge-your-team-by-building-clarity-not-consensus-0p85/00zgrkrl28z)                           | 17:40 | 18:40  | Room 5   | n/a                                                    |           |                |
 
 ## Thursday, 2024-02-01
 
-| Session Review                                                             | Title                                                                                                                                                                                    | Start | Finish | Location | Speaker                                                         | Role                              | Org    | 
-| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | --------------------------------------------------------------- | --------------------------------- | ------ | 
-| [08](#so-you-want-to-build-an-event-driven-system)                         | [So You Want to Build An Event Driven System?](https://ndclondon.com/agenda/so-you-want-to-build-an-event-driven-system-0ps7/0hl94atxd8i)                                                | 09:00 | 10:00  | Room 3   |                                                                 |                                   |        | 
-| [09](#distribu-ready-with-the-modular-monolith)                            | [Distribu-ready with the Modular Monolith](https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i)                                                       | 10:20 | 11:20  | Room 1   |                                                                 |                                   |        | 
-| [10](#better-code-reviews-ftw)                                             | [Better Code Reviews FTW!](https://ndclondon.com/agenda/better-code-reviews-ftw-03b1/0qf0kcod9s2)                                                                                        | 11:40 | 12:40  | Room 3   |                                                                 |                                   |        | 
-| [10](#how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh) | [How to get a grip on your microservices system using a service-mesh](https://ndclondon.com/agenda/how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh-0i5h/0s50c7e5x2z) | 13:40 | 14:40  | Room 4   | [Edwin van Wijk](https://ndclondon.com/speakers/edwin-van-wijk) | Principal Solution Architect      |        | 
-| [11](#lets-build-the-worst-event-sourcing-system)                          | [Let's build the worst Event Sourcing system!](https://ndclondon.com/agenda/lets-build-the-worst-event-sourcing-system-0gkz/02ohcx0a2xr)                                                 | 15:00 | 16:00  | Room 4   |                                                                 |                                   |        | 
-| [12](#its-time-to-rebuild-devops)                                          | [It’s time to rebuild DevOps.](https://ndclondon.com/agenda/its-time-to-rebuild-devops-0d58/09amj6rjenn)                                                                                 | 16:20 | 17:20  | Room 5   |                                                                 |                                   |        | 
-| [13](#cs-fundamentals-why-ssl-and-ssh-are-secure)                          | [CS Fundamentals: Why SSL and SSH are Secure](https://ndclondon.com/agenda/cs-fundamentals-why-ssl-and-ssh-are-secure-0xzl/081dcjv71do)                                                  | 17:40 | 18:40  | Room 1   | [Jon Skeet](https://ndclondon.com/speakers/jon-skeet)           | Staff Developer Platform Engineer | Google | 
-| [14](#ndc-party---conference-reception)                                    | [NDC Party - Conference reception](https://ndclondon.com/agenda/ndc-party-london/fa1d3b3a5456)                                                                                           | 18:40 | 19:30  | Expo     |                                                                 |                                   |        | 
-|                                                                            |                                                                                                                                                                                          | 19:40 | 20:40  | ???      |                                                                 |                                   |        | 
-|                                                                            |                                                                                                                                                                                          | 21:00 | 22:00  | ???      |                                                                 |                                   |        | 
+| Session Review                                                             | Title                                                                                                                                                                                    | Start | Finish | Location | Speaker                                                         | Role                              | Org    |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | --------------------------------------------------------------- | --------------------------------- | ------ |
+| [08](#so-you-want-to-build-an-event-driven-system)                         | [So You Want to Build An Event Driven System?](https://ndclondon.com/agenda/so-you-want-to-build-an-event-driven-system-0ps7/0hl94atxd8i)                                                | 09:00 | 10:00  | Room 3   |                                                                 |                                   |        |
+| [09](#distribu-ready-with-the-modular-monolith)                            | [Distribu-ready with the Modular Monolith](https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i)                                                       | 10:20 | 11:20  | Room 1   |                                                                 |                                   |        |
+| [10](#better-code-reviews-ftw)                                             | [Better Code Reviews FTW!](https://ndclondon.com/agenda/better-code-reviews-ftw-03b1/0qf0kcod9s2)                                                                                        | 11:40 | 12:40  | Room 3   |                                                                 |                                   |        |
+| [10](#how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh) | [How to get a grip on your microservices system using a service-mesh](https://ndclondon.com/agenda/how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh-0i5h/0s50c7e5x2z) | 13:40 | 14:40  | Room 4   | [Edwin van Wijk](https://ndclondon.com/speakers/edwin-van-wijk) | Principal Solution Architect      |        |
+| [11](#lets-build-the-worst-event-sourcing-system)                          | [Let's build the worst Event Sourcing system!](https://ndclondon.com/agenda/lets-build-the-worst-event-sourcing-system-0gkz/02ohcx0a2xr)                                                 | 15:00 | 16:00  | Room 4   |                                                                 |                                   |        |
+| [12](#its-time-to-rebuild-devops)                                          | [It’s time to rebuild DevOps.](https://ndclondon.com/agenda/its-time-to-rebuild-devops-0d58/09amj6rjenn)                                                                                 | 16:20 | 17:20  | Room 5   |                                                                 |                                   |        |
+| [13](#cs-fundamentals-why-ssl-and-ssh-are-secure)                          | [CS Fundamentals: Why SSL and SSH are Secure](https://ndclondon.com/agenda/cs-fundamentals-why-ssl-and-ssh-are-secure-0xzl/081dcjv71do)                                                  | 17:40 | 18:40  | Room 1   | [Jon Skeet](https://ndclondon.com/speakers/jon-skeet)           | Staff Developer Platform Engineer | Google |
+| [14](#ndc-party---conference-reception)                                    | [NDC Party - Conference reception](https://ndclondon.com/agenda/ndc-party-london/fa1d3b3a5456)                                                                                           | 18:40 | 19:30  | Expo     |                                                                 |                                   |        |
+|                                                                            |                                                                                                                                                                                          | 19:40 | 20:40  | ???      |                                                                 |                                   |        |
+|                                                                            |                                                                                                                                                                                          | 21:00 | 22:00  | ???      |                                                                 |                                   |        |
 
 ## Friday, 2024-02-02
 
@@ -41,6 +41,26 @@
 | [20](#keep-your-nose-out-of-it-denying-yourself-access-to-production)   | [Keep your nose out of it. Denying yourself access to production](https://ndclondon.com/agenda/keep-your-nose-out-of-it-denying-yourself-access-to-production-0fyv/0j73xjb1wt1)     | 13:40 | 14:40  | Room 3   |         |      |     |
 | [21](#co-create-creating-better-together)                               | [Co-Create: Creating Better Together](https://ndclondon.com/agenda/co-create-creating-better-together/f42660b06066)                                                                 | 15:00 | 16:00  | Room 2   |         |      |     |
 | [22](#how-javascript-happened-a-short-history-of-programming-languages) | [How JavaScript Happened: A Short History of Programming Languages](https://ndclondon.com/agenda/how-javascript-happened-a-short-history-of-programming-languages-089z/0sng56p4pjg) | 16:20 | 17:20  | Room 1   |         |      |     |
+
+## YouTube Stream Urls
+
+| Day    | Room   | Stream                                      |
+| ------ | ------ | ------------------------------------------- |
+| Wed    | Room 1 | https://www.youtube.com/watch?v=YIi3zMR4JSQ |
+| Thurs  | Room 1 | https://www.youtube.com/watch?v=wrSyPR2E8IQ |
+| Friday | Room 1 | https://www.youtube.com/watch?v=COcZcGnPfxs |
+| Wed    | Room 2 | https://www.youtube.com/watch?v=p0ylCTjZDLc |
+| Thurs  | Room 2 | https://www.youtube.com/watch?v=HTwK7pPhRH4 |
+| Friday | Room 2 | https://www.youtube.com/watch?v=H5SvfcZrfjY |
+| Wed    | Room 3 | https://www.youtube.com/watch?v=1jlXtoOyprM |
+| Thurs  | Room 3 | https://www.youtube.com/watch?v=_T_0MNu9DGQ |
+| Friday | Room 3 | https://www.youtube.com/watch?v=Lq24s9I-JPA |
+| Wed    | Room 5 | https://www.youtube.com/watch?v=fuDQTDBocpw |
+| Thurs  | Room 5 | https://www.youtube.com/watch?v=OLXgvGmiHkE |
+| Fri    | Room 5 | https://www.youtube.com/watch?v=Nzc8FACQ1_c |
+| Wed    | Room 6 | https://www.youtube.com/watch?v=nywlTFOoiUM |
+| Thurs  | Room 6 | https://www.youtube.com/watch?v=tRF4CJxa-yQ |
+| Fri    | Room 6 | https://www.youtube.com/watch?v=ieyRch7I_cI |
 
 
 ## Other Options
@@ -62,6 +82,16 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 n: xxxx - adjusted n
 
 ## Keynote: Debug your thinking
+
+> ### NDC Summary
+> 
+> There’s a myriad of complexity involved in building systems. However, two decades in software engineering taught me what truly makes or breaks a system: decisions. It’s not the programming language, the data store, the deployment model, or [insert your favorite tech here]. It’s about the decisions made and the ripple effects they cause. We spend endless hours trying to keep up with the latest and greatest in an industry that sprints faster than a caffeinated cheetah... But how much time was invested in questioning, improving, or, essentially, debugging our thinking process?
+> 
+> How do you structure your decisions, and how do they affect the software you build? When suboptimal decisions occur, do you reflect on the decision-making process itself? I've spent the last few years debugging my decision-making thought process, placing breakpoints to inspect which assumptions got me here and what alternatives I may have missed. As a result, my thought process became much more structured and streamlined, leading to better-balanced decisions. Join me in this session to explore how critical thinking can transform our decision-making process and elevate the quality of the solutions we build for our users.
+> 
+> Laila Bougria is a software engineer and solution architect with over 15 years of experience in the .NET space. She's a Microsoft Azure MVP and frequent speaker at conferences around the world. Currently, Laila is busy building NServiceBus at Particular Software and solving distributed riddles. When she's not immersed in code, Laila enjoys indulging in her favorite pastime - knitting! She finds that tangling the yarn into beautiful patterns helps untangle her thoughts.
+
+### My Notes
 
 1: 21
 
@@ -171,6 +201,15 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 
 ## You Keep Using That Word: Asynchronous And Interprocess Comms
 
+> ### NDC Summary
+>
+> You Keep Using That Word: Asynchronous And Interprocess Comms
+>
+> When it comes to distributed computing, one of the perennial topics comes down to how different services should communicate. Working out the relative merits of specific technical approaches can become a complex affair however, so we often reach for categorisation to simplify our work.
+> 
+> Sam Newman is interested in technology at the intersection of things, from development, to ops, to security, usability and organisations. After over a decade at ThoughtWorks he is now an independent consultant. Sam is the author of "Building Microservices" from O'Reilly. He has worked with a variety of companies in multiple domains around the world, often with one foot in the developer world, and another in the IT operations space. If you asked him what he does, he’d say ‘I work with people to build better software systems’. He has written articles, presented at conferences, and sporadically commits to open source projects. While Java used to be his bread and butter, he also spends time with Ruby, Python, Javascript, and Clojure, Infrastructure Automation and Cloud systems.
+
+### My Notes
 1: 13
 ![async](you-keep-using-that-word.jpg)
 
@@ -206,6 +245,22 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 
 ## Actionable Observability
 
+> ### NDC Notes
+>
+> While observability is the first step towards building observable systems, monitoring enables us to action on the telemetry collected.
+.
+> Previous approaches to monitoring have relied primarily on infrastructure and service metrics, but modern approaches have embraced the idea of monitoring based on metrics that reflect the user experiences more accurately.
+>
+> This talk will elaborate on those differences and a new monitoring approach that actions on SLOs. We’ll cover the following:
+> 1. Observability vs Monitoring
+> 2. Metrics and Types of Metrics & Monitors
+> 3. Why SLOs are a good monitoring strategy
+> 
+> Lesley Cordero is currently a Staff Software Engineer, Tech Lead at The New York Times. She has spent the majority of her career on edtech teams as an engineer, including Google for Education and other edtech startups.
+>
+> In her current role, she is focused on observability, shared platforms, and building excellent teams by setting reliability vision & strategy across The Times, improving our observability footprint, and cultivating culture that builds with the most vulnerable employees in mind first. She shows care for others by holding them accountable to the best versions of themselves – and by buying them the occasional bubble tea.
+
+### My Notes
 1:8
 
 - observability: understanding what is happening inside software systems to debug a problem, from telemetry emitted by system 
@@ -237,6 +292,16 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 ![snack](snacks.jpg) 
 
 ## Architecture Modernization: Aligning Software, Strategy, and Structure
+
+> ### NDC Notes
+>
+> Architecture Modernization: Aligning Software, Strategy, and Structure
+> 
+> Legacy architectures are a business risk, stifling your organization's ability to innovate. On the other hand, modernized architectures can be a competitive advantage allowing your business to innovate at speed and scale their organizations.
+>
+> Nick Tune works with product and technology leaders to map strategy, model domains, design architecture and build continuous delivery teams while helping to deliver successful business outcomes. He is the author of Architecture Modernization (Manning), and Principles and Practices of Domain-Driven Design (Wrox).
+
+### My Notes
 
 1:21 / 34
 
@@ -283,6 +348,18 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
  
 ## The definitive deep dive into the .git folder
 
+> ### NDC Notes
+>
+> The definitive deep dive into the .git folder
+> 
+> What's in the .git folder? How are commits stored? How do branches work?
+>
+> We'll dive deep into the objects folder, unpack commits, look at the types of DAG nodes, examine object content, and build a complete visualization of the stored content. We'll also quickly look through Git hooks, Git config, and ref logs. Come experience the zen of git.
+>
+> Rob Richardson is a software craftsman building web properties in ASP.NET and Node, React and Vue. He’s a Microsoft MVP, published author, frequent speaker at conferences, user groups, and community events, and a diligent teacher and student of high quality software development. You can find this and other talks at https://robrich.org/presentations and follow him on twitter at @rob_rich.
+
+### My Notes
+
 1:13
 
 - .git that folder is all you need
@@ -316,6 +393,17 @@ https://ndclondon.com/agenda/ada-lovelace-and-the-very-first-computer-program-0b
 
 ## So You Want to Build An Event Driven System?
 
+> ### NDC Notes
+>
+> So You Want to Build An Event Driven System?
+> 
+> Making your system 'event driven' is a common consideration when building modern systems. Especially if these applications leverage serverless technologies.
+> 
+> But what does that actually mean in the real world? What are the benefits of adopting this architecture style, what are the challenges and some of the tradeoffs?
+> 
+> In this session, you'll learn all about that and more with tips taken from building event driven systems in the real world. Starting from why, understanding what and plenty of practical things you can take away and use in your own applications. From the simple, through to some advanced integration patterns that this architecture style unlocks. to improve the resilience, extensibility and scalability of your systems.
+
+### My Notes
 1:21
 
 - yuval Noah harari- sapiens - book:
