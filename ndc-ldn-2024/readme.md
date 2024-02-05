@@ -458,6 +458,26 @@ Question: how to deal with the common question of: now everything is dependant o
 
 ## Distribu-ready with the Modular Monolith
 
+> ### NDC Notes
+> 
+> Distribu-ready with the Modular Monolith
+> 
+> The past few years have seen huge hype around distributed systems and microservices.
+> 
+> Pre-emptive implementation of a distributed architecture has led to many engineering teams struggling with vast complexity and sadly for many, the dreaded "Distributed Monolith".
+> 
+> Some teams are in such a pickle that they are even reverting their distributed applications back to a monolith.
+> 
+> I'm all for designing and developing for future growth, but there is a better way than diving straight into distributed architecture.
+> 
+> Behold, the Modular Monolith.
+> 
+> By design, the modular monolith is "distribu-ready" and in this session, we'll cover the design principles and implementations that make the modular monolith one of the best options for future-proofing your application whilst minimising complexity.
+> 
+> Layla Porter is a Developer Advocate at VMware serving the .NET community. She makes videos and livecodes on YouTube. She is a Microsoft MVP, a GitHub Star, Progress Ninja, and the founder of the #WomenOfDotNet Initiative. Layla loves sharing knowledge whilst having fun. No question is stupid and beginners are always welcome.
+
+### My Notes
+
 1:13
 ![micro mod](mono-micro.jpg)
 
@@ -505,6 +525,24 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 ## Better Code Reviews FTW!
 
+> ### NDC Notes 
+> 
+> Better Code Reviews FTW!
+> 
+> Code reviews is feedback, but if your friend or partner or colleague would ask you for feedback on some of their work, you would probably not send them a list of 50 things they did wrong.
+> 
+> Yet in code reviews, this is perfectly normal.
+> 
+> Could we do better code reviews by just changing the way we give and take feedback? I'll share 10 tips that I try to follow to turn code reviews from a boring exercise or something you dread to a much more pleasant experience.
+> 
+> Tess Ferrandez-Norlander is a developer/data scientist working at Microsoft. Over the past 20 years she has changed the way we do .net debugging, developed machine learning models and Azure solutions with some of the largest companies in Europe and the US.
+> 
+> She has has spoken at lots and lots of conferences around the world on a wide variety of topics including deep .net debugging, UX, web development, Machine Learning and engineering processes. You can also find her on twitter at @TessFerrandez
+>
+>
+
+### My Notes
+
 1: 13
 
 - why do code reviews? 
@@ -529,6 +567,18 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 ## How to get a grip on your microservices system using a service-mesh
 
+> ### NDC Notes
+> 
+> How to get a grip on your microservices system using a service-mesh
+> 
+> Many organizations are now building microservices based systems. But with the adoption of this architecture-style, the need arises for a good way to manage and monitor all the services and their traffic. To handle this, you can leverage what is called a service-mesh.
+> 
+> In this session attendees will learn what a service-mesh is and how to implement one for a microservices based system using Kubernetes and Istio. Topics covered are: intelligent traffic-routing, canary releasing, testing resiliency using chaos-engineering and monitoring using several available telemetry dashboards.
+> 
+> Edwin van Wijk has been working in IT since 1999 and is currently working as Principal Solution Architect and Microsoft Community Lead at Info Support in The Netherlands. He is a Microsoft MVP in the Developer Technologies category (since 2016). His primary areas of expertise are: building distributed systems, systems integration, (cloud-native) software architecture and patterns, software craftsmanship, .NET (Core) development, Azure and DevOps. Edwin likes to share his experience and knowledge about these subjects by training people, publishing videos (www.youtube.com/dotnetflix) and speaking at conferences.
+
+### My Notes
+
 - this is heavy on k8s
 - what is service mesh and why use it
 - observability
@@ -544,6 +594,24 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 
 ## Let's build the worst Event Sourcing system!
+
+> ### NDC Notes
+> 
+> Let's build the worst Event Sourcing system!
+> 
+> Everyone likes to talk about best practices. We'll go the other way round and gather all the worst practices to learn how to build the worst Event Sourcing system!
+> 
+> Event Sourcing is perceived as a complex pattern that’s challenging to learn. In fact, it's pretty simple, but the way it's taught may lead to such a conclusion. By going through the worst ideas, we'll also learn the essence of Event Sourcing. 
+> 
+> I'm a developer, technical team leader, and architect. I started a career before StackOverflow existed. For over 14 years, I've been creating systems close to the business process. I believe that Event-Driven Architectures and Event Sourcing are great ways to achieve that.
+> 
+> I'm an active open-source developer and one of the Marten library maintainers. I'm sharing my journey and findings on my blog https://event-driven.io and practical samples at https://github.com/oskardudycz.
+> 
+> I'm a developer, technical team leader, and architect. I started a career before StackOverflow existed. For over 14 years, I've been creating systems close to the business process. I believe that Event-Driven Architectures and Event Sourcing are great ways to achieve that.
+> 
+> I'm an active open-source developer and one of the Marten library maintainers. I'm sharing my journey and findings on my blog https://event-driven.io and practical samples at https://github.com/oskardudycz.
+
+### My Notes
 
 1: 21/34
 
@@ -591,6 +659,22 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 
 ## It’s time to rebuild DevOps.
 
+> ### NDC Notes
+> 
+> It’s time to rebuild DevOps.
+> 
+> It's almost 15 years since the inception of DevOps. The core value of DevOps was to break down the silos and improve communication to achieve stability, reliability, availability, and security.
+> 
+> In the boom of the ecosystem since that point, it sometimes feels like we've created more silos and stemmed communication in every way with the tooling we have. What if we take the lessons we’ve learned along the way and try to reimagine DevOps tooling to fulfill the original promise of the DevOps movement? What if we could remove the 200% problem (the need to know a specialist language AND a cloud framework) from our tooling? What if we could focus on delivery in a collaborative manner rather than communicating via a series of handoffs via pull requests? It’s time for a second wave of DevOps tools.
+> 
+> In this talk, Paul is going to reflect on the lessons we've learned along the DevOps journey, for example Infrastructure as Code, and talk about the work System Initiative is doing to revolutionize how people collaborate to build and maintain complex infrastructure. System Initiative is the beginning of an ecosystem to create a real-time, multiplayer, multi-modal reinvention of DevOps tooling. System Initiative provides a modern, state of the art approach to infrastructure management that increases productivity with its simulation-based workflow.
+> 
+> Once you see what it’s possible to achieve, you won’t want to settle any longer.
+> 
+> Paul Stack is an infrastructure coder and has spoken at various events throughout the world about his passion for continuous integration, continuous delivery and good operational procedures and why they should be part of what developers and system administrators do on a day to day basis. He believes that reliably delivering software is more important as its development. Paul’s passions are the DevOps and Continuous Delivery movements and how they help the entire business and its customers.
+
+### My Notes
+
 - breaking the mould
 - may be a triggering talk for some 😂
 - gene kim devops handbook, book
@@ -625,6 +709,17 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ## Keynote: Transformers: The Rise of ChatGPT
 
+> ### NDC Notes
+>
+> Keynote: Transformers: The Rise of ChatGPT
+> 
+> As software engineers, we have the incredible opportunity to harness the power of ChatGPT to elevate our applications to new heights of interactivity and intelligence.
+> 
+> Embark on a thrilling journey through ChatGPT's evolution, powered by the Transformers architecture. Explore ChatGPT's real-world impact on code assistance, customer support, content generation, and more. But that's not all – there's more than meets the eye! We'll explore prompt engineering techniques and integration options using the OpenAI API. Roll out feeling inspired and ready to transform your applications and the world.
+> 
+> Kesha Williams is an award-winning technology leader teaching others how to transform their lives through technology. She has 25+ years of experience architecting, designing, and building enterprise web applications. Her passions include teaching cloud topics and leading software engineering teams. Kesha holds multiple AWS certifications and is recognized as an AWS Machine Learning Hero, Alexa Champion, AWS Ambassador, and HackerRank All-Star. She currently serves as the Program Director of Slalom's Cloud Residency and on the Board of Directors for Women in Voice.
+
+### My Notes
 13
 
 ![rise chat gpt](rise-gpt.jpg)
@@ -665,7 +760,13 @@ https://ndclondon.com/agenda/tracking-aircraft-with-streams-software-defined-rad
 
 ## Software Reimagined: The Power of Vertical Slice Architecture
 
-Missed due to Long chat with Oskar Dudycz re event sourcing and event db
+> ### NDC Notes
+>
+> Cancelled
+
+### My Notes
+
+Instead had Long chat with Oskar Dudycz re event sourcing and event db
 
 - closing the book strategies
 - right to be forgotten, encryption payloads, multiple rolling keys etc
@@ -689,6 +790,20 @@ Went to end of what’s new in net 8
 
 ## How GitHub delivers GitHub using GitHub
 
+> ### NDC Notes
+> 
+> How GitHub delivers GitHub using GitHub
+> 
+> Want to learn how a large enterprise works in an agile way? April will talk about how Microsoft engineering teams embarked on their own DevOps journey reducing a three-year release cycle down to three weeks. This required changes to their people, process and products.
+> 
+> April will then talk about how GitHub builds GitHub with GitHub. Comparing the two agile journeys to deliver the largest developer platform on the planet.
+> 
+> April Edwards is a senior developer advocate and DevOps practice lead at GitHub, specializing in application transformation and DevOps ways of working. Her focus is to take customers of a journey from legacy technology, to serverless and containers, where code comes first, while enabling them to take full advantage of DevOps practices.
+> 
+> In April’s spare time she spends time outdoors hiking, skiing or scuba diving. She is also a triathlete competing in Ironman and Half Ironman triathlons.
+
+### My Notes 
+
 13 / 21
 
 - April Edwards
@@ -707,6 +822,22 @@ Went to end of what’s new in net 8
 - 
 
 ## Keep your nose out of it. Denying yourself access to production
+
+> ### NDC Notes
+> 
+> Keep your nose out of it. Denying yourself access to production
+> 
+> In today's world of personal data, privacy concerns, malware and just plain bad luck, having access to a production system and production data is simply a Bad Idea. And not just for yourself, but every one. The developers, the database admin, the operations team - none of them should have access to production.
+> 
+> So how can we do that, and at the same time maintain our high rate of releases, our agility and our sanity?
+> 
+> Glenn will go though some principles to follow and also show you in practice how you can create your environment, lock it down and update it, all without human intervention. He will also show you how you can monitor the environment for unauthorized changes. How you can have "emergency hatches" for when you really need access, but in a controlled fashion. Examples will be for Microsoft Azure, but the principles are universal.
+> 
+> In short, if you want to keep your production environment and production data at an arms length, but still so what you need when you need it, this is your session.
+> 
+> Glenn F. Henriksen is a mentor and developer from Norway. As the co-founder and CTO of Justify, he gets to build new legal tools for everyone to use, helping to create better communication and less conflict in relationships. He's continuously exploring new tools, processes and technologies, and improving how he and his fellow developers work with code, tasks and projects. He has been a Microsoft Development MVP, a part of the Microsoft Regional Director program and is an ASP.NET Insider and an Azure Advisor. In the past 20+ years he has co-owned two companies, worked as a consultant, manager, support tech, network admin, developer, architect, technical lead and more, but his favorite things are still swapping code for food and building stuff that makes a difference in people’s lives.
+
+### My Notes
 
 1: 5
 - Glenn 
@@ -730,9 +861,33 @@ Went to end of what’s new in net 8
 
 ## Co-Create: Creating Better Together
 
+> ### NDC Notes
+>
+> Co-Create: Creating Better Together> 
+>
+> Despite the prevalent mythology of the lone creative genius, many of the most innovative contributions spring from the creative chemistry of a group and the blending of everyone’s ideas and concepts.> 
+>
+> How can we best leverage this collective wisdom to generate creative synergy and co-create? Let’s look at the process of recognizing and removing our personal creative blocks, connecting and communicating with others, combining ideas using play, and constructing a collaborative environment to discover effective methods for tapping into a group’s creative brilliance. Through these steps, you’ll learn to capitalize on the super-linearity of creativity to embrace and leverage diversity to create better together.> 
+>
+> Denise Jacobs’ expertise lies at the intersection of creativity, confidence, and achievement. Denise keynotes conferences and consults with tech companies worldwide giving a Creative Dose™ – an injection of inspiration, relevant content, and immediately applicable tools to help people do their best work.> 
+>
+> Through her company The Creative Dose, her workshops, masterclasses, and coaching help individuals and teams to unblock creativity, cultivate collaboration, and ignite innovation. Through working with Denise, employees become engaged contributors, synergistic collaborators, and authentic leaders.> 
+>
+> Denise has presented at events and organizations worldwide such as Google, Facebook, Automattic, GitHub, FastWeb.It, the BBC, South By Southwest Interactive, Brand Minds, Forbes8, Mind The Product, The Agile Alliance, NDC Conferences, UX Week, The Society for Technical Communications, various chapters of The American Marketing Association, Creative Mornings, The Future of Storytelling, The Future of Web Design, Inbound, and TEDxRheinMain.> 
+>
+> Denise is the author of Banish Your Inner Critic, the premier handbook on silencing self-doubt to unleash creativity and do your best work. A Web Design & Development industry veteran, Denise is also the author of The CSS Detective Guide, the principal book on troubleshooting CSS code, and is co-author to the Smashing Book #3: Redesign the Web, as well as the book InterAct with Web Standards: A holistic guide to web design.> 
+>
+> Denise is a  LinkedIn Learning course instructor, with 7 popular courses that have a combined total of over 400,000 learners and counting. She has also been a guest lecturer in courses at Stanford University‘s Design Program and the d.school, as well as an instructor for the Stanford Continuing Studies Program.
+
 - todo: watch online
 
 ## How JavaScript Happened: A Short History of Programming Languages
+
+> ### NDC Notes
+> 
+> How JavaScript Happened: A Short History of Programming Languages
+> 
+> JavaScript was famously created in 10 days as a proof-of-concept for Netscape Navigator 2.0. Today it is one of the most-used languages in the world. Some people even like it. In this talk we will chart the path from the dark days before programming languages, through the ups and downs of the early pioneers, all the way to 1995 and the creation of JavaScript.
 
 - todo: watch online
 
