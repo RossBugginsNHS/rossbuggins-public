@@ -47,6 +47,9 @@ Dylan Beattie - Thursday  Room 1 13:40 - 14:40 [Analogue Evolution, Digital Revo
 
 https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc19cqz
 
+## Interested From Others 
+
+- AlRa: 04, 11
 
 ## Keynote: Debug your thinking
 

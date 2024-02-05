@@ -32,7 +32,10 @@ public readonly record struct CommsCheckQuestionRequestDto(
 
     [property: SwaggerSchema("Postcode. Eg AB01 1AB")]
     [property: SwaggerSchemaExample("AB01 1AB")]
-    PostalCode PostCode)
+    PostalCode PostCode,
+    
+    [property: SwaggerSchema("NHS Flags.")]
+    RecordFlags Flags)
 {
 
     public static CommsCheckQuestionRequestDto DobOnly(
@@ -49,7 +52,8 @@ public readonly record struct CommsCheckQuestionRequestDto(
             DateOnly.MinValue,
             DeathStatus.None,
             reasonForRemoval,
-            PostalCode.Empty);
+            PostalCode.Empty,
+            RecordFlags.Empty);
 
     public CommsCheckQuestionRequestDto FilteredVersion() =>
         this with 
@@ -61,3 +65,11 @@ public readonly record struct CommsCheckQuestionRequestDto(
                 PostCode = this.PostCode.DistrictOnly()
             };
 }
+
+public readonly record struct RecordFlags(
+    [property: SwaggerSchema("NHS S Flag")]
+    bool SFlag)
+    {
+
+    public static RecordFlags Empty => new RecordFlags();
+    }

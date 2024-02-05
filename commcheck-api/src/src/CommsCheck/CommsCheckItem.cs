@@ -10,6 +10,7 @@ public readonly record struct CommsCheckItem(
     IReasonForRemoval ReasonForRemoval,
     IDeathStatus DeathStatus,
     PostalCode PostCode,
+    bool SFlag,
     CommsCheckQuestionRequestDtoCopy CopyOfSource)
 {
     public int DaysOld =>
@@ -41,63 +42,4 @@ public readonly record struct CommsCheckItem(
 
     public int DaysSinceOldestCommsUpdate =>
          RelativeDate.DayNumber - DateOfOldestCommsUpdate.DayNumber;
-}
-
-public class CommsCheckItemFactory
-{
-    public CommsCheckItem FromDtoRelativeToToday(CommsCheckQuestionRequestDto dto)
-    {
-        return new CommsCheckItem(
-        dto.RelativeDate,
-        dto.DateOfBirth,
-        dto.DateOfSmsMostRecentUpdate,
-        dto.DateOfEmailMostRecentUpdate,
-        dto.DateOfAppMostRecentUpdate,
-        dto.DateOfPostalMostRecentUpdate,
-        dto.DateOfReasonForRemovalMostRecentUpdate,
-        IReasonForRemoval.FromEnum(dto.RfR),
-        IDeathStatus.FromEnum(dto.DeathStatusValue),
-        dto.PostCode,
-        CommsCheckQuestionRequestDtoCopy.FromDto(dto));
-    }
-}
-
-public readonly record struct CommsCheckQuestionRequestDtoCopy(
-    DateOnly RelativeDate,
-    DateOnly DateOfBirth,
-    DateOnly DateOfSmsMostRecentUpdate,
-    DateOnly DateOfEmailMostRecentUpdate,
-    DateOnly DateOfAppMostRecentUpdate,
-    DateOnly DateOfPostalMostRecentUpdate,
-    DateOnly DateOfReasonForRemovalMostRecentUpdate,
-    DeathStatus? DeathStatusValue,
-    ReasonForRemovals? RfR,
-    PostalCode PostCode
-    )
-{
-    public static CommsCheckQuestionRequestDtoCopy FromDto(CommsCheckQuestionRequestDto dto) =>
-         new CommsCheckQuestionRequestDtoCopy(
-            dto.RelativeDate,
-              dto.DateOfBirth,
-                dto.DateOfSmsMostRecentUpdate,
-                dto.DateOfEmailMostRecentUpdate,
-                dto.DateOfAppMostRecentUpdate,
-                dto.DateOfPostalMostRecentUpdate,
-                dto.DateOfReasonForRemovalMostRecentUpdate,
-                dto.DeathStatusValue,
-                 dto.RfR,
-                 dto.PostCode);
-
-    public CommsCheckQuestionRequestDto ToDto() => 
-             new CommsCheckQuestionRequestDto(
-                RelativeDate,
-              DateOfBirth,
-                DateOfSmsMostRecentUpdate,
-                DateOfEmailMostRecentUpdate,
-                DateOfAppMostRecentUpdate,
-                DateOfPostalMostRecentUpdate,
-                DateOfReasonForRemovalMostRecentUpdate,
-                DeathStatusValue,
-                RfR,
-                PostCode);
 }
