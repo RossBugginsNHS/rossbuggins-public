@@ -18,18 +18,18 @@
 
 ## Thursday, 2024-02-01
 
-| Video                                           | Session Review                                                             | Title                                                                                                                                                                                    | Start | Finish | Location | Speaker                                                         | Role                              | Org    |
-| ----------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | --------------------------------------------------------------- | --------------------------------- | ------ |
-|                                                 | [08](#so-you-want-to-build-an-event-driven-system)                         | [So You Want to Build An Event Driven System?](https://ndclondon.com/agenda/so-you-want-to-build-an-event-driven-system-0ps7/0hl94atxd8i)                                                | 09:00 | 10:00  | Room 3   | James Eastham                                                   |                                   |        |
-|                                                 | [09](#distribu-ready-with-the-modular-monolith)                            | [Distribu-ready with the Modular Monolith](https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i)                                                       | 10:20 | 11:20  | Room 1   | Layla Porter                                                    |                                   |        |
-|                                                 | [10](#better-code-reviews-ftw)                                             | [Better Code Reviews FTW!](https://ndclondon.com/agenda/better-code-reviews-ftw-03b1/0qf0kcod9s2)                                                                                        | 11:40 | 12:40  | Room 3   | Tess Ferrandez-Norlander                                        |                                   |        |
-|                                                 | [10](#how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh) | [How to get a grip on your microservices system using a service-mesh](https://ndclondon.com/agenda/how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh-0i5h/0s50c7e5x2z) | 13:40 | 14:40  | Room 6   | [Edwin van Wijk](https://ndclondon.com/speakers/edwin-van-wijk) | Principal Solution Architect      |        |
-|                                                 | [11](#lets-build-the-worst-event-sourcing-system)                          | [Let's build the worst Event Sourcing system!](https://ndclondon.com/agenda/lets-build-the-worst-event-sourcing-system-0gkz/02ohcx0a2xr)                                                 | 15:00 | 16:00  | Room 6   | Oskar Dudycz                                                    |                                   |        |
-|                                                 | [12](#its-time-to-rebuild-devops)                                          | [It’s time to rebuild DevOps.](https://ndclondon.com/agenda/its-time-to-rebuild-devops-0d58/09amj6rjenn)                                                                                 | 16:20 | 17:20  | Room 5   | Paul Stack                                                      |                                   |        |
-| [YouTube](https://youtu.be/wrSyPR2E8IQ?t=31563) | [13](#cs-fundamentals-why-ssl-and-ssh-are-secure)                          | [CS Fundamentals: Why SSL and SSH are Secure](https://ndclondon.com/agenda/cs-fundamentals-why-ssl-and-ssh-are-secure-0xzl/081dcjv71do)                                                  | 17:40 | 18:40  | Room 1   | [Jon Skeet](https://ndclondon.com/speakers/jon-skeet)           | Staff Developer Platform Engineer | Google |
-|                                                 | [14](#ndc-party---conference-reception)                                    | [NDC Party - Conference reception](https://ndclondon.com/agenda/ndc-party-london/fa1d3b3a5456)                                                                                           | 18:40 | 19:30  | Expo     |                                                                 |                                   |        |
-|                                                 |                                                                            |                                                                                                                                                                                          | 19:40 | 20:40  | ???      |                                                                 |                                   |        |
-|                                                 |                                                                            |                                                                                                                                                                                          | 21:00 | 22:00  | ???      |                                                                 |                                   |        |
+| Video                                                                          | Session Review                                                             | Title                                                                                                                                                                                    | Start | Finish | Location | Speaker                                                         | Role                              | Org    |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ | -------- | --------------------------------------------------------------- | --------------------------------- | ------ |
+|                                                                                | [08](#so-you-want-to-build-an-event-driven-system)                         | [So You Want to Build An Event Driven System?](https://ndclondon.com/agenda/so-you-want-to-build-an-event-driven-system-0ps7/0hl94atxd8i)                                                | 09:00 | 10:00  | Room 3   | James Eastham                                                   |                                   |        |
+|                                                                                | [09](#distribu-ready-with-the-modular-monolith)                            | [Distribu-ready with the Modular Monolith](https://ndclondon.com/agenda/distribu-ready-with-the-modular-monolith-0bk5/0tqfug96b0i)                                                       | 10:20 | 11:20  | Room 1   | Layla Porter                                                    |                                   |        |
+| [YouTube](https://www.youtube.com/live/_T_0MNu9DGQ?si=Q_4_sFJTP3hayXXb&t=9702) | [10](#better-code-reviews-ftw)                                             | [Better Code Reviews FTW!](https://ndclondon.com/agenda/better-code-reviews-ftw-03b1/0qf0kcod9s2)                                                                                        | 11:40 | 12:40  | Room 3   | Tess Ferrandez-Norlander                                        |                                   |        |
+|                                                                                | [10](#how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh) | [How to get a grip on your microservices system using a service-mesh](https://ndclondon.com/agenda/how-to-get-a-grip-on-your-microservices-system-using-a-service-mesh-0i5h/0s50c7e5x2z) | 13:40 | 14:40  | Room 6   | [Edwin van Wijk](https://ndclondon.com/speakers/edwin-van-wijk) | Principal Solution Architect      |        |
+|                                                                                | [11](#lets-build-the-worst-event-sourcing-system)                          | [Let's build the worst Event Sourcing system!](https://ndclondon.com/agenda/lets-build-the-worst-event-sourcing-system-0gkz/02ohcx0a2xr)                                                 | 15:00 | 16:00  | Room 6   | Oskar Dudycz                                                    |                                   |        |
+|                                                                                | [12](#its-time-to-rebuild-devops)                                          | [It’s time to rebuild DevOps.](https://ndclondon.com/agenda/its-time-to-rebuild-devops-0d58/09amj6rjenn)                                                                                 | 16:20 | 17:20  | Room 5   | Paul Stack                                                      |                                   |        |
+| [YouTube](https://youtu.be/wrSyPR2E8IQ?t=31563)                                | [13](#cs-fundamentals-why-ssl-and-ssh-are-secure)                          | [CS Fundamentals: Why SSL and SSH are Secure](https://ndclondon.com/agenda/cs-fundamentals-why-ssl-and-ssh-are-secure-0xzl/081dcjv71do)                                                  | 17:40 | 18:40  | Room 1   | [Jon Skeet](https://ndclondon.com/speakers/jon-skeet)           | Staff Developer Platform Engineer | Google |
+|                                                                                | [14](#ndc-party---conference-reception)                                    | [NDC Party - Conference reception](https://ndclondon.com/agenda/ndc-party-london/fa1d3b3a5456)                                                                                           | 18:40 | 19:30  | Expo     |                                                                 |                                   |        |
+|                                                                                |                                                                            |                                                                                                                                                                                          | 19:40 | 20:40  | ???      |                                                                 |                                   |        |
+|                                                                                |                                                                            |                                                                                                                                                                                          | 21:00 | 22:00  | ???      |                                                                 |                                   |        |
 
 ## Friday, 2024-02-02
 
@@ -72,6 +72,15 @@ https://ndclondon.com/agenda/understand-the-next-phase-of-web-development/04mxuc
 ## Interested From Others 
 
 - AlRa: 04, 11
+
+
+## NDC London 2024 Review
+
+### So what is NDC anyway?
+
+
+
+# Session Notes
 
 ## Ratings
 
@@ -185,8 +194,6 @@ I
 
 CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-net-maui-blazor-and-signalr/0179973be3cc
 
-
-
 - ms employee
 - signal r - started with basic example
 - Maui
@@ -284,8 +291,6 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - alerting strategy:
 - consumption of budget vs rate of change of budget (burn rate)
 - automation not about replacing us, it’s about enabling us
--  
-- 
 
 ## Snack bar
 
@@ -344,7 +349,6 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - don’t get lost in all upfront planning
 - make a decision on when first change will be seen. Aim a target of 3 - 6 months?
 - patterns for migrations. Strangler fig. DDD bubble pattern. Danger of strangler fig.
-- 
  
 ## The definitive deep dive into the .git folder
 
@@ -378,7 +382,7 @@ CANCELLED. Instead https://ndclondon.com/agenda/real-time-connected-apps-with-ne
 - git remotes can also be relative local file system paths…
 - hooks folder, great for automation
 - although hooks can’t be committed… so look at npm githooks which use symlinks
-Git config files - alias section
+- Git config files - alias section
 
 
 ## Supercharge your team by building clarity, not consensus
@@ -583,7 +587,7 @@ A: pray 😂 communicate why it’s a problem. Need people to see why it’s a b
 - what is service mesh and why use it
 - observability
 - chaos engineering
--  service mesh almost always use sidecar pattern
+- service mesh almost always use sidecar pattern
 - ambient mesh coming soon, does it without another container
 - sidecar runs alongside actual container, in the same pod
 - istio as a mesh provider
@@ -776,7 +780,7 @@ Instead had Long chat with Oskar Dudycz re event sourcing and event db
 - todo read his esdb blog post on closing book + other links he’s going to send through
 - https://www.eventstore.com/blog/keep-your-streams-short-temporal-modelling-for-fast-reads-and-optimal-data-retention
 
-Went to end of what’s new in net 8
+Then went to end of what’s new in net 8
 
 - interceptors
 - debuggerhidden attribute 😂😂😂😂
@@ -899,6 +903,7 @@ Went to end of what’s new in net 8
 - in maturity doc - eda for comms. Micro arch for compute. 
 - whys.
 - what is our distro-ready state - ie the point we are ready to separate.
+- How could notify support chaos engineering
 
 ## es next step session
 
